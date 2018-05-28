@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.doc.dao.ExOriginCertificateDao">
+
+	<select id="get" resultType="com.cloudht.doc.domain.ExOriginCertificateDO">
+		select `ex_origin_certificate_id`,`certificate_type`,`certificate_no`,`invoice_no`,`invoice_date`,`exporter_name_address`,`consignee_name_address`,`ship_date`,`departure_port`,`transit_port`,`destination_port`,`currency`,`destination_country`,`price_clause`,`ship_mark_info`,`vessel_voyage_terms`,`gmt_create`,`gmt_modified` from ex_origin_certificate where ex_origin_certificate_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.doc.domain.ExOriginCertificateDO">
+		select `ex_origin_certificate_id`,`certificate_type`,`certificate_no`,`invoice_no`,`invoice_date`,`exporter_name_address`,`consignee_name_address`,`ship_date`,`departure_port`,`transit_port`,`destination_port`,`currency`,`destination_country`,`price_clause`,`ship_mark_info`,`vessel_voyage_terms`,`gmt_create`,`gmt_modified` from ex_origin_certificate
+        <where>  
+		  		  <if test="exOriginCertificateId != null and exOriginCertificateId != ''"> and ex_origin_certificate_id = #{exOriginCertificateId} </if>
+		  		  <if test="certificateType != null and certificateType != ''"> and certificate_type = #{certificateType} </if>
+		  		  <if test="certificateNo != null and certificateNo != ''"> and certificate_no = #{certificateNo} </if>
+		  		  <if test="invoiceNo != null and invoiceNo != ''"> and invoice_no = #{invoiceNo} </if>
+		  		  <if test="invoiceDate != null and invoiceDate != ''"> and invoice_date = #{invoiceDate} </if>
+		  		  <if test="exporterNameAddress != null and exporterNameAddress != ''"> and exporter_name_address = #{exporterNameAddress} </if>
+		  		  <if test="consigneeNameAddress != null and consigneeNameAddress != ''"> and consignee_name_address = #{consigneeNameAddress} </if>
+		  		  <if test="shipDate != null and shipDate != ''"> and ship_date = #{shipDate} </if>
+		  		  <if test="departurePort != null and departurePort != ''"> and departure_port = #{departurePort} </if>
+		  		  <if test="transitPort != null and transitPort != ''"> and transit_port = #{transitPort} </if>
+		  		  <if test="destinationPort != null and destinationPort != ''"> and destination_port = #{destinationPort} </if>
+		  		  <if test="currency != null and currency != ''"> and currency = #{currency} </if>
+		  		  <if test="destinationCountry != null and destinationCountry != ''"> and destination_country = #{destinationCountry} </if>
+		  		  <if test="priceClause != null and priceClause != ''"> and price_clause = #{priceClause} </if>
+		  		  <if test="shipMarkInfo != null and shipMarkInfo != ''"> and ship_mark_info = #{shipMarkInfo} </if>
+		  		  <if test="vesselVoyageTerms != null and vesselVoyageTerms != ''"> and vessel_voyage_terms = #{vesselVoyageTerms} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ex_origin_certificate_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ex_origin_certificate
+		 <where>  
+		  		  <if test="exOriginCertificateId != null and exOriginCertificateId != ''"> and ex_origin_certificate_id = #{exOriginCertificateId} </if>
+		  		  <if test="certificateType != null and certificateType != ''"> and certificate_type = #{certificateType} </if>
+		  		  <if test="certificateNo != null and certificateNo != ''"> and certificate_no = #{certificateNo} </if>
+		  		  <if test="invoiceNo != null and invoiceNo != ''"> and invoice_no = #{invoiceNo} </if>
+		  		  <if test="invoiceDate != null and invoiceDate != ''"> and invoice_date = #{invoiceDate} </if>
+		  		  <if test="exporterNameAddress != null and exporterNameAddress != ''"> and exporter_name_address = #{exporterNameAddress} </if>
+		  		  <if test="consigneeNameAddress != null and consigneeNameAddress != ''"> and consignee_name_address = #{consigneeNameAddress} </if>
+		  		  <if test="shipDate != null and shipDate != ''"> and ship_date = #{shipDate} </if>
+		  		  <if test="departurePort != null and departurePort != ''"> and departure_port = #{departurePort} </if>
+		  		  <if test="transitPort != null and transitPort != ''"> and transit_port = #{transitPort} </if>
+		  		  <if test="destinationPort != null and destinationPort != ''"> and destination_port = #{destinationPort} </if>
+		  		  <if test="currency != null and currency != ''"> and currency = #{currency} </if>
+		  		  <if test="destinationCountry != null and destinationCountry != ''"> and destination_country = #{destinationCountry} </if>
+		  		  <if test="priceClause != null and priceClause != ''"> and price_clause = #{priceClause} </if>
+		  		  <if test="shipMarkInfo != null and shipMarkInfo != ''"> and ship_mark_info = #{shipMarkInfo} </if>
+		  		  <if test="vesselVoyageTerms != null and vesselVoyageTerms != ''"> and vessel_voyage_terms = #{vesselVoyageTerms} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.doc.domain.ExOriginCertificateDO" useGeneratedKeys="true" keyProperty="exOriginCertificateId">
+		insert into ex_origin_certificate
+		(
+			`certificate_type`, 
+			`certificate_no`, 
+			`invoice_no`, 
+			`invoice_date`, 
+			`exporter_name_address`, 
+			`consignee_name_address`, 
+			`ship_date`, 
+			`departure_port`, 
+			`transit_port`, 
+			`destination_port`, 
+			`currency`, 
+			`destination_country`, 
+			`price_clause`, 
+			`ship_mark_info`, 
+			`vessel_voyage_terms`, 
+			`gmt_create`, 
+			`gmt_modified`
+		)
+		values
+		(
+			#{certificateType}, 
+			#{certificateNo}, 
+			#{invoiceNo}, 
+			#{invoiceDate}, 
+			#{exporterNameAddress}, 
+			#{consigneeNameAddress}, 
+			#{shipDate}, 
+			#{departurePort}, 
+			#{transitPort}, 
+			#{destinationPort}, 
+			#{currency}, 
+			#{destinationCountry}, 
+			#{priceClause}, 
+			#{shipMarkInfo}, 
+			#{vesselVoyageTerms}, 
+			#{gmtCreate}, 
+			#{gmtModified}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.doc.domain.ExOriginCertificateDO">
+		update ex_origin_certificate 
+		<set>
+			<if test="certificateType != null">`certificate_type` = #{certificateType}, </if>
+			<if test="certificateNo != null">`certificate_no` = #{certificateNo}, </if>
+			<if test="invoiceNo != null">`invoice_no` = #{invoiceNo}, </if>
+			<if test="invoiceDate != null">`invoice_date` = #{invoiceDate}, </if>
+			<if test="exporterNameAddress != null">`exporter_name_address` = #{exporterNameAddress}, </if>
+			<if test="consigneeNameAddress != null">`consignee_name_address` = #{consigneeNameAddress}, </if>
+			<if test="shipDate != null">`ship_date` = #{shipDate}, </if>
+			<if test="departurePort != null">`departure_port` = #{departurePort}, </if>
+			<if test="transitPort != null">`transit_port` = #{transitPort}, </if>
+			<if test="destinationPort != null">`destination_port` = #{destinationPort}, </if>
+			<if test="currency != null">`currency` = #{currency}, </if>
+			<if test="destinationCountry != null">`destination_country` = #{destinationCountry}, </if>
+			<if test="priceClause != null">`price_clause` = #{priceClause}, </if>
+			<if test="shipMarkInfo != null">`ship_mark_info` = #{shipMarkInfo}, </if>
+			<if test="vesselVoyageTerms != null">`vessel_voyage_terms` = #{vesselVoyageTerms}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}</if>
+		</set>
+		where ex_origin_certificate_id = #{exOriginCertificateId}
+	</update>
+	
+	<delete id="remove">
+		delete from ex_origin_certificate where ex_origin_certificate_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ex_origin_certificate where ex_origin_certificate_id in 
+		<foreach item="exOriginCertificateId" collection="array" open="(" separator="," close=")">
+			#{exOriginCertificateId}
+		</foreach>
+	</delete>
+
+</mapper>

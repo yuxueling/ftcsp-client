@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="ex_ship_order_id" name="ex_ship_order_id" th:value="${exShipOrder.ex_ship_order_id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">发货人：</label>
+								<div class="col-sm-8">
+									<input id="shipper" name="shipper" th:value="${exShipOrder.shipper}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">收货人：</label>
+								<div class="col-sm-8">
+									<input id="consignee" name="consignee" th:value="${exShipOrder.consignee}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">通知人：</label>
+								<div class="col-sm-8">
+									<input id="notifyParty" name="notifyParty" th:value="${exShipOrder.notifyParty}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">发票号：</label>
+								<div class="col-sm-8">
+									<input id="invoiceNo" name="invoiceNo" th:value="${exShipOrder.invoiceNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">合同号：</label>
+								<div class="col-sm-8">
+									<input id="contractNo" name="contractNo" th:value="${exShipOrder.contractNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">可否转船：0-否，1-是：</label>
+								<div class="col-sm-8">
+									<input id="isTransship" name="isTransship" th:value="${exShipOrder.isTransship}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">可否分批：0-否，1-是：</label>
+								<div class="col-sm-8">
+									<input id="isPartialship" name="isPartialship" th:value="${exShipOrder.isPartialship}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">装船期限：</label>
+								<div class="col-sm-8">
+									<input id="shipDate" name="shipDate" th:value="${exShipOrder.shipDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">船公司名称：</label>
+								<div class="col-sm-8">
+									<input id="shipCompanyName" name="shipCompanyName" th:value="${exShipOrder.shipCompanyName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">起运港：</label>
+								<div class="col-sm-8">
+									<input id="departurePort" name="departurePort" th:value="${exShipOrder.departurePort}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">转运港：</label>
+								<div class="col-sm-8">
+									<input id="transitPort" name="transitPort" th:value="${exShipOrder.transitPort}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">目的港：</label>
+								<div class="col-sm-8">
+									<input id="destinationPort" name="destinationPort" th:value="${exShipOrder.destinationPort}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">有效期限：</label>
+								<div class="col-sm-8">
+									<input id="expiryDate" name="expiryDate" th:value="${exShipOrder.expiryDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">交货日期：</label>
+								<div class="col-sm-8">
+									<input id="deliveryDate" name="deliveryDate" th:value="${exShipOrder.deliveryDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">装箱方式：0-拼箱，1-整柜，2-拼车？，3-整车？：</label>
+								<div class="col-sm-8">
+									<input id="encasementType" name="encasementType" th:value="${exShipOrder.encasementType}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">20'GP数量：</label>
+								<div class="col-sm-8">
+									<input id="twentyGpNum" name="twentyGpNum" th:value="${exShipOrder.twentyGpNum}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">40'GP数量：</label>
+								<div class="col-sm-8">
+									<input id="fortyGpNum" name="fortyGpNum" th:value="${exShipOrder.fortyGpNum}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">40'HQ数量：</label>
+								<div class="col-sm-8">
+									<input id="fortyHqNum" name="fortyHqNum" th:value="${exShipOrder.fortyHqNum}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">运费支付方式：0-预付，1-到付：</label>
+								<div class="col-sm-8">
+									<input id="freightPayment" name="freightPayment" th:value="${exShipOrder.freightPayment}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">联系人：</label>
+								<div class="col-sm-8">
+									<input id="contact" name="contact" th:value="${exShipOrder.contact}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">电话：</label>
+								<div class="col-sm-8">
+									<input id="telephone" name="telephone" th:value="${exShipOrder.telephone}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">传真：</label>
+								<div class="col-sm-8">
+									<input id="fax" name="fax" th:value="${exShipOrder.fax}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">正本提单份数：</label>
+								<div class="col-sm-8">
+									<input id="nosOriginalBsl" name="nosOriginalBsl" th:value="${exShipOrder.nosOriginalBsl}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">副本提单份数：</label>
+								<div class="col-sm-8">
+									<input id="nosOriginalBslCopy" name="nosOriginalBslCopy" th:value="${exShipOrder.nosOriginalBslCopy}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">报关金额：</label>
+								<div class="col-sm-8">
+									<input id="customsDeclaredValue" name="customsDeclaredValue" th:value="${exShipOrder.customsDeclaredValue}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">币别：</label>
+								<div class="col-sm-8">
+									<input id="currency" name="currency" th:value="${exShipOrder.currency}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">注意事项：</label>
+								<div class="col-sm-8">
+									<input id="announcement" name="announcement" th:value="${exShipOrder.announcement}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtCreate" name="gmtCreate" th:value="${exShipOrder.gmtCreate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修改时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtModified" name="gmtModified" th:value="${exShipOrder.gmtModified}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/doc/exShipOrder/edit.js">
+	</script>
+</body>
+</html>

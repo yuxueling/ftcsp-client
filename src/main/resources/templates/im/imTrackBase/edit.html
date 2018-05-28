@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="im_track_base_id" name="im_track_base_id" th:value="${imTrackBase.im_track_base_id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">代理合同号：</label>
+								<div class="col-sm-8">
+									<input id="agencyContractNo" name="agencyContractNo" th:value="${imTrackBase.agencyContractNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">委托方：</label>
+								<div class="col-sm-8">
+									<input id="ftClientId" name="ftClientId" th:value="${imTrackBase.ftClientId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">提单号：</label>
+								<div class="col-sm-8">
+									<input id="billLadingNo" name="billLadingNo" th:value="${imTrackBase.billLadingNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">	委托报关报检单位：</label>
+								<div class="col-sm-8">
+									<input id="ecdiCompanyName" name="ecdiCompanyName" th:value="${imTrackBase.ecdiCompanyName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">联系人：</label>
+								<div class="col-sm-8">
+									<input id="contact" name="contact" th:value="${imTrackBase.contact}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">电话：</label>
+								<div class="col-sm-8">
+									<input id="telephone" name="telephone" th:value="${imTrackBase.telephone}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">装箱方式：0-拼箱，1-整柜，2-拼车？，3-整车？：</label>
+								<div class="col-sm-8">
+									<input id="encasementType" name="encasementType" th:value="${imTrackBase.encasementType}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">20'GP数量：</label>
+								<div class="col-sm-8">
+									<input id="twentyGpNum" name="twentyGpNum" th:value="${imTrackBase.twentyGpNum}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">40'GP数量：</label>
+								<div class="col-sm-8">
+									<input id="fortyGpNum" name="fortyGpNum" th:value="${imTrackBase.fortyGpNum}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">40'HQ数量：</label>
+								<div class="col-sm-8">
+									<input id="fortyHqNum" name="fortyHqNum" th:value="${imTrackBase.fortyHqNum}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">贸易方式：</label>
+								<div class="col-sm-8">
+									<input id="tradeWay" name="tradeWay" th:value="${imTrackBase.tradeWay}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">结汇方式：</label>
+								<div class="col-sm-8">
+									<input id="settlementWay" name="settlementWay" th:value="${imTrackBase.settlementWay}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">运输方式：</label>
+								<div class="col-sm-8">
+									<input id="transportationMode" name="transportationMode" th:value="${imTrackBase.transportationMode}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">是否木制包装：</label>
+								<div class="col-sm-8">
+									<input id="isWoodPackage" name="isWoodPackage" th:value="${imTrackBase.isWoodPackage}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">到港日期：</label>
+								<div class="col-sm-8">
+									<input id="arrivalDate" name="arrivalDate" th:value="${imTrackBase.arrivalDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">进口港口：</label>
+								<div class="col-sm-8">
+									<input id="importPort" name="importPort" th:value="${imTrackBase.importPort}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">报关单号：</label>
+								<div class="col-sm-8">
+									<input id="customsDeclarationNo" name="customsDeclarationNo" th:value="${imTrackBase.customsDeclarationNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">报关金额：</label>
+								<div class="col-sm-8">
+									<input id="customsDeclarationAmount" name="customsDeclarationAmount" th:value="${imTrackBase.customsDeclarationAmount}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">是否入库：</label>
+								<div class="col-sm-8">
+									<input id="isStorage" name="isStorage" th:value="${imTrackBase.isStorage}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">入库日期：</label>
+								<div class="col-sm-8">
+									<input id="storageDate" name="storageDate" th:value="${imTrackBase.storageDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">是否货权转移：</label>
+								<div class="col-sm-8">
+									<input id="isCargoPropertyTransfer" name="isCargoPropertyTransfer" th:value="${imTrackBase.isCargoPropertyTransfer}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">是否违规：</label>
+								<div class="col-sm-8">
+									<input id="isViolation" name="isViolation" th:value="${imTrackBase.isViolation}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">处罚单位：</label>
+								<div class="col-sm-8">
+									<input id="penaltyDepartment" name="penaltyDepartment" th:value="${imTrackBase.penaltyDepartment}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">处罚金额：</label>
+								<div class="col-sm-8">
+									<input id="penaltyAmount" name="penaltyAmount" th:value="${imTrackBase.penaltyAmount}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">处罚日期：</label>
+								<div class="col-sm-8">
+									<input id="penaltyDate" name="penaltyDate" th:value="${imTrackBase.penaltyDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">备注：</label>
+								<div class="col-sm-8">
+									<input id="remark" name="remark" th:value="${imTrackBase.remark}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtCreate" name="gmtCreate" th:value="${imTrackBase.gmtCreate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修改时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtModified" name="gmtModified" th:value="${imTrackBase.gmtModified}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/im/imTrackBase/edit.js">
+	</script>
+</body>
+</html>

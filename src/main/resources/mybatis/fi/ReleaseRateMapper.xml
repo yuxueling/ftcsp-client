@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.fi.dao.ReleaseRateDao">
+
+	<select id="get" resultType="com.cloudht.fi.domain.ReleaseRateDO">
+		select `fi_release_rate_id`,`release_date`,`exchange_conversion`,`buying_price`,`selling_price`,`finance_reference_rate`,`gmt_create`,`gmt_modified` from fi_release_rate where fi_release_rate_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.fi.domain.ReleaseRateDO">
+		select `fi_release_rate_id`,`release_date`,`exchange_conversion`,`buying_price`,`selling_price`,`finance_reference_rate`,`gmt_create`,`gmt_modified` from fi_release_rate
+        <where>  
+		  		  <if test="fiReleaseRateId != null and fiReleaseRateId != ''"> and fi_release_rate_id = #{fiReleaseRateId} </if>
+		  		  <if test="releaseDate != null and releaseDate != ''"> and release_date = #{releaseDate} </if>
+		  		  <if test="exchangeConversion != null and exchangeConversion != ''"> and exchange_conversion = #{exchangeConversion} </if>
+		  		  <if test="buyingPrice != null and buyingPrice != ''"> and buying_price = #{buyingPrice} </if>
+		  		  <if test="sellingPrice != null and sellingPrice != ''"> and selling_price = #{sellingPrice} </if>
+		  		  <if test="financeReferenceRate != null and financeReferenceRate != ''"> and finance_reference_rate = #{financeReferenceRate} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by fi_release_rate_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from fi_release_rate
+		 <where>  
+		  		  <if test="fiReleaseRateId != null and fiReleaseRateId != ''"> and fi_release_rate_id = #{fiReleaseRateId} </if>
+		  		  <if test="releaseDate != null and releaseDate != ''"> and release_date = #{releaseDate} </if>
+		  		  <if test="exchangeConversion != null and exchangeConversion != ''"> and exchange_conversion = #{exchangeConversion} </if>
+		  		  <if test="buyingPrice != null and buyingPrice != ''"> and buying_price = #{buyingPrice} </if>
+		  		  <if test="sellingPrice != null and sellingPrice != ''"> and selling_price = #{sellingPrice} </if>
+		  		  <if test="financeReferenceRate != null and financeReferenceRate != ''"> and finance_reference_rate = #{financeReferenceRate} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.fi.domain.ReleaseRateDO" useGeneratedKeys="true" keyProperty="fiReleaseRateId">
+		insert into fi_release_rate
+		(
+			`release_date`, 
+			`exchange_conversion`, 
+			`buying_price`, 
+			`selling_price`, 
+			`finance_reference_rate`, 
+			`gmt_create`, 
+			`gmt_modified`
+		)
+		values
+		(
+			#{releaseDate}, 
+			#{exchangeConversion}, 
+			#{buyingPrice}, 
+			#{sellingPrice}, 
+			#{financeReferenceRate}, 
+			#{gmtCreate}, 
+			#{gmtModified}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.fi.domain.ReleaseRateDO">
+		update fi_release_rate 
+		<set>
+			<if test="releaseDate != null">`release_date` = #{releaseDate}, </if>
+			<if test="exchangeConversion != null">`exchange_conversion` = #{exchangeConversion}, </if>
+			<if test="buyingPrice != null">`buying_price` = #{buyingPrice}, </if>
+			<if test="sellingPrice != null">`selling_price` = #{sellingPrice}, </if>
+			<if test="financeReferenceRate != null">`finance_reference_rate` = #{financeReferenceRate}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}</if>
+		</set>
+		where fi_release_rate_id = #{fiReleaseRateId}
+	</update>
+	
+	<delete id="remove">
+		delete from fi_release_rate where fi_release_rate_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from fi_release_rate where fi_release_rate_id in 
+		<foreach item="fiReleaseRateId" collection="array" open="(" separator="," close=")">
+			#{fiReleaseRateId}
+		</foreach>
+	</delete>
+
+</mapper>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body>
+<br/>
+<br/>
+<div class="col-sm-6 panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a href="#">通知公告</a>
+        </h3>
+    </div>
+    <table class="table">
+        <tr><td><a href="#">云汇通外贸综合服务平台简介</a></td><td>2018-05-12</td></tr>
+        <tr><td><a href="#">海关税收企业“自报自缴”</a></td><td>2018-05-11</td></tr>
+        <tr><td><a href="#">远航吧&nbsp;&nbsp;&nbsp;跨境电商</a></td><td>2018-05-10</td></tr>
+    </table>
+</div>
+
+<div class="col-sm-6 panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            天气预报
+        </h3>
+    </div>
+    <div class="panel-body">
+        <iframe allowtransparency="true" frameborder="0" width="385" height="96" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=1&z=1&t=0&v=0&d=3&bd=0&k=000000&f=&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=54511&w=385&h=96&align=center"></iframe>
+    </div>
+</div>
+
+<div class="col-sm-6 panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a href="#">汇率信息</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <tr><td><a href="#">2018.05.22</a></td><td>中行折算价637.99</td><td>现汇买入价636.25</td><td>现汇卖出价638.95</td></tr>
+            <tr><td><a href="#">2018.05.21</a></td><td>中行折算价638.52</td><td>现汇买入价637.15</td><td>现汇卖出价639.85</td></tr>
+            <tr><td><a href="#">2018.05.20</a></td><td>中行折算价637.63</td><td>现汇买入价636.4</td><td>现汇卖出价639.1</td></tr>
+        </table>
+    </div>
+</div>
+
+<div class="col-sm-6 panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            常用工具
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div class="center-block">
+            <button type="button" class="btn btn-default btn-lg "><i class="fa fa-object-group m-r-xs"></i>申报要素</button>
+            &nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-default btn-lg "><i class="fa fa-leaf m-r-xs"></i>税率查询</button>
+            &nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-default btn-lg "><i class="fa fa-cc m-r-xs"></i>HS编码</button>
+        </div>
+        <br/>
+        <div class="center-block">
+            <button type="button" class="btn btn-default btn-lg"><i class="fa fa-calculator m-r-xs"></i>汇率查询</button>
+            &nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-default btn-lg"><i class="fa fa-ship m-r-xs"></i>船期查询</button>
+            &nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-default btn-lg"><i class="fa fa-inbox m-r-xs"></i>快递查询</button>
+        </div>
+
+    </div>
+</div>
+
+<!--shiro控制bootstraptable行内按钮看见性 来自ftcsp的创新方案 -->
+<div>
+    <script type="text/javascript">
+        var s_edit_h = 'hidden';
+        var s_remove_h = 'hidden';
+        var s_resetPwd_h = 'hidden';
+    </script>
+</div>
+<div shiro:hasPermission="oa:notify:edit">
+    <script type="text/javascript">
+        s_edit_h = '';
+    </script>
+</div>
+<div shiro:hasPermission="oa:notify:remove">
+    <script type="text/javascript">
+        var s_remove_h = '';
+    </script>
+</div>
+<div shiro:hasPermission="oa:notify:resetPwd">
+    <script type="text/javascript">
+        var s_resetPwd_h = '';
+    </script>
+</div>
+<div th:include="include :: footer"></div>
+
+</body>
+</html>

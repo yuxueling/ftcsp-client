@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.doc.dao.ExCreditFeeDao">
+
+	<select id="get" resultType="com.cloudht.doc.domain.ExCreditFeeDO">
+		select `ex_credit_fee_id`,`ex_credit_id`,`fee_type`,`currency`,`charge_unit`,`fee_amount`,`fee_date`,`remark`,`gmt_create`,`gmt_modified` from ex_credit_fee where ex_credit_fee_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.doc.domain.ExCreditFeeDO">
+		select `ex_credit_fee_id`,`ex_credit_id`,`fee_type`,`currency`,`charge_unit`,`fee_amount`,`fee_date`,`remark`,`gmt_create`,`gmt_modified` from ex_credit_fee
+        <where>  
+		  		  <if test="exCreditFeeId != null and exCreditFeeId != ''"> and ex_credit_fee_id = #{exCreditFeeId} </if>
+		  		  <if test="exCreditId != null and exCreditId != ''"> and ex_credit_id = #{exCreditId} </if>
+		  		  <if test="feeType != null and feeType != ''"> and fee_type = #{feeType} </if>
+		  		  <if test="currency != null and currency != ''"> and currency = #{currency} </if>
+		  		  <if test="chargeUnit != null and chargeUnit != ''"> and charge_unit = #{chargeUnit} </if>
+		  		  <if test="feeAmount != null and feeAmount != ''"> and fee_amount = #{feeAmount} </if>
+		  		  <if test="feeDate != null and feeDate != ''"> and fee_date = #{feeDate} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ex_credit_fee_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ex_credit_fee
+		 <where>  
+		  		  <if test="exCreditFeeId != null and exCreditFeeId != ''"> and ex_credit_fee_id = #{exCreditFeeId} </if>
+		  		  <if test="exCreditId != null and exCreditId != ''"> and ex_credit_id = #{exCreditId} </if>
+		  		  <if test="feeType != null and feeType != ''"> and fee_type = #{feeType} </if>
+		  		  <if test="currency != null and currency != ''"> and currency = #{currency} </if>
+		  		  <if test="chargeUnit != null and chargeUnit != ''"> and charge_unit = #{chargeUnit} </if>
+		  		  <if test="feeAmount != null and feeAmount != ''"> and fee_amount = #{feeAmount} </if>
+		  		  <if test="feeDate != null and feeDate != ''"> and fee_date = #{feeDate} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.doc.domain.ExCreditFeeDO" useGeneratedKeys="true" keyProperty="exCreditFeeId">
+		insert into ex_credit_fee
+		(
+			`ex_credit_id`, 
+			`fee_type`, 
+			`currency`, 
+			`charge_unit`, 
+			`fee_amount`, 
+			`fee_date`, 
+			`remark`, 
+			`gmt_create`, 
+			`gmt_modified`
+		)
+		values
+		(
+			#{exCreditId}, 
+			#{feeType}, 
+			#{currency}, 
+			#{chargeUnit}, 
+			#{feeAmount}, 
+			#{feeDate}, 
+			#{remark}, 
+			#{gmtCreate}, 
+			#{gmtModified}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.doc.domain.ExCreditFeeDO">
+		update ex_credit_fee 
+		<set>
+			<if test="exCreditId != null">`ex_credit_id` = #{exCreditId}, </if>
+			<if test="feeType != null">`fee_type` = #{feeType}, </if>
+			<if test="currency != null">`currency` = #{currency}, </if>
+			<if test="chargeUnit != null">`charge_unit` = #{chargeUnit}, </if>
+			<if test="feeAmount != null">`fee_amount` = #{feeAmount}, </if>
+			<if test="feeDate != null">`fee_date` = #{feeDate}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}</if>
+		</set>
+		where ex_credit_fee_id = #{exCreditFeeId}
+	</update>
+	
+	<delete id="remove">
+		delete from ex_credit_fee where ex_credit_fee_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ex_credit_fee where ex_credit_fee_id in 
+		<foreach item="exCreditFeeId" collection="array" open="(" separator="," close=")">
+			#{exCreditFeeId}
+		</foreach>
+	</delete>
+
+</mapper>

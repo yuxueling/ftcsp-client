@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="ex_fee_registration_id" name="ex_fee_registration_id" th:value="${exFeeRegistration.ex_fee_registration_id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">发票编号：</label>
+								<div class="col-sm-8">
+									<input id="invoiceNo" name="invoiceNo" th:value="${exFeeRegistration.invoiceNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">委托方：</label>
+								<div class="col-sm-8">
+									<input id="ftClientId" name="ftClientId" th:value="${exFeeRegistration.ftClientId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">费用类型：</label>
+								<div class="col-sm-8">
+									<input id="costType" name="costType" th:value="${exFeeRegistration.costType}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">币别：</label>
+								<div class="col-sm-8">
+									<input id="currency" name="currency" th:value="${exFeeRegistration.currency}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">金额：</label>
+								<div class="col-sm-8">
+									<input id="amount" name="amount" th:value="${exFeeRegistration.amount}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">汇率：</label>
+								<div class="col-sm-8">
+									<input id="exchangeRate" name="exchangeRate" th:value="${exFeeRegistration.exchangeRate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">本位币金额：</label>
+								<div class="col-sm-8">
+									<input id="localCurrency" name="localCurrency" th:value="${exFeeRegistration.localCurrency}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">登记日期：</label>
+								<div class="col-sm-8">
+									<input id="registrationDate" name="registrationDate" th:value="${exFeeRegistration.registrationDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">登记人：</label>
+								<div class="col-sm-8">
+									<input id="registrant" name="registrant" th:value="${exFeeRegistration.registrant}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtCreate" name="gmtCreate" th:value="${exFeeRegistration.gmtCreate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修改时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtModified" name="gmtModified" th:value="${exFeeRegistration.gmtModified}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/doc/exFeeRegistration/edit.js">
+	</script>
+</body>
+</html>

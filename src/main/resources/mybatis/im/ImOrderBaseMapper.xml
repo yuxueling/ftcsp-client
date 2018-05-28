@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.im.dao.ImOrderBaseDao">
+
+	<select id="get" resultType="com.cloudht.im.domain.ImOrderBaseDO">
+		select `im_order_base_id`,`ft_client_id`,`order_no`,`supplier_name`,`supplier_address`,`currency`,`price_terms`,`settlement_way`,`trade_way`,`origin_source_place`,`departure_port`,`transit_port`,`destination_port`,`more_less`,`total_quantity`,`total_amount`,`remark`,`is_cargo_insurance`,`insurance_coverage`,`insurance_rate`,`insurance_amount`,`audit_status`,`is_deleted`,`gmt_create`,`gmt_modified` from im_order_base where im_order_base_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.im.domain.ImOrderBaseDO">
+		select `im_order_base_id`,`ft_client_id`,`order_no`,`supplier_name`,`supplier_address`,`currency`,`price_terms`,`settlement_way`,`trade_way`,`origin_source_place`,`departure_port`,`transit_port`,`destination_port`,`more_less`,`total_quantity`,`total_amount`,`remark`,`is_cargo_insurance`,`insurance_coverage`,`insurance_rate`,`insurance_amount`,`audit_status`,`is_deleted`,`gmt_create`,`gmt_modified` from im_order_base
+        <where>  
+		  		  <if test="imOrderBaseId != null and imOrderBaseId != ''"> and im_order_base_id = #{imOrderBaseId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="orderNo != null and orderNo != ''"> and order_no = #{orderNo} </if>
+		  		  <if test="supplierName != null and supplierName != ''"> and supplier_name = #{supplierName} </if>
+		  		  <if test="supplierAddress != null and supplierAddress != ''"> and supplier_address = #{supplierAddress} </if>
+		  		  <if test="currency != null and currency != ''"> and currency = #{currency} </if>
+		  		  <if test="priceTerms != null and priceTerms != ''"> and price_terms = #{priceTerms} </if>
+		  		  <if test="settlementWay != null and settlementWay != ''"> and settlement_way = #{settlementWay} </if>
+		  		  <if test="tradeWay != null and tradeWay != ''"> and trade_way = #{tradeWay} </if>
+		  		  <if test="originSourcePlace != null and originSourcePlace != ''"> and origin_source_place = #{originSourcePlace} </if>
+		  		  <if test="departurePort != null and departurePort != ''"> and departure_port = #{departurePort} </if>
+		  		  <if test="transitPort != null and transitPort != ''"> and transit_port = #{transitPort} </if>
+		  		  <if test="destinationPort != null and destinationPort != ''"> and destination_port = #{destinationPort} </if>
+		  		  <if test="moreLess != null and moreLess != ''"> and more_less = #{moreLess} </if>
+		  		  <if test="totalQuantity != null and totalQuantity != ''"> and total_quantity = #{totalQuantity} </if>
+		  		  <if test="totalAmount != null and totalAmount != ''"> and total_amount = #{totalAmount} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="isCargoInsurance != null and isCargoInsurance != ''"> and is_cargo_insurance = #{isCargoInsurance} </if>
+		  		  <if test="insuranceCoverage != null and insuranceCoverage != ''"> and insurance_coverage = #{insuranceCoverage} </if>
+		  		  <if test="insuranceRate != null and insuranceRate != ''"> and insurance_rate = #{insuranceRate} </if>
+		  		  <if test="insuranceAmount != null and insuranceAmount != ''"> and insurance_amount = #{insuranceAmount} </if>
+		  		  <if test="auditStatus != null and auditStatus != ''"> and audit_status = #{auditStatus} </if>
+		  		  <if test="isDeleted != null and isDeleted != ''"> and is_deleted = #{isDeleted} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by im_order_base_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from im_order_base
+		 <where>  
+		  		  <if test="imOrderBaseId != null and imOrderBaseId != ''"> and im_order_base_id = #{imOrderBaseId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="orderNo != null and orderNo != ''"> and order_no = #{orderNo} </if>
+		  		  <if test="supplierName != null and supplierName != ''"> and supplier_name = #{supplierName} </if>
+		  		  <if test="supplierAddress != null and supplierAddress != ''"> and supplier_address = #{supplierAddress} </if>
+		  		  <if test="currency != null and currency != ''"> and currency = #{currency} </if>
+		  		  <if test="priceTerms != null and priceTerms != ''"> and price_terms = #{priceTerms} </if>
+		  		  <if test="settlementWay != null and settlementWay != ''"> and settlement_way = #{settlementWay} </if>
+		  		  <if test="tradeWay != null and tradeWay != ''"> and trade_way = #{tradeWay} </if>
+		  		  <if test="originSourcePlace != null and originSourcePlace != ''"> and origin_source_place = #{originSourcePlace} </if>
+		  		  <if test="departurePort != null and departurePort != ''"> and departure_port = #{departurePort} </if>
+		  		  <if test="transitPort != null and transitPort != ''"> and transit_port = #{transitPort} </if>
+		  		  <if test="destinationPort != null and destinationPort != ''"> and destination_port = #{destinationPort} </if>
+		  		  <if test="moreLess != null and moreLess != ''"> and more_less = #{moreLess} </if>
+		  		  <if test="totalQuantity != null and totalQuantity != ''"> and total_quantity = #{totalQuantity} </if>
+		  		  <if test="totalAmount != null and totalAmount != ''"> and total_amount = #{totalAmount} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="isCargoInsurance != null and isCargoInsurance != ''"> and is_cargo_insurance = #{isCargoInsurance} </if>
+		  		  <if test="insuranceCoverage != null and insuranceCoverage != ''"> and insurance_coverage = #{insuranceCoverage} </if>
+		  		  <if test="insuranceRate != null and insuranceRate != ''"> and insurance_rate = #{insuranceRate} </if>
+		  		  <if test="insuranceAmount != null and insuranceAmount != ''"> and insurance_amount = #{insuranceAmount} </if>
+		  		  <if test="auditStatus != null and auditStatus != ''"> and audit_status = #{auditStatus} </if>
+		  		  <if test="isDeleted != null and isDeleted != ''"> and is_deleted = #{isDeleted} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.im.domain.ImOrderBaseDO" useGeneratedKeys="true" keyProperty="imOrderBaseId">
+		insert into im_order_base
+		(
+			`ft_client_id`, 
+			`order_no`, 
+			`supplier_name`, 
+			`supplier_address`, 
+			`currency`, 
+			`price_terms`, 
+			`settlement_way`, 
+			`trade_way`, 
+			`origin_source_place`, 
+			`departure_port`, 
+			`transit_port`, 
+			`destination_port`, 
+			`more_less`, 
+			`total_quantity`, 
+			`total_amount`, 
+			`remark`, 
+			`is_cargo_insurance`, 
+			`insurance_coverage`, 
+			`insurance_rate`, 
+			`insurance_amount`, 
+			`audit_status`, 
+			`is_deleted`, 
+			`gmt_create`, 
+			`gmt_modified`
+		)
+		values
+		(
+			#{ftClientId}, 
+			#{orderNo}, 
+			#{supplierName}, 
+			#{supplierAddress}, 
+			#{currency}, 
+			#{priceTerms}, 
+			#{settlementWay}, 
+			#{tradeWay}, 
+			#{originSourcePlace}, 
+			#{departurePort}, 
+			#{transitPort}, 
+			#{destinationPort}, 
+			#{moreLess}, 
+			#{totalQuantity}, 
+			#{totalAmount}, 
+			#{remark}, 
+			#{isCargoInsurance}, 
+			#{insuranceCoverage}, 
+			#{insuranceRate}, 
+			#{insuranceAmount}, 
+			#{auditStatus}, 
+			#{isDeleted}, 
+			#{gmtCreate}, 
+			#{gmtModified}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.im.domain.ImOrderBaseDO">
+		update im_order_base 
+		<set>
+			<if test="ftClientId != null">`ft_client_id` = #{ftClientId}, </if>
+			<if test="orderNo != null">`order_no` = #{orderNo}, </if>
+			<if test="supplierName != null">`supplier_name` = #{supplierName}, </if>
+			<if test="supplierAddress != null">`supplier_address` = #{supplierAddress}, </if>
+			<if test="currency != null">`currency` = #{currency}, </if>
+			<if test="priceTerms != null">`price_terms` = #{priceTerms}, </if>
+			<if test="settlementWay != null">`settlement_way` = #{settlementWay}, </if>
+			<if test="tradeWay != null">`trade_way` = #{tradeWay}, </if>
+			<if test="originSourcePlace != null">`origin_source_place` = #{originSourcePlace}, </if>
+			<if test="departurePort != null">`departure_port` = #{departurePort}, </if>
+			<if test="transitPort != null">`transit_port` = #{transitPort}, </if>
+			<if test="destinationPort != null">`destination_port` = #{destinationPort}, </if>
+			<if test="moreLess != null">`more_less` = #{moreLess}, </if>
+			<if test="totalQuantity != null">`total_quantity` = #{totalQuantity}, </if>
+			<if test="totalAmount != null">`total_amount` = #{totalAmount}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="isCargoInsurance != null">`is_cargo_insurance` = #{isCargoInsurance}, </if>
+			<if test="insuranceCoverage != null">`insurance_coverage` = #{insuranceCoverage}, </if>
+			<if test="insuranceRate != null">`insurance_rate` = #{insuranceRate}, </if>
+			<if test="insuranceAmount != null">`insurance_amount` = #{insuranceAmount}, </if>
+			<if test="auditStatus != null">`audit_status` = #{auditStatus}, </if>
+			<if test="isDeleted != null">`is_deleted` = #{isDeleted}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}</if>
+		</set>
+		where im_order_base_id = #{imOrderBaseId}
+	</update>
+	
+	<delete id="remove">
+		delete from im_order_base where im_order_base_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from im_order_base where im_order_base_id in 
+		<foreach item="imOrderBaseId" collection="array" open="(" separator="," close=")">
+			#{imOrderBaseId}
+		</foreach>
+	</delete>
+
+</mapper>

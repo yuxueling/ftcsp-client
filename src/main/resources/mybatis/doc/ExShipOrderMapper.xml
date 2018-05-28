@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.doc.dao.ExShipOrderDao">
+
+	<select id="get" resultType="com.cloudht.doc.domain.ExShipOrderDO">
+		select `ex_ship_order_id`,`shipper`,`consignee`,`notify_party`,`invoice_no`,`contract_no`,`is_transship`,`is_partialship`,`ship_date`,`ship_company_name`,`departure_port`,`transit_port`,`destination_port`,`expiry_date`,`delivery_date`,`encasement_type`,`twenty_gp_num`,`forty_gp_num`,`forty_hq_num`,`freight_payment`,`contact`,`telephone`,`fax`,`nos_original_bsl`,`nos_original_bsl_copy`,`customs_declared_value`,`currency`,`announcement`,`gmt_create`,`gmt_modified` from ex_ship_order where ex_ship_order_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.doc.domain.ExShipOrderDO">
+		select `ex_ship_order_id`,`shipper`,`consignee`,`notify_party`,`invoice_no`,`contract_no`,`is_transship`,`is_partialship`,`ship_date`,`ship_company_name`,`departure_port`,`transit_port`,`destination_port`,`expiry_date`,`delivery_date`,`encasement_type`,`twenty_gp_num`,`forty_gp_num`,`forty_hq_num`,`freight_payment`,`contact`,`telephone`,`fax`,`nos_original_bsl`,`nos_original_bsl_copy`,`customs_declared_value`,`currency`,`announcement`,`gmt_create`,`gmt_modified` from ex_ship_order
+        <where>  
+		  		  <if test="exShipOrderId != null and exShipOrderId != ''"> and ex_ship_order_id = #{exShipOrderId} </if>
+		  		  <if test="shipper != null and shipper != ''"> and shipper = #{shipper} </if>
+		  		  <if test="consignee != null and consignee != ''"> and consignee = #{consignee} </if>
+		  		  <if test="notifyParty != null and notifyParty != ''"> and notify_party = #{notifyParty} </if>
+		  		  <if test="invoiceNo != null and invoiceNo != ''"> and invoice_no = #{invoiceNo} </if>
+		  		  <if test="contractNo != null and contractNo != ''"> and contract_no = #{contractNo} </if>
+		  		  <if test="isTransship != null and isTransship != ''"> and is_transship = #{isTransship} </if>
+		  		  <if test="isPartialship != null and isPartialship != ''"> and is_partialship = #{isPartialship} </if>
+		  		  <if test="shipDate != null and shipDate != ''"> and ship_date = #{shipDate} </if>
+		  		  <if test="shipCompanyName != null and shipCompanyName != ''"> and ship_company_name = #{shipCompanyName} </if>
+		  		  <if test="departurePort != null and departurePort != ''"> and departure_port = #{departurePort} </if>
+		  		  <if test="transitPort != null and transitPort != ''"> and transit_port = #{transitPort} </if>
+		  		  <if test="destinationPort != null and destinationPort != ''"> and destination_port = #{destinationPort} </if>
+		  		  <if test="expiryDate != null and expiryDate != ''"> and expiry_date = #{expiryDate} </if>
+		  		  <if test="deliveryDate != null and deliveryDate != ''"> and delivery_date = #{deliveryDate} </if>
+		  		  <if test="encasementType != null and encasementType != ''"> and encasement_type = #{encasementType} </if>
+		  		  <if test="twentyGpNum != null and twentyGpNum != ''"> and twenty_gp_num = #{twentyGpNum} </if>
+		  		  <if test="fortyGpNum != null and fortyGpNum != ''"> and forty_gp_num = #{fortyGpNum} </if>
+		  		  <if test="fortyHqNum != null and fortyHqNum != ''"> and forty_hq_num = #{fortyHqNum} </if>
+		  		  <if test="freightPayment != null and freightPayment != ''"> and freight_payment = #{freightPayment} </if>
+		  		  <if test="contact != null and contact != ''"> and contact = #{contact} </if>
+		  		  <if test="telephone != null and telephone != ''"> and telephone = #{telephone} </if>
+		  		  <if test="fax != null and fax != ''"> and fax = #{fax} </if>
+		  		  <if test="nosOriginalBsl != null and nosOriginalBsl != ''"> and nos_original_bsl = #{nosOriginalBsl} </if>
+		  		  <if test="nosOriginalBslCopy != null and nosOriginalBslCopy != ''"> and nos_original_bsl_copy = #{nosOriginalBslCopy} </if>
+		  		  <if test="customsDeclaredValue != null and customsDeclaredValue != ''"> and customs_declared_value = #{customsDeclaredValue} </if>
+		  		  <if test="currency != null and currency != ''"> and currency = #{currency} </if>
+		  		  <if test="announcement != null and announcement != ''"> and announcement = #{announcement} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ex_ship_order_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ex_ship_order
+		 <where>  
+		  		  <if test="exShipOrderId != null and exShipOrderId != ''"> and ex_ship_order_id = #{exShipOrderId} </if>
+		  		  <if test="shipper != null and shipper != ''"> and shipper = #{shipper} </if>
+		  		  <if test="consignee != null and consignee != ''"> and consignee = #{consignee} </if>
+		  		  <if test="notifyParty != null and notifyParty != ''"> and notify_party = #{notifyParty} </if>
+		  		  <if test="invoiceNo != null and invoiceNo != ''"> and invoice_no = #{invoiceNo} </if>
+		  		  <if test="contractNo != null and contractNo != ''"> and contract_no = #{contractNo} </if>
+		  		  <if test="isTransship != null and isTransship != ''"> and is_transship = #{isTransship} </if>
+		  		  <if test="isPartialship != null and isPartialship != ''"> and is_partialship = #{isPartialship} </if>
+		  		  <if test="shipDate != null and shipDate != ''"> and ship_date = #{shipDate} </if>
+		  		  <if test="shipCompanyName != null and shipCompanyName != ''"> and ship_company_name = #{shipCompanyName} </if>
+		  		  <if test="departurePort != null and departurePort != ''"> and departure_port = #{departurePort} </if>
+		  		  <if test="transitPort != null and transitPort != ''"> and transit_port = #{transitPort} </if>
+		  		  <if test="destinationPort != null and destinationPort != ''"> and destination_port = #{destinationPort} </if>
+		  		  <if test="expiryDate != null and expiryDate != ''"> and expiry_date = #{expiryDate} </if>
+		  		  <if test="deliveryDate != null and deliveryDate != ''"> and delivery_date = #{deliveryDate} </if>
+		  		  <if test="encasementType != null and encasementType != ''"> and encasement_type = #{encasementType} </if>
+		  		  <if test="twentyGpNum != null and twentyGpNum != ''"> and twenty_gp_num = #{twentyGpNum} </if>
+		  		  <if test="fortyGpNum != null and fortyGpNum != ''"> and forty_gp_num = #{fortyGpNum} </if>
+		  		  <if test="fortyHqNum != null and fortyHqNum != ''"> and forty_hq_num = #{fortyHqNum} </if>
+		  		  <if test="freightPayment != null and freightPayment != ''"> and freight_payment = #{freightPayment} </if>
+		  		  <if test="contact != null and contact != ''"> and contact = #{contact} </if>
+		  		  <if test="telephone != null and telephone != ''"> and telephone = #{telephone} </if>
+		  		  <if test="fax != null and fax != ''"> and fax = #{fax} </if>
+		  		  <if test="nosOriginalBsl != null and nosOriginalBsl != ''"> and nos_original_bsl = #{nosOriginalBsl} </if>
+		  		  <if test="nosOriginalBslCopy != null and nosOriginalBslCopy != ''"> and nos_original_bsl_copy = #{nosOriginalBslCopy} </if>
+		  		  <if test="customsDeclaredValue != null and customsDeclaredValue != ''"> and customs_declared_value = #{customsDeclaredValue} </if>
+		  		  <if test="currency != null and currency != ''"> and currency = #{currency} </if>
+		  		  <if test="announcement != null and announcement != ''"> and announcement = #{announcement} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.doc.domain.ExShipOrderDO" useGeneratedKeys="true" keyProperty="exShipOrderId">
+		insert into ex_ship_order
+		(
+			`shipper`, 
+			`consignee`, 
+			`notify_party`, 
+			`invoice_no`, 
+			`contract_no`, 
+			`is_transship`, 
+			`is_partialship`, 
+			`ship_date`, 
+			`ship_company_name`, 
+			`departure_port`, 
+			`transit_port`, 
+			`destination_port`, 
+			`expiry_date`, 
+			`delivery_date`, 
+			`encasement_type`, 
+			`twenty_gp_num`, 
+			`forty_gp_num`, 
+			`forty_hq_num`, 
+			`freight_payment`, 
+			`contact`, 
+			`telephone`, 
+			`fax`, 
+			`nos_original_bsl`, 
+			`nos_original_bsl_copy`, 
+			`customs_declared_value`, 
+			`currency`, 
+			`announcement`, 
+			`gmt_create`, 
+			`gmt_modified`
+		)
+		values
+		(
+			#{shipper}, 
+			#{consignee}, 
+			#{notifyParty}, 
+			#{invoiceNo}, 
+			#{contractNo}, 
+			#{isTransship}, 
+			#{isPartialship}, 
+			#{shipDate}, 
+			#{shipCompanyName}, 
+			#{departurePort}, 
+			#{transitPort}, 
+			#{destinationPort}, 
+			#{expiryDate}, 
+			#{deliveryDate}, 
+			#{encasementType}, 
+			#{twentyGpNum}, 
+			#{fortyGpNum}, 
+			#{fortyHqNum}, 
+			#{freightPayment}, 
+			#{contact}, 
+			#{telephone}, 
+			#{fax}, 
+			#{nosOriginalBsl}, 
+			#{nosOriginalBslCopy}, 
+			#{customsDeclaredValue}, 
+			#{currency}, 
+			#{announcement}, 
+			#{gmtCreate}, 
+			#{gmtModified}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.doc.domain.ExShipOrderDO">
+		update ex_ship_order 
+		<set>
+			<if test="shipper != null">`shipper` = #{shipper}, </if>
+			<if test="consignee != null">`consignee` = #{consignee}, </if>
+			<if test="notifyParty != null">`notify_party` = #{notifyParty}, </if>
+			<if test="invoiceNo != null">`invoice_no` = #{invoiceNo}, </if>
+			<if test="contractNo != null">`contract_no` = #{contractNo}, </if>
+			<if test="isTransship != null">`is_transship` = #{isTransship}, </if>
+			<if test="isPartialship != null">`is_partialship` = #{isPartialship}, </if>
+			<if test="shipDate != null">`ship_date` = #{shipDate}, </if>
+			<if test="shipCompanyName != null">`ship_company_name` = #{shipCompanyName}, </if>
+			<if test="departurePort != null">`departure_port` = #{departurePort}, </if>
+			<if test="transitPort != null">`transit_port` = #{transitPort}, </if>
+			<if test="destinationPort != null">`destination_port` = #{destinationPort}, </if>
+			<if test="expiryDate != null">`expiry_date` = #{expiryDate}, </if>
+			<if test="deliveryDate != null">`delivery_date` = #{deliveryDate}, </if>
+			<if test="encasementType != null">`encasement_type` = #{encasementType}, </if>
+			<if test="twentyGpNum != null">`twenty_gp_num` = #{twentyGpNum}, </if>
+			<if test="fortyGpNum != null">`forty_gp_num` = #{fortyGpNum}, </if>
+			<if test="fortyHqNum != null">`forty_hq_num` = #{fortyHqNum}, </if>
+			<if test="freightPayment != null">`freight_payment` = #{freightPayment}, </if>
+			<if test="contact != null">`contact` = #{contact}, </if>
+			<if test="telephone != null">`telephone` = #{telephone}, </if>
+			<if test="fax != null">`fax` = #{fax}, </if>
+			<if test="nosOriginalBsl != null">`nos_original_bsl` = #{nosOriginalBsl}, </if>
+			<if test="nosOriginalBslCopy != null">`nos_original_bsl_copy` = #{nosOriginalBslCopy}, </if>
+			<if test="customsDeclaredValue != null">`customs_declared_value` = #{customsDeclaredValue}, </if>
+			<if test="currency != null">`currency` = #{currency}, </if>
+			<if test="announcement != null">`announcement` = #{announcement}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}</if>
+		</set>
+		where ex_ship_order_id = #{exShipOrderId}
+	</update>
+	
+	<delete id="remove">
+		delete from ex_ship_order where ex_ship_order_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ex_ship_order where ex_ship_order_id in 
+		<foreach item="exShipOrderId" collection="array" open="(" separator="," close=")">
+			#{exShipOrderId}
+		</foreach>
+	</delete>
+
+</mapper>

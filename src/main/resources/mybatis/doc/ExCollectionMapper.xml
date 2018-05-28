@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.doc.dao.ExCollectionDao">
+
+	<select id="get" resultType="com.cloudht.doc.domain.ExCollectionDO">
+		select `ex_collection_id`,`invoice_no`,`collection_date`,`collection_amount`,`foreign_exchange_date`,`foreign_exchange_amount`,`remark`,`gmt_create`,`gmt_modified` from ex_collection where ex_collection_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.doc.domain.ExCollectionDO">
+		select `ex_collection_id`,`invoice_no`,`collection_date`,`collection_amount`,`foreign_exchange_date`,`foreign_exchange_amount`,`remark`,`gmt_create`,`gmt_modified` from ex_collection
+        <where>  
+		  		  <if test="exCollectionId != null and exCollectionId != ''"> and ex_collection_id = #{exCollectionId} </if>
+		  		  <if test="invoiceNo != null and invoiceNo != ''"> and invoice_no = #{invoiceNo} </if>
+		  		  <if test="collectionDate != null and collectionDate != ''"> and collection_date = #{collectionDate} </if>
+		  		  <if test="collectionAmount != null and collectionAmount != ''"> and collection_amount = #{collectionAmount} </if>
+		  		  <if test="foreignExchangeDate != null and foreignExchangeDate != ''"> and foreign_exchange_date = #{foreignExchangeDate} </if>
+		  		  <if test="foreignExchangeAmount != null and foreignExchangeAmount != ''"> and foreign_exchange_amount = #{foreignExchangeAmount} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ex_collection_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ex_collection
+		 <where>  
+		  		  <if test="exCollectionId != null and exCollectionId != ''"> and ex_collection_id = #{exCollectionId} </if>
+		  		  <if test="invoiceNo != null and invoiceNo != ''"> and invoice_no = #{invoiceNo} </if>
+		  		  <if test="collectionDate != null and collectionDate != ''"> and collection_date = #{collectionDate} </if>
+		  		  <if test="collectionAmount != null and collectionAmount != ''"> and collection_amount = #{collectionAmount} </if>
+		  		  <if test="foreignExchangeDate != null and foreignExchangeDate != ''"> and foreign_exchange_date = #{foreignExchangeDate} </if>
+		  		  <if test="foreignExchangeAmount != null and foreignExchangeAmount != ''"> and foreign_exchange_amount = #{foreignExchangeAmount} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.doc.domain.ExCollectionDO" useGeneratedKeys="true" keyProperty="exCollectionId">
+		insert into ex_collection
+		(
+			`invoice_no`, 
+			`collection_date`, 
+			`collection_amount`, 
+			`foreign_exchange_date`, 
+			`foreign_exchange_amount`, 
+			`remark`, 
+			`gmt_create`, 
+			`gmt_modified`
+		)
+		values
+		(
+			#{invoiceNo}, 
+			#{collectionDate}, 
+			#{collectionAmount}, 
+			#{foreignExchangeDate}, 
+			#{foreignExchangeAmount}, 
+			#{remark}, 
+			#{gmtCreate}, 
+			#{gmtModified}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.doc.domain.ExCollectionDO">
+		update ex_collection 
+		<set>
+			<if test="invoiceNo != null">`invoice_no` = #{invoiceNo}, </if>
+			<if test="collectionDate != null">`collection_date` = #{collectionDate}, </if>
+			<if test="collectionAmount != null">`collection_amount` = #{collectionAmount}, </if>
+			<if test="foreignExchangeDate != null">`foreign_exchange_date` = #{foreignExchangeDate}, </if>
+			<if test="foreignExchangeAmount != null">`foreign_exchange_amount` = #{foreignExchangeAmount}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}</if>
+		</set>
+		where ex_collection_id = #{exCollectionId}
+	</update>
+	
+	<delete id="remove">
+		delete from ex_collection where ex_collection_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ex_collection where ex_collection_id in 
+		<foreach item="exCollectionId" collection="array" open="(" separator="," close=")">
+			#{exCollectionId}
+		</foreach>
+	</delete>
+
+</mapper>

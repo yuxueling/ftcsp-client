@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="ex_negotiation_base_id" name="ex_negotiation_base_id" th:value="${exNegotiationBase.ex_negotiation_base_id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">发票号：</label>
+								<div class="col-sm-8">
+									<input id="invoiceNo" name="invoiceNo" th:value="${exNegotiationBase.invoiceNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">信用证号：</label>
+								<div class="col-sm-8">
+									<input id="creditLetter" name="creditLetter" th:value="${exNegotiationBase.creditLetter}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">国外客户订单号：</label>
+								<div class="col-sm-8">
+									<input id="foreignOrderNo" name="foreignOrderNo" th:value="${exNegotiationBase.foreignOrderNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">我们订单号：</label>
+								<div class="col-sm-8">
+									<input id="ourOrderNo" name="ourOrderNo" th:value="${exNegotiationBase.ourOrderNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">出口商：</label>
+								<div class="col-sm-8">
+									<input id="exportMerchant" name="exportMerchant" th:value="${exNegotiationBase.exportMerchant}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">客户公司抬头：</label>
+								<div class="col-sm-8">
+									<input id="customerCompanyName" name="customerCompanyName" th:value="${exNegotiationBase.customerCompanyName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">出运日期：</label>
+								<div class="col-sm-8">
+									<input id="shipDate" name="shipDate" th:value="${exNegotiationBase.shipDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">运输方式：</label>
+								<div class="col-sm-8">
+									<input id="transportMode" name="transportMode" th:value="${exNegotiationBase.transportMode}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">原产国：</label>
+								<div class="col-sm-8">
+									<input id="originCountry" name="originCountry" th:value="${exNegotiationBase.originCountry}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">运输与付款条款：</label>
+								<div class="col-sm-8">
+									<input id="transportPayTerms" name="transportPayTerms" th:value="${exNegotiationBase.transportPayTerms}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">起运港：</label>
+								<div class="col-sm-8">
+									<input id="departurePort" name="departurePort" th:value="${exNegotiationBase.departurePort}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">目的港：</label>
+								<div class="col-sm-8">
+									<input id="destinationPort" name="destinationPort" th:value="${exNegotiationBase.destinationPort}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">币别：</label>
+								<div class="col-sm-8">
+									<input id="currency" name="currency" th:value="${exNegotiationBase.currency}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">议付状态：0-未议付，1-正常议付，2-异常议付：</label>
+								<div class="col-sm-8">
+									<input id="negotiationStatus" name="negotiationStatus" th:value="${exNegotiationBase.negotiationStatus}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">议付日期：</label>
+								<div class="col-sm-8">
+									<input id="negotiationDate" name="negotiationDate" th:value="${exNegotiationBase.negotiationDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtCreate" name="gmtCreate" th:value="${exNegotiationBase.gmtCreate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修改时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtModified" name="gmtModified" th:value="${exNegotiationBase.gmtModified}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/doc/exNegotiationBase/edit.js">
+	</script>
+</body>
+</html>
