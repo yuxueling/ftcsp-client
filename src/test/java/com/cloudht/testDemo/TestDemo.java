@@ -11,4 +11,5 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestDemo {
 public String ss="1啊啊11";
 
+    String app="aasadfasdaaaaa";
 }
