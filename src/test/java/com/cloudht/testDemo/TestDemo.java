@@ -9,5 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TestDemo {
+public String ss="111";
 
 }
