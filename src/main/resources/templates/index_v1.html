@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
-    <title>云汇通外贸综合服务平台</title>
-    <meta name="keywords" content="云汇通外贸综合服务平台">
-    <meta name="description" content="云汇通外贸综合服务平台">
+    <title>云汇通外贸综合服务平台客户端</title>
+    <meta name="keywords" content="外贸综合服务平台">
+    <meta name="description" content="外贸综合服务平台，出口、退税、外汇、运输、保险、金融">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
@@ -29,47 +29,10 @@
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
                     <div>
-                        <span><a class="navbar-minimalize" href="#"><img alt="image" class="img-circle" height="60" width="60" th:src="${picUrl}"/></a></span>
-                        <!--<a class="navbar-minimalize" href="#">-->
-                        <!--<h3 class="" style="color: #ffffff">-->
-                            <!--</i>ftcsp后台管理系统-->
-                        <!--</h3>-->
-                        <!--</a>-->
-
-                    </div>
-                    <br/>
-                    <div style="font-size: 16px;">
-                        <a href="/blog" target="_Blank" class=""><i class="fa fa-rss-square"></i></a>
-                        &nbsp
-                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                            <i class="fa fa-envelope"></i> <span class="badge">{{total}}</span>
-                        </a>
-                        &nbsp
-                        <a @click="personal" href="#" ><i class="fa fa-id-card"></i> </a>
-                        <ul class="dropdown-menu dropdown-messages">
-                            <li v-for="row in rows" class="m-t-xs">
-                                <div class="dropdown-messages-box">
-                                    <a class="pull-left"> <i class="fa fa-server"></i>
-                                    </a>
-                                    <div class="media-body">
-                                        <small class="pull-right">{{row.before}}</small>
-                                        <strong>{{row.sender}}</strong>
-                                        {{row.title}} <br>
-                                        <small class="text-muted">{{row.updateDate}}</small>
-                                    </div>
-                                </div>
-                                <div class="divider"></div>
-                            </li>
-                            <li>
-                                <div class="text-center link-block">
-                                    <a class="J_menuItem" href="/oa/notify/selfNotify"> <i
-                                            class="fa fa-envelope"></i> <strong> 查看所有消息</strong>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-
-
+                        <span><img alt="image" class="img-circle" height="60" width="60" th:src="${picUrl}"/></span>
+                        <h4 class="" style="color: #ffffff">
+                            </i>云汇通外贸综合服务平台客户端
+                        </h4>
                     </div>
                     <div class="dropdown profile-element hidden">
 
@@ -97,15 +60,15 @@
                     </div>
                 </li>
 
-                <li th:each="menu : ${menus}">
-                    <a href="#">
-                        <i class="fa fa fa-bar-chart-o" th:class="${menu.attributes.icon}"></i>
-                        <span class="nav-label" th:text="${menu.text}">基础信息</span> <span class="fa arrow"></span>
-                    </a>
+                <li th:each="menu : ${menus}"><a href="#"> <i
+                        class="fa fa fa-bar-chart-o" th:class="${menu.attributes.icon}"></i>
+                    <span class="nav-label" th:text="${menu.text}">基础信息</span> <span
+                            class="fa arrow"></span>
+                </a>
                     <ul class="nav nav-second-level">
-                        <li th:each="cmenu : ${menu.children}">
-                            <a class="J_menuItem" href="graph_echarts.html" th:text="${cmenu.text}" th:href="${cmenu.attributes.url}">系统管理</a>
-                        </li>
+                        <li th:each="cmenu : ${menu.children}"><a class="J_menuItem" href="graph_echarts.html"
+                                                                  th:text="${cmenu.text}"
+                                                                  th:href="${cmenu.attributes.url}">系统管理</a></li>
                     </ul>
                 </li>
             </ul>
@@ -114,7 +77,7 @@
     <!--左侧导航结束-->
     <!--右侧部分开始-->
     <div id="page-wrapper" class="gray-bg dashbard-1">
-        <div class="row border-bottom" style="display:none">
+        <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation"
                  style="margin-bottom: 0">
                 <div class="navbar-header">
@@ -200,7 +163,6 @@
                     src="" th:src="@{/main}" frameborder="0" data-id="index_v1.html"
                     seamless></iframe>
         </div>
-
     </div>
     <!--右侧部分结束-->
     <!--右侧边栏开始-->

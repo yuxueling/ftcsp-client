@@ -56,7 +56,6 @@ public class DictServiceImpl implements DictService {
     }
 
     @Override
-
     public List<DictDO> listType() {
         return dictDao.listType();
     }
