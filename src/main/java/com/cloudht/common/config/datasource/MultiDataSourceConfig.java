@@ -22,4 +22,12 @@ public class MultiDataSourceConfig {
     public static final String EX_BASE_PACKAGE = "com.cloudht.ex.dao";
     public static final String EX_MAPPER_LOCATION = "mybatis/ex/*Mapper.xml";
 
+    public static final String FI_NAME = "fi";
+    public static final String FI_BASE_PACKAGE = "com.cloudht.fi.dao";
+    public static final String FI_MAPPER_LOCATION = "mybatis/fi/*Mapper.xml";
+
+    public static final String FT_NAME = "ft";
+    public static final String FT_BASE_PACKAGE = "com.cloudht.ft.dao";
+    public static final String FT_MAPPER_LOCATION = "mybatis/ft/*Mapper.xml";
+
 }

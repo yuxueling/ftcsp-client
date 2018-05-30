@@ -37,7 +37,7 @@ public class ExOrderHeaderController {
 	
 	@GetMapping()
 	@RequiresPermissions("ex:exOrderHeader:exOrderHeader")
-	String ExOrderHeader(){
+	String exOrderHeader(){
 	    return "ex/exOrderHeader/exOrderHeader";
 	}
 	

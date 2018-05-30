@@ -46,5 +46,22 @@ public class ExOrderInfoController {
 		}
 		return R.error();
 	}
-	
+
+	@GetMapping()
+//	@RequiresPermissions("ex:exOrderInfo:exOrderInfo")
+	String exOrderInfo(){
+		return "ex/exOrderInfo/exOrderInfo";
+	}
+
+	@ResponseBody
+	@GetMapping("/list")
+//	@RequiresPermissions("ex:exOrderInfo:exOrderInfo")
+	public PageUtils list(@RequestParam Map<String, Object> params){
+		//查询列表数据
+		Query query = new Query(params);
+		List<ExOrderHeaderDO> exOrderHeaderList = exOrderHeaderService.list(query);
+		int total = exOrderHeaderService.count(query);
+		PageUtils pageUtils = new PageUtils(exOrderHeaderList, total);
+		return pageUtils;
+	}
 }

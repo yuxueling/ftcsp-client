@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="nav nav-tabs">
+				<li>
+					<a href="/ex/exOrderInfo/add">在线下单</a>
+				</li>
+				<li class="active">
+					<a href="#">订单记录</a>
+				</li>
+				<li >
+					<a href="#">订舱信息</a>
+				</li>
+				<li >
+					<a href="#">收汇登记</a>
+				</li>
+				<li >
+					<a href="#">快件管理</a>
+				</li>
+				<li >
+					<a href="#">服务合同管理</a>
+				</li>
+				<li >
+					<a href="#">商品信息管理</a>
+				</li>
+				<li >
+					<a href="#">国内客户管理</a>
+				</li>
+				<li >
+					<a href="#">国外客户管理</a>
+				</li>
+				<li >
+					<a href="#">HS编码查询</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+	<div class="wrapper wrapper-content ">
+		<div class="col-sm-12">
+			<div class="ibox">
+				<div class="ibox-body">
+					<div class="fixed-table-toolbar">
+
+								<form class="form-inline" role="form">
+									<div class="form-group">
+										<label  >受理状态：</label>
+										<select class="form-control">
+											<option>已受理</option>
+											<option>待受理</option>
+											<option>未提交</option>
+										</select>
+									</div>
+									&nbsp;&nbsp;
+									<div class="form-group">
+										<label  >出口发票号：</label>
+										<input type="text" class="form-control" id="name"
+											   placeholder="">
+									</div>
+									&nbsp;&nbsp;
+									<div class="form-group">
+										<label >外销合同号：</label>
+										<input type="text" class="form-control" id="name"
+											   placeholder="">
+									</div>
+									&nbsp;&nbsp;
+									<div class="form-group">
+										<label  >下单时间：</label>
+										<input type="text" class="laydate-icon layer-date form-control"  name="birth1"  placeholder=""
+											   onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="background-color: #fff;" readonly="readonly"/>
+									</div>
+									<div class="form-group">
+										<label  >-</label>
+										<input type="text" class="laydate-icon layer-date form-control"  name="birth2"  placeholder=""
+											   onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="background-color: #fff;" readonly="readonly"/>
+									</div>
+									<button type="submit" class="center-block btn btn-warning">查询</button>
+								</form>
+
+
+					</div>
+					<table id="exampleTable" data-mobile-responsive="true">
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--shiro控制bootstraptable行内按钮看见性 来自ftcsp的创新方案 -->
+		<div>
+			<script type="text/javascript">
+				var s_edit_h = 'hidden';
+				var s_remove_h = 'hidden';
+				var s_resetPwd_h = 'hidden';
+			</script>
+		</div>
+		<div shiro:hasPermission="ex:exOrderInfo:edit">
+			<script type="text/javascript">
+				s_edit_h = '';
+			</script>
+		</div>
+		<div shiro:hasPermission="ex:exOrderInfo:remove">
+			<script type="text/javascript">
+				var s_remove_h = '';
+			</script>
+		</div>
+		<div shiro:hasPermission="ex:exOrderInfo:resetPwd">
+			<script type="text/javascript">
+				var s_resetPwd_h = '';
+			</script>
+		</div>
+	</div>
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="/js/appjs/ex/exOrderInfo/exOrderInfo.js"></script>
+</body>
+</html>
