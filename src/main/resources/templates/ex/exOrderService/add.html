@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">出口订单头主键：</label>
+								<div class="col-sm-8">
+									<input id="exOrderHeaderId" name="exOrderHeaderId" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">指定船公司：</label>
+								<div class="col-sm-8">
+									<input id="specifyShipCompany" name="specifyShipCompany" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">指定货代类型:0-平台指定，1-自己指定：</label>
+								<div class="col-sm-8">
+									<input id="appointForwarderType" name="appointForwarderType" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">货代公司：</label>
+								<div class="col-sm-8">
+									<input id="forwarderCompanyName" name="forwarderCompanyName" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">联系人：</label>
+								<div class="col-sm-8">
+									<input id="contact" name="contact" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">手机：</label>
+								<div class="col-sm-8">
+									<input id="phone" name="phone" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">传真：</label>
+								<div class="col-sm-8">
+									<input id="fax" name="fax" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">公司地址：</label>
+								<div class="col-sm-8">
+									<input id="companyAddress" name="companyAddress" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">报关行名称：</label>
+								<div class="col-sm-8">
+									<input id="customsBrokerName" name="customsBrokerName" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">报关行代码：</label>
+								<div class="col-sm-8">
+									<input id="customsBrokerCode" name="customsBrokerCode" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">进仓通知书文件ID：</label>
+								<div class="col-sm-8">
+									<input id="entryNoticeFileId" name="entryNoticeFileId" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">装箱方式：0-拼箱，1-整柜，2-拼车？，3-整车？：</label>
+								<div class="col-sm-8">
+									<input id="encasementType" name="encasementType" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">保险或融资服务(多选“,”分隔):00-信用保险,01-退税融资,02-LC融资,03-其他融资：</label>
+								<div class="col-sm-8">
+									<input id="insuranceFinanceService" name="insuranceFinanceService" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">总包装数：</label>
+								<div class="col-sm-8">
+									<input id="pkgs" name="pkgs" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">总体积：</label>
+								<div class="col-sm-8">
+									<input id="totalVolume" name="totalVolume" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">总毛重：</label>
+								<div class="col-sm-8">
+									<input id="totalRoughWeight" name="totalRoughWeight" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">总净重：</label>
+								<div class="col-sm-8">
+									<input id="totalNetWeight" name="totalNetWeight" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">总金额：</label>
+								<div class="col-sm-8">
+									<input id="totalAmount" name="totalAmount" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">换汇成本：</label>
+								<div class="col-sm-8">
+									<input id="foreignExgCost" name="foreignExgCost" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtCreate" name="gmtCreate" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修改时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtModified" name="gmtModified" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/ex/exOrderService/add.js">
+	</script>
+</body>
+</html>
