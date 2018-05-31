@@ -46,24 +46,29 @@ function load() {
 						columns : [
 								{
 									checkbox : true
-								},
-																{
-									field : 'ftExpressBaseId', 
-									title : '主键' 
-								},
-																{
+								},{
+									field : 'expressNo', 
+									title : '快递单号' 
+								},{
 									field : 'shipmentType', 
 									title : '快件类型' 
-								},
-																{
+								},{
+									field : 'expressCompany', 
+									title : '快递公司' 
+								},{
+									field : 'paymentType', 
+									title : '付款方式：0-到付，1-预付' 
+								},{
 									field : 'postDate', 
 									title : '收寄日期' 
-								},
-																{
+								},{
 									field : 'handlerName', 
 									title : '经手人' 
 								},
-																{
+								/*{
+									field : 'ftExpressBaseId', 
+									title : '主键' 
+								},{
 									field : 'senderName', 
 									title : '寄件人' 
 								},
@@ -122,43 +127,25 @@ function load() {
 																{
 									field : 'areaCode', 
 									title : '区号' 
-								},
-																{
+								},{
 									field : 'courierAccount', 
 									title : '到付账号' 
-								},
-																{
-									field : 'expressCompany', 
-									title : '快递公司' 
-								},
-																{
-									field : 'expressNo', 
-									title : '快递单号' 
-								},
-																{
-									field : 'paymentType', 
-									title : '付款方式：0-到付，1-预付' 
-								},
-																{
+								},{
 									field : 'expressFee', 
 									title : '快递运费' 
-								},
-																{
+								},{
 									field : 'expressDesc', 
 									title : '快件描述' 
-								},
-																{
+								},{
 									field : 'filePath', 
 									title : '附件路径' 
-								},
-																{
+								},{
 									field : 'gmtCreate', 
 									title : '创建时间' 
-								},
-																{
+								},{
 									field : 'gmtModified', 
 									title : '修改时间' 
-								},
+								},*/
 																{
 									title : '操作',
 									field : 'id',

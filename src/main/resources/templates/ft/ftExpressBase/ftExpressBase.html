@@ -33,7 +33,7 @@
 		<div class="col-sm-12">
 			<div class="ibox">
 				<div class="ibox-body">
-					<div class="fixed-table-toolbar">
+					<!-- <div class="fixed-table-toolbar">
 						<div class="columns pull-left">
 							<button shiro:hasPermission="ft:ftExpressBase:add" type="button" class="btn  btn-primary" onclick="add()">
 								<i class="fa fa-plus" aria-hidden="true"></i>添加
@@ -50,6 +50,33 @@
 							<input id="searchName" type="text" class="form-control"
 								placeholder="">
 						</div>
+					</div> -->
+					<div class="fixed-table-toolbar">
+						<form class="form-inline" role="form">
+							<div class="form-group">
+								<label  >快件单号：</label>
+								<input type="text" class="form-control" id="name"
+									   placeholder="">
+							</div>
+							&nbsp;&nbsp;
+							<div class="form-group">
+								<label  >收寄日期：</label>
+								<input type="text" class="laydate-icon layer-date form-control"  name="birth1"  placeholder=""
+									   onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="background-color: #fff;" readonly="readonly"/>
+							</div>-
+							<div class="form-group">
+								<label  >-</label>
+								<input type="text" class="laydate-icon layer-date form-control"  name="birth2"  placeholder=""
+									   onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="background-color: #fff;" readonly="readonly"/>
+							</div>
+							&nbsp;&nbsp;
+							<div class="form-group">
+								<label  >快递公司：</label>
+								<input type="text" class="form-control" id="name"
+									   placeholder="">
+							</div>
+							<button type="submit" class="center-block btn btn-warning">查询</button>
+						</form>
 					</div>
 					<table id="exampleTable" data-mobile-responsive="true">
 					</table>

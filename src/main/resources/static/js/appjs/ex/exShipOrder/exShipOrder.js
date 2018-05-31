@@ -47,7 +47,23 @@ function load() {
 								{
 									checkbox : true
 								},
-																{
+								{
+									field : 'invoiceNo', 
+									title : '发票号' 
+								},
+								{
+									field : 'consignee', 
+									title : '收货人名称' 
+								},
+								{
+									field : 'departurePort', 
+									title : '起运港' 
+								},
+								{
+									field : 'destinationPort', 
+									title : '目的港' 
+								},
+																/*{
 									field : 'exShipOrderId', 
 									title : '主键' 
 								},
@@ -55,18 +71,12 @@ function load() {
 									field : 'shipper', 
 									title : '发货人' 
 								},
-																{
-									field : 'consignee', 
-									title : '收货人' 
-								},
+																
 																{
 									field : 'notifyParty', 
 									title : '通知人' 
 								},
-																{
-									field : 'invoiceNo', 
-									title : '发票号' 
-								},
+																
 																{
 									field : 'contractNo', 
 									title : '合同号' 
@@ -87,18 +97,12 @@ function load() {
 									field : 'shipCompanyName', 
 									title : '船公司名称' 
 								},
-																{
-									field : 'departurePort', 
-									title : '起运港' 
-								},
+																
 																{
 									field : 'transitPort', 
 									title : '转运港' 
 								},
-																{
-									field : 'destinationPort', 
-									title : '目的港' 
-								},
+																
 																{
 									field : 'expiryDate', 
 									title : '有效期限' 
@@ -166,7 +170,7 @@ function load() {
 																{
 									field : 'gmtModified', 
 									title : '修改时间' 
-								},
+								},*/
 																{
 									title : '操作',
 									field : 'id',

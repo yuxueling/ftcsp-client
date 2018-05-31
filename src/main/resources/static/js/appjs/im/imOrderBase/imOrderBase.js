@@ -46,28 +46,35 @@ function load() {
 						columns : [
 								{
 									checkbox : true
-								},
-																{
-									field : 'imOrderBaseId', 
-									title : '主键' 
-								},
-																{
-									field : 'ftClientId', 
-									title : '委托方' 
-								},
-																{
+								},{
 									field : 'orderNo', 
 									title : '订单号' 
-								},
-																{
+								},{
 									field : 'supplierName', 
 									title : '供应商名称' 
+								},{
+									field : '', 
+									title : '装运期限' 
+								},{
+									field : '', 
+									title : '总金额' 
+								},{
+									field : '', 
+									title : '保存时间' 
+								},{
+									field : 'auditStatus', 
+									title : '审核状态：0-未提交，1-待预审，2-待专家预审，3-已撤销，4-已预审' 
 								},
-																{
+								/*{
+									field : 'imOrderBaseId', 
+									title : '主键' 
+								},{
+									field : 'ftClientId', 
+									title : '委托方' 
+								},{
 									field : 'supplierAddress', 
 									title : '供应商地址' 
-								},
-																{
+								},{
 									field : 'currency', 
 									title : '币别' 
 								},
@@ -106,35 +113,23 @@ function load() {
 																{
 									field : 'totalQuantity', 
 									title : '总数量' 
-								},
-																{
-									field : 'totalAmount', 
-									title : '总金额' 
-								},
-																{
+								},{
 									field : 'remark', 
 									title : '备注' 
-								},
-																{
+								},{
 									field : 'isCargoInsurance', 
 									title : '是否货运保险：0-否，1-是' 
-								},
-																{
+								},{
 									field : 'insuranceCoverage', 
 									title : '保险险别' 
-								},
-																{
+								},{
 									field : 'insuranceRate', 
 									title : '保险比率' 
-								},
-																{
+								},{
 									field : 'insuranceAmount', 
 									title : '投保金额' 
 								},
-																{
-									field : 'auditStatus', 
-									title : '审核状态：0-未提交，1-待预审，2-待专家预审，3-已撤销，4-已预审' 
-								},
+																
 																{
 									field : 'isDeleted', 
 									title : '是否已删除：0-否，1-是' 
@@ -146,7 +141,7 @@ function load() {
 																{
 									field : 'gmtModified', 
 									title : '修改时间' 
-								},
+								},*/
 																{
 									title : '操作',
 									field : 'id',

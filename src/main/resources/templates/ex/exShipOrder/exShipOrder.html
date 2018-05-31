@@ -34,6 +34,46 @@
 			<div class="ibox">
 				<div class="ibox-body">
 					<div class="fixed-table-toolbar">
+								<form class="form-inline" role="form">
+									
+									&nbsp;&nbsp;
+									<div class="form-group">
+										<label>发票号：</label>
+										<input type="text" class="form-control" id="name"
+											   placeholder="">
+									</div>
+									&nbsp;&nbsp;
+									<div class="form-group">
+										<label >收货人：</label>
+										<input type="text" class="form-control" id="name"
+											   placeholder="">
+									</div>
+									&nbsp;&nbsp;
+									<div class="form-group">
+										<label >起运巷：</label>
+										<input type="text" class="form-control" id="name"
+											   placeholder="">
+									</div>
+									&nbsp;&nbsp;
+									<div class="form-group">
+										<label >目的巷：</label>
+										<input type="text" class="form-control" id="name"
+											   placeholder="">
+									</div>
+									&nbsp;&nbsp;
+									<div class="form-group">
+										<label  >阅读状态：</label>
+										<select class="form-control">
+											<option>全部</option>
+											<option>已读</option>
+											<option>未读</option>
+										</select>
+									</div>
+									<button type="submit" class="center-block btn btn-warning">搜索</button>
+								</form>
+					</div>
+					<!-- <div>此处添加查询表单</div>
+					<div class="fixed-table-toolbar">
 						<div class="columns pull-left">
 							<button shiro:hasPermission="ex:exShipOrder:add" type="button" class="btn  btn-primary" onclick="add()">
 								<i class="fa fa-plus" aria-hidden="true"></i>添加
@@ -44,13 +84,13 @@
 							</button>
 						</div>
 						<div class="columns pull-right">
-							<button class="btn btn-success" onclick="reLoad()">查询</button>
+							<button class="btn btn-success" onclick="reLoad()">查询吗</button>
 						</div>
 						<div class="columns pull-right col-md-2 nopadding">
 							<input id="searchName" type="text" class="form-control"
 								placeholder="">
 						</div>
-					</div>
+					</div> -->
 					<table id="exampleTable" data-mobile-responsive="true">
 					</table>
 				</div>
