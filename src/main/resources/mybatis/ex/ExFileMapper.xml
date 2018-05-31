@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.ex.dao.ExFileDao">
+
+	<select id="get" resultType="com.cloudht.ex.domain.ExFileDO">
+		select `ex_file_id`,`ft_client_id`,`invoice_no`,`file_type`,`create_by`,`gmt_create`,`gmt_modified`,`file_path` from ex_file where ex_file_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.ex.domain.ExFileDO">
+		select `ex_file_id`,`ft_client_id`,`invoice_no`,`file_type`,`create_by`,`gmt_create`,`gmt_modified`,`file_path` from ex_file
+        <where>  
+		  		  <if test="exFileId != null and exFileId != ''"> and ex_file_id = #{exFileId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="invoiceNo != null and invoiceNo != ''"> and invoice_no = #{invoiceNo} </if>
+		  		  <if test="fileType != null and fileType != ''"> and file_type = #{fileType} </if>
+		  		  <if test="createBy != null and createBy != ''"> and create_by = #{createBy} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="filePath != null and filePath != ''"> and file_path = #{filePath} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ex_file_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ex_file
+		 <where>  
+		  		  <if test="exFileId != null and exFileId != ''"> and ex_file_id = #{exFileId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="invoiceNo != null and invoiceNo != ''"> and invoice_no = #{invoiceNo} </if>
+		  		  <if test="fileType != null and fileType != ''"> and file_type = #{fileType} </if>
+		  		  <if test="createBy != null and createBy != ''"> and create_by = #{createBy} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="filePath != null and filePath != ''"> and file_path = #{filePath} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.ex.domain.ExFileDO" useGeneratedKeys="true" keyProperty="exFileId">
+		insert into ex_file
+		(
+			`ft_client_id`, 
+			`invoice_no`, 
+			`file_type`, 
+			`create_by`, 
+			`gmt_create`, 
+			`gmt_modified`, 
+			`file_path`
+		)
+		values
+		(
+			#{ftClientId}, 
+			#{invoiceNo}, 
+			#{fileType}, 
+			#{createBy}, 
+			#{gmtCreate}, 
+			#{gmtModified}, 
+			#{filePath}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.ex.domain.ExFileDO">
+		update ex_file 
+		<set>
+			<if test="ftClientId != null">`ft_client_id` = #{ftClientId}, </if>
+			<if test="invoiceNo != null">`invoice_no` = #{invoiceNo}, </if>
+			<if test="fileType != null">`file_type` = #{fileType}, </if>
+			<if test="createBy != null">`create_by` = #{createBy}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}, </if>
+			<if test="filePath != null">`file_path` = #{filePath}</if>
+		</set>
+		where ex_file_id = #{exFileId}
+	</update>
+	
+	<delete id="remove">
+		delete from ex_file where ex_file_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ex_file where ex_file_id in 
+		<foreach item="exFileId" collection="array" open="(" separator="," close=")">
+			#{exFileId}
+		</foreach>
+	</delete>
+
+</mapper>

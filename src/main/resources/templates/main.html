@@ -3,18 +3,18 @@
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body>
-<br/>
-<br/>
+
+
 <div class="panel panel-info">
     <div class="panel-heading">
         <h3 class="panel-title">
             <a href="#">最新消息</a>
         </h3>
     </div>
-    <div class="panel-body">
-        <span>
-            系统通知：谷歌山西体验中心同榆次工商银行，将于下周六一同举办外贸业务培训线下沟通会。
-        </span>
+    <div class="panel-body text-info">
+        <h4>
+            系统通知：谷歌山西体验中心同榆次工商银行，将于下周六共同举办外贸业务培训线下沟通会。
+        </h4>
         <span>2018.6.1</span>
     </div>
 </div>
@@ -28,55 +28,13 @@
     <div class="panel-body">
         <ul class="list-unstyled list-inline">
             <li>
-                <a href="#"> <i class="fa fa-star"></i>已受理订单列表<span class="badge">2</span></a>
+                <a class="btn btn-warning btn-large" href="#"> <i class="fa fa-star"></i>已受理订单列表<span class="badge">4</span></a>
             </li>
             <li>
-                <a href="#"> <i class="fa fa-star-half-empty"></i>待受理订单列表<span class="badge">4</span></a>
+                <a class="btn btn-success btn-large" href="#"> <i class="fa fa-star-half-empty"></i>待受理订单列表<span class="badge">2</span></a>
             </li>
             <li>
-                <a href="#"> <i class="fa fa-star-o"></i>未提交订单列表<span class="badge">2</span></a>
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div class="col-md-6 panel panel-info">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            <a href="#">出口未确认消息</a>
-        </h3>
-    </div>
-    <div class="panel-body">
-        <ul class="list-unstyled list-inline">
-            <li>
-                <a href="#"> <i class="fa fa-star"></i>未阅读订舱信息<span class="badge">2</span></a>
-            </li>
-            <li>
-                <a href="#"> <i class="fa fa-star-half-empty"></i>新收汇信息<span class="badge">3</span></a>
-            </li>
-            <li>
-                <a href="#"> <i class="fa fa-star-o"></i>未关联水单<span class="badge">6</span></a>
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div class="col-md-6 panel panel-info">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            进口订单记录
-        </h3>
-    </div>
-    <div class="panel-body">
-        <ul class="list-unstyled list-inline">
-            <li>
-                <a href="#"> <i class="fa fa-star"></i>已受理订单列表<span class="badge">2</span></a>
-            </li>
-            <li>
-                <a href="#"> <i class="fa fa-star-half-empty"></i>待受理订单列表<span class="badge">4</span></a>
-            </li>
-            <li>
-                <a href="#"> <i class="fa fa-star-o"></i>未提交订单列表<span class="badge">2</span></a>
+                <a class="btn btn-primary btn-large" href="#"> <i class="fa fa-star-o"></i>未提交订单列表<span class="badge">6</span></a>
             </li>
         </ul>
     </div>
@@ -91,13 +49,55 @@
     <div class="panel-body">
         <ul class="list-unstyled list-inline">
             <li>
-                <a href="#"> <i class="fa fa-star"></i>通关跟踪<span class="badge">2</span></a>
+                <a class="btn btn-warning btn-large" href="#"> <i class="fa fa-star"></i>未阅读订舱信息<span class="badge">2</span></a>
             </li>
             <li>
-                <a href="#"> <i class="fa fa-star-half-empty"></i>代理合同<span class="badge">3</span></a>
+                <a class="btn btn-success btn-large" href="#"> <i class="fa fa-star-half-empty"></i>新收汇信息<span class="badge">3</span></a>
             </li>
             <li>
-                <a href="#"> <i class="fa fa-star-o"></i>到单通知<span class="badge">6</span></a>
+                <a class="btn btn-primary btn-large" href="#"> <i class="fa fa-star-o"></i>未关联水单<span class="badge">6</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="col-md-6 panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            出口订单记录
+        </h3>
+    </div>
+    <div class="panel-body">
+        <ul class="list-unstyled list-inline">
+            <li>
+                <a class="btn btn-warning btn-large" href="#"> <i class="fa fa-star"></i>已受理订单列表<span class="badge">2</span></a>
+            </li>
+            <li>
+                <a class="btn btn-success btn-large" href="#"> <i class="fa fa-star-half-empty"></i>待受理订单列表<span class="badge">4</span></a>
+            </li>
+            <li>
+                <a class="btn btn-primary btn-large" href="#"> <i class="fa fa-star-o"></i>未提交订单列表<span class="badge">2</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="col-md-6 panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a href="#">出口未确认消息</a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <ul class="list-unstyled list-inline">
+            <li>
+                <a class="btn btn-warning btn-large" href="#"> <i class="fa fa-star"></i>通关跟踪<span class="badge">2</span></a>
+            </li>
+            <li>
+                <a class="btn btn-success btn-large" href="#"> <i class="fa fa-star-half-empty"></i>代理合同<span class="badge">3</span></a>
+            </li>
+            <li>
+                <a class="btn btn-primary btn-large" href="#"> <i class="fa fa-star-o"></i>到单通知<span class="badge">6</span></a>
             </li>
         </ul>
     </div>
@@ -126,7 +126,7 @@
         var s_resetPwd_h = '';
     </script>
 </div>
-<div th:include="include :: footer"></div>
 
+<div th:include="include :: footer"></div>
 </body>
 </html>
