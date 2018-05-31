@@ -3,42 +3,16 @@
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body class="gray-bg">
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<ul class="nav nav-tabs">
-				<li >
-					<a href="/ex/exOrderInfo/add">在线下单</a>
-				</li>
-				<li>
-					<a href="/ex/exOrderInfo">订单记录</a>
-				</li>
-				<li >
-					<a href="/ex/exShipOrder">订舱信息</a>
-				</li>
-				<li >
-					<a href="#">收汇登记</a>
-				</li>
-				<li class="active">
-					<a href="/ft/ftExpressBase">快件管理</a>
-				</li>
-				<li >
-					<a href="#">服务合同管理</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>
 	<div class="wrapper wrapper-content ">
 		<div class="col-sm-12">
 			<div class="ibox">
 				<div class="ibox-body">
 					<div class="fixed-table-toolbar">
 						<div class="columns pull-left">
-							<button shiro:hasPermission="ft:ftExpressBase:add" type="button" class="btn  btn-primary" onclick="add()">
+							<button shiro:hasPermission="ex:exFile:add" type="button" class="btn  btn-primary" onclick="add()">
 								<i class="fa fa-plus" aria-hidden="true"></i>添加
 							</button>
-							<button shiro:hasPermission="ft:ftExpressBase:batchRemove" type="button" class="btn  btn-danger"
+							<button shiro:hasPermission="ex:exFile:batchRemove" type="button" class="btn  btn-danger"
 								onclick="batchRemove()">
 								<i class="fa fa-trash" aria-hidden="true"></i>删除
 							</button>
@@ -65,23 +39,23 @@
 				var s_resetPwd_h = 'hidden';
 			</script>
 		</div>
-		<div shiro:hasPermission="ft:ftExpressBase:edit">
+		<div shiro:hasPermission="ex:exFile:edit">
 			<script type="text/javascript">
 				s_edit_h = '';
 			</script>
 		</div>
-		<div shiro:hasPermission="ft:ftExpressBase:remove">
+		<div shiro:hasPermission="ex:exFile:remove">
 			<script type="text/javascript">
 				var s_remove_h = '';
 			</script>
 		</div>
-		<div shiro:hasPermission="ft:ftExpressBase:resetPwd">
+		<div shiro:hasPermission="ex:exFile:resetPwd">
 			<script type="text/javascript">
 				var s_resetPwd_h = '';
 			</script>
 		</div>
 	</div>
 	<div th:include="include :: footer"></div>
-	<script type="text/javascript" src="/js/appjs/ft/ftExpressBase/ftExpressBase.js"></script>
+	<script type="text/javascript" src="/js/appjs/ex/exFile/exFile.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 
-var prefix = "/ex/exShipOrder"
+var prefix = "/ex/exFile"
 $(function() {
 	load();
 });
@@ -48,116 +48,24 @@ function load() {
 									checkbox : true
 								},
 																{
-									field : 'exShipOrderId', 
+									field : 'exFileId', 
 									title : '主键' 
 								},
 																{
-									field : 'shipper', 
-									title : '发货人' 
-								},
-																{
-									field : 'consignee', 
-									title : '收货人' 
-								},
-																{
-									field : 'notifyParty', 
-									title : '通知人' 
+									field : 'ftClientId', 
+									title : '委托方' 
 								},
 																{
 									field : 'invoiceNo', 
-									title : '发票号' 
+									title : '发票号码' 
 								},
 																{
-									field : 'contractNo', 
-									title : '合同号' 
+									field : 'fileType', 
+									title : '文件类型' 
 								},
 																{
-									field : 'isTransship', 
-									title : '可否转船：0-否，1-是' 
-								},
-																{
-									field : 'isPartialship', 
-									title : '可否分批：0-否，1-是' 
-								},
-																{
-									field : 'shipDate', 
-									title : '装船期限' 
-								},
-																{
-									field : 'shipCompanyName', 
-									title : '船公司名称' 
-								},
-																{
-									field : 'departurePort', 
-									title : '起运港' 
-								},
-																{
-									field : 'transitPort', 
-									title : '转运港' 
-								},
-																{
-									field : 'destinationPort', 
-									title : '目的港' 
-								},
-																{
-									field : 'expiryDate', 
-									title : '有效期限' 
-								},
-																{
-									field : 'deliveryDate', 
-									title : '交货日期' 
-								},
-																{
-									field : 'encasementType', 
-									title : '装箱方式：0-拼箱，1-整柜，2-拼车？，3-整车？' 
-								},
-																{
-									field : 'twentyGpNum', 
-									title : '20GP数量' 
-								},
-																{
-									field : 'fortyGpNum', 
-									title : '40GP数量' 
-								},
-																{
-									field : 'fortyHqNum', 
-									title : '40HQ数量'
-								},
-																{
-									field : 'freightPayment', 
-									title : '运费支付方式：0-预付，1-到付' 
-								},
-																{
-									field : 'contact', 
-									title : '联系人' 
-								},
-																{
-									field : 'telephone', 
-									title : '电话' 
-								},
-																{
-									field : 'fax', 
-									title : '传真' 
-								},
-																{
-									field : 'nosOriginalBsl', 
-									title : '正本提单份数' 
-								},
-																{
-									field : 'nosOriginalBslCopy', 
-									title : '副本提单份数' 
-								},
-																{
-									field : 'customsDeclaredValue', 
-									title : '报关金额' 
-								},
-																{
-									field : 'currency', 
-									title : '币别' 
-								},
-																{
-									field : 'announcement', 
-									title : '注意事项' 
+									field : 'createBy', 
+									title : '创建人ID' 
 								},
 																{
 									field : 'gmtCreate', 
@@ -168,18 +76,22 @@ function load() {
 									title : '修改时间' 
 								},
 																{
+									field : 'filePath', 
+									title : '文件路径' 
+								},
+																{
 									title : '操作',
 									field : 'id',
 									align : 'center',
 									formatter : function(value, row, index) {
 										var e = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
-												+ row.exShipOrderId
+												+ row.exFileId
 												+ '\')"><i class="fa fa-edit"></i></a> ';
 										var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
-												+ row.exShipOrderId
+												+ row.exFileId
 												+ '\')"><i class="fa fa-remove"></i></a> ';
 										var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
-												+ row.exShipOrderId
+												+ row.exFileId
 												+ '\')"><i class="fa fa-key"></i></a> ';
 										return e + d ;
 									}
@@ -217,7 +129,7 @@ function remove(id) {
 			url : prefix+"/remove",
 			type : "post",
 			data : {
-				'exShipOrderId' : id
+				'exFileId' : id
 			},
 			success : function(r) {
 				if (r.code==0) {
@@ -246,7 +158,7 @@ function batchRemove() {
 		var ids = new Array();
 		// 遍历所有选择的行数据，取每条数据对应的ID
 		$.each(rows, function(i, row) {
-			ids[i] = row['exShipOrderId'];
+			ids[i] = row['exFileId'];
 		});
 		$.ajax({
 			type : 'POST',

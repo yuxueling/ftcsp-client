@@ -19,9 +19,9 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
-@Configuration
-@MapperScan(basePackages = MultiDataSourceConfig.FI_BASE_PACKAGE,
-        sqlSessionFactoryRef = "fiSqlSessionFactory")
+//@Configuration
+//@MapperScan(basePackages = MultiDataSourceConfig.FI_BASE_PACKAGE,
+//        sqlSessionFactoryRef = "fiSqlSessionFactory")
 public class FiDataSourceConfig {
     private Logger logger = LoggerFactory.getLogger(FiDataSourceConfig.class);
 

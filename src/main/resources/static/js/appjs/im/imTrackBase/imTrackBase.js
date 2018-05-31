@@ -89,7 +89,7 @@ function load() {
 								},
 																{
 									field : 'fortyHqNum', 
-									title : '40'HQ数量' 
+									title : '40HQ数量'
 								},
 																{
 									field : 'tradeWay', 
