@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="im_agency_contract_id" name="im_agency_contract_id" th:value="${imAgencyContract.im_agency_contract_id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">委托方：</label>
+								<div class="col-sm-8">
+									<input id="ftClientId" name="ftClientId" th:value="${imAgencyContract.ftClientId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">供应商名称：</label>
+								<div class="col-sm-8">
+									<input id="supplierName" name="supplierName" th:value="${imAgencyContract.supplierName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">供应商地址：</label>
+								<div class="col-sm-8">
+									<input id="supplierAddress" name="supplierAddress" th:value="${imAgencyContract.supplierAddress}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">代理合同号：</label>
+								<div class="col-sm-8">
+									<input id="agencyContractNo" name="agencyContractNo" th:value="${imAgencyContract.agencyContractNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">签约日期：</label>
+								<div class="col-sm-8">
+									<input id="agencyContractDate" name="agencyContractDate" th:value="${imAgencyContract.agencyContractDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">签约地：</label>
+								<div class="col-sm-8">
+									<input id="agencyContractPlace" name="agencyContractPlace" th:value="${imAgencyContract.agencyContractPlace}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">币别：</label>
+								<div class="col-sm-8">
+									<input id="currency" name="currency" th:value="${imAgencyContract.currency}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">价格条款：</label>
+								<div class="col-sm-8">
+									<input id="priceTerms" name="priceTerms" th:value="${imAgencyContract.priceTerms}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">结汇方式：</label>
+								<div class="col-sm-8">
+									<input id="settlementWay" name="settlementWay" th:value="${imAgencyContract.settlementWay}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">原产地：</label>
+								<div class="col-sm-8">
+									<input id="originSourcePlace" name="originSourcePlace" th:value="${imAgencyContract.originSourcePlace}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">起运港：</label>
+								<div class="col-sm-8">
+									<input id="departurePort" name="departurePort" th:value="${imAgencyContract.departurePort}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">转运港：</label>
+								<div class="col-sm-8">
+									<input id="transitPort" name="transitPort" th:value="${imAgencyContract.transitPort}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">目的港：</label>
+								<div class="col-sm-8">
+									<input id="destinationPort" name="destinationPort" th:value="${imAgencyContract.destinationPort}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">付款期限：</label>
+								<div class="col-sm-8">
+									<input id="paymentTermDate" name="paymentTermDate" th:value="${imAgencyContract.paymentTermDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">装运期限：</label>
+								<div class="col-sm-8">
+									<input id="shipmentDeadline" name="shipmentDeadline" th:value="${imAgencyContract.shipmentDeadline}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">保证金比率%：</label>
+								<div class="col-sm-8">
+									<input id="marginRatio" name="marginRatio" th:value="${imAgencyContract.marginRatio}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">溢短装%：</label>
+								<div class="col-sm-8">
+									<input id="moreLess" name="moreLess" th:value="${imAgencyContract.moreLess}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">总数量：</label>
+								<div class="col-sm-8">
+									<input id="totalQuantity" name="totalQuantity" th:value="${imAgencyContract.totalQuantity}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">总金额：</label>
+								<div class="col-sm-8">
+									<input id="totalAmount" name="totalAmount" th:value="${imAgencyContract.totalAmount}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">是否货运保险：0-否，1-是：</label>
+								<div class="col-sm-8">
+									<input id="isCargoInsurance" name="isCargoInsurance" th:value="${imAgencyContract.isCargoInsurance}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">保险险别：</label>
+								<div class="col-sm-8">
+									<input id="insuranceCoverage" name="insuranceCoverage" th:value="${imAgencyContract.insuranceCoverage}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">保险比率：</label>
+								<div class="col-sm-8">
+									<input id="insuranceRate" name="insuranceRate" th:value="${imAgencyContract.insuranceRate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">投保金额：</label>
+								<div class="col-sm-8">
+									<input id="insuranceAmount" name="insuranceAmount" th:value="${imAgencyContract.insuranceAmount}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">备注：</label>
+								<div class="col-sm-8">
+									<input id="remark" name="remark" th:value="${imAgencyContract.remark}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">代理合同号：</label>
+								<div class="col-sm-8">
+									<input id="imContractNo" name="imContractNo" th:value="${imAgencyContract.imContractNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">签约日期：</label>
+								<div class="col-sm-8">
+									<input id="imContractDate" name="imContractDate" th:value="${imAgencyContract.imContractDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">签约地：</label>
+								<div class="col-sm-8">
+									<input id="imContractPlace" name="imContractPlace" th:value="${imAgencyContract.imContractPlace}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">进口合同附件ID：</label>
+								<div class="col-sm-8">
+									<input id="imContractFileId" name="imContractFileId" th:value="${imAgencyContract.imContractFileId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">代理合同附件ID：</label>
+								<div class="col-sm-8">
+									<input id="agencyContractFileId" name="agencyContractFileId" th:value="${imAgencyContract.agencyContractFileId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtCreate" name="gmtCreate" th:value="${imAgencyContract.gmtCreate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修改时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtModified" name="gmtModified" th:value="${imAgencyContract.gmtModified}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/im/imAgencyContract/edit.js">
+	</script>
+</body>
+</html>

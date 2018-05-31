@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.ft.dao.FtExpressCommodityDao">
+
+	<select id="get" resultType="com.cloudht.ft.domain.FtExpressCommodityDO">
+		select `ft_express_commodity_id`,`ft_express_base_id`,`chinese_name`,`english_name`,`quantity`,`quantity_unit`,`unit_price`,`amount`,`remark`,`gmt_create`,`gmt_modified` from ft_express_commodity where ft_express_commodity_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.ft.domain.FtExpressCommodityDO">
+		select `ft_express_commodity_id`,`ft_express_base_id`,`chinese_name`,`english_name`,`quantity`,`quantity_unit`,`unit_price`,`amount`,`remark`,`gmt_create`,`gmt_modified` from ft_express_commodity
+        <where>  
+		  		  <if test="ftExpressCommodityId != null and ftExpressCommodityId != ''"> and ft_express_commodity_id = #{ftExpressCommodityId} </if>
+		  		  <if test="ftExpressBaseId != null and ftExpressBaseId != ''"> and ft_express_base_id = #{ftExpressBaseId} </if>
+		  		  <if test="chineseName != null and chineseName != ''"> and chinese_name = #{chineseName} </if>
+		  		  <if test="englishName != null and englishName != ''"> and english_name = #{englishName} </if>
+		  		  <if test="quantity != null and quantity != ''"> and quantity = #{quantity} </if>
+		  		  <if test="quantityUnit != null and quantityUnit != ''"> and quantity_unit = #{quantityUnit} </if>
+		  		  <if test="unitPrice != null and unitPrice != ''"> and unit_price = #{unitPrice} </if>
+		  		  <if test="amount != null and amount != ''"> and amount = #{amount} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ft_express_commodity_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ft_express_commodity
+		 <where>  
+		  		  <if test="ftExpressCommodityId != null and ftExpressCommodityId != ''"> and ft_express_commodity_id = #{ftExpressCommodityId} </if>
+		  		  <if test="ftExpressBaseId != null and ftExpressBaseId != ''"> and ft_express_base_id = #{ftExpressBaseId} </if>
+		  		  <if test="chineseName != null and chineseName != ''"> and chinese_name = #{chineseName} </if>
+		  		  <if test="englishName != null and englishName != ''"> and english_name = #{englishName} </if>
+		  		  <if test="quantity != null and quantity != ''"> and quantity = #{quantity} </if>
+		  		  <if test="quantityUnit != null and quantityUnit != ''"> and quantity_unit = #{quantityUnit} </if>
+		  		  <if test="unitPrice != null and unitPrice != ''"> and unit_price = #{unitPrice} </if>
+		  		  <if test="amount != null and amount != ''"> and amount = #{amount} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.ft.domain.FtExpressCommodityDO" useGeneratedKeys="true" keyProperty="ftExpressCommodityId">
+		insert into ft_express_commodity
+		(
+			`ft_express_base_id`, 
+			`chinese_name`, 
+			`english_name`, 
+			`quantity`, 
+			`quantity_unit`, 
+			`unit_price`, 
+			`amount`, 
+			`remark`, 
+			`gmt_create`, 
+			`gmt_modified`
+		)
+		values
+		(
+			#{ftExpressBaseId}, 
+			#{chineseName}, 
+			#{englishName}, 
+			#{quantity}, 
+			#{quantityUnit}, 
+			#{unitPrice}, 
+			#{amount}, 
+			#{remark}, 
+			#{gmtCreate}, 
+			#{gmtModified}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.ft.domain.FtExpressCommodityDO">
+		update ft_express_commodity 
+		<set>
+			<if test="ftExpressBaseId != null">`ft_express_base_id` = #{ftExpressBaseId}, </if>
+			<if test="chineseName != null">`chinese_name` = #{chineseName}, </if>
+			<if test="englishName != null">`english_name` = #{englishName}, </if>
+			<if test="quantity != null">`quantity` = #{quantity}, </if>
+			<if test="quantityUnit != null">`quantity_unit` = #{quantityUnit}, </if>
+			<if test="unitPrice != null">`unit_price` = #{unitPrice}, </if>
+			<if test="amount != null">`amount` = #{amount}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}</if>
+		</set>
+		where ft_express_commodity_id = #{ftExpressCommodityId}
+	</update>
+	
+	<delete id="remove">
+		delete from ft_express_commodity where ft_express_commodity_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ft_express_commodity where ft_express_commodity_id in 
+		<foreach item="ftExpressCommodityId" collection="array" open="(" separator="," close=")">
+			#{ftExpressCommodityId}
+		</foreach>
+	</delete>
+
+</mapper>

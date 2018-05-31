@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="ft_express_base_id" name="ft_express_base_id" th:value="${ftExpressBase.ft_express_base_id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">快件类型：</label>
+								<div class="col-sm-8">
+									<input id="shipmentType" name="shipmentType" th:value="${ftExpressBase.shipmentType}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">收寄日期：</label>
+								<div class="col-sm-8">
+									<input id="postDate" name="postDate" th:value="${ftExpressBase.postDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">经手人：</label>
+								<div class="col-sm-8">
+									<input id="handlerName" name="handlerName" th:value="${ftExpressBase.handlerName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">寄件人：</label>
+								<div class="col-sm-8">
+									<input id="senderName" name="senderName" th:value="${ftExpressBase.senderName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">寄件人电话：</label>
+								<div class="col-sm-8">
+									<input id="senderTelephone" name="senderTelephone" th:value="${ftExpressBase.senderTelephone}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">订单号：</label>
+								<div class="col-sm-8">
+									<input id="orderNo" name="orderNo" th:value="${ftExpressBase.orderNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">委托方：</label>
+								<div class="col-sm-8">
+									<input id="ftClientId" name="ftClientId" th:value="${ftExpressBase.ftClientId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">客户名称：</label>
+								<div class="col-sm-8">
+									<input id="customerName" name="customerName" th:value="${ftExpressBase.customerName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">客户ID：</label>
+								<div class="col-sm-8">
+									<input id="customerId" name="customerId" th:value="${ftExpressBase.customerId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">详细地址：</label>
+								<div class="col-sm-8">
+									<input id="detailedAddress" name="detailedAddress" th:value="${ftExpressBase.detailedAddress}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">联系人：</label>
+								<div class="col-sm-8">
+									<input id="contact" name="contact" th:value="${ftExpressBase.contact}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">联系人电话：</label>
+								<div class="col-sm-8">
+									<input id="contactTelephone" name="contactTelephone" th:value="${ftExpressBase.contactTelephone}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">联系人手机：</label>
+								<div class="col-sm-8">
+									<input id="contactPhone" name="contactPhone" th:value="${ftExpressBase.contactPhone}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">国别：</label>
+								<div class="col-sm-8">
+									<input id="country" name="country" th:value="${ftExpressBase.country}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">省：</label>
+								<div class="col-sm-8">
+									<input id="province" name="province" th:value="${ftExpressBase.province}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">城市：</label>
+								<div class="col-sm-8">
+									<input id="city" name="city" th:value="${ftExpressBase.city}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">邮政编码：</label>
+								<div class="col-sm-8">
+									<input id="postcode" name="postcode" th:value="${ftExpressBase.postcode}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">区号：</label>
+								<div class="col-sm-8">
+									<input id="areaCode" name="areaCode" th:value="${ftExpressBase.areaCode}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">到付账号：</label>
+								<div class="col-sm-8">
+									<input id="courierAccount" name="courierAccount" th:value="${ftExpressBase.courierAccount}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">快递公司：</label>
+								<div class="col-sm-8">
+									<input id="expressCompany" name="expressCompany" th:value="${ftExpressBase.expressCompany}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">快递单号：</label>
+								<div class="col-sm-8">
+									<input id="expressNo" name="expressNo" th:value="${ftExpressBase.expressNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">付款方式：0-到付，1-预付：</label>
+								<div class="col-sm-8">
+									<input id="paymentType" name="paymentType" th:value="${ftExpressBase.paymentType}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">快递运费：</label>
+								<div class="col-sm-8">
+									<input id="expressFee" name="expressFee" th:value="${ftExpressBase.expressFee}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">快件描述：</label>
+								<div class="col-sm-8">
+									<input id="expressDesc" name="expressDesc" th:value="${ftExpressBase.expressDesc}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">附件路径：</label>
+								<div class="col-sm-8">
+									<input id="filePath" name="filePath" th:value="${ftExpressBase.filePath}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtCreate" name="gmtCreate" th:value="${ftExpressBase.gmtCreate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修改时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtModified" name="gmtModified" th:value="${ftExpressBase.gmtModified}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/ft/ftExpressBase/edit.js">
+	</script>
+</body>
+</html>

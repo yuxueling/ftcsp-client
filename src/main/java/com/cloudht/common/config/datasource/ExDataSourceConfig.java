@@ -130,7 +130,7 @@ public class ExDataSourceConfig {
         sqlSessionFactoryBean.setDataSource(exDataSource);
 
         // 扫描 mapper 资源
-        Resource[] mapperLocations = new PathMatchingResourcePatternResolver().getResources(MultiDataSourceConfig.BLOG_MAPPER_LOCATION);
+        Resource[] mapperLocations = new PathMatchingResourcePatternResolver().getResources(MultiDataSourceConfig.EX_MAPPER_LOCATION);
         sqlSessionFactoryBean.setMapperLocations(mapperLocations);
 
 

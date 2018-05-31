@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="nav nav-tabs">
+				<li >
+					<a href="/ex/exOrderInfo/add">在线下单</a>
+				</li>
+				<li>
+					<a href="/ex/exOrderInfo">订单记录</a>
+				</li>
+				<li >
+					<a href="/ex/exShipOrder">订舱信息</a>
+				</li>
+				<li >
+					<a href="#">收汇登记</a>
+				</li>
+				<li class="active">
+					<a href="/ft/ftExpressBase">快件管理</a>
+				</li>
+				<li >
+					<a href="#">服务合同管理</a>
+				</li>
+				<li >
+					<a href="#">商品信息管理</a>
+				</li>
+				<li >
+					<a href="#">国内客户管理</a>
+				</li>
+				<li >
+					<a href="#">国外客户管理</a>
+				</li>
+				<li >
+					<a href="#">HS编码查询</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+	<div class="wrapper wrapper-content ">
+		<div class="col-sm-12">
+			<div class="ibox">
+				<div class="ibox-body">
+					<div class="fixed-table-toolbar">
+						<div class="columns pull-left">
+							<button shiro:hasPermission="ft:ftExpressBase:add" type="button" class="btn  btn-primary" onclick="add()">
+								<i class="fa fa-plus" aria-hidden="true"></i>添加
+							</button>
+							<button shiro:hasPermission="ft:ftExpressBase:batchRemove" type="button" class="btn  btn-danger"
+								onclick="batchRemove()">
+								<i class="fa fa-trash" aria-hidden="true"></i>删除
+							</button>
+						</div>
+						<div class="columns pull-right">
+							<button class="btn btn-success" onclick="reLoad()">查询</button>
+						</div>
+						<div class="columns pull-right col-md-2 nopadding">
+							<input id="searchName" type="text" class="form-control"
+								placeholder="">
+						</div>
+					</div>
+					<table id="exampleTable" data-mobile-responsive="true">
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--shiro控制bootstraptable行内按钮看见性 来自ftcsp的创新方案 -->
+		<div>
+			<script type="text/javascript">
+				var s_edit_h = 'hidden';
+				var s_remove_h = 'hidden';
+				var s_resetPwd_h = 'hidden';
+			</script>
+		</div>
+		<div shiro:hasPermission="ft:ftExpressBase:edit">
+			<script type="text/javascript">
+				s_edit_h = '';
+			</script>
+		</div>
+		<div shiro:hasPermission="ft:ftExpressBase:remove">
+			<script type="text/javascript">
+				var s_remove_h = '';
+			</script>
+		</div>
+		<div shiro:hasPermission="ft:ftExpressBase:resetPwd">
+			<script type="text/javascript">
+				var s_resetPwd_h = '';
+			</script>
+		</div>
+	</div>
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="/js/appjs/ft/ftExpressBase/ftExpressBase.js"></script>
+</body>
+</html>

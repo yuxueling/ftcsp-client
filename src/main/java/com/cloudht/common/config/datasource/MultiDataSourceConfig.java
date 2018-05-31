@@ -30,4 +30,8 @@ public class MultiDataSourceConfig {
     public static final String FT_BASE_PACKAGE = "com.cloudht.ft.dao";
     public static final String FT_MAPPER_LOCATION = "mybatis/ft/*Mapper.xml";
 
+    public static final String IM_NAME = "im";
+    public static final String IM_BASE_PACKAGE = "com.cloudht.im.dao";
+    public static final String IM_MAPPER_LOCATION = "mybatis/im/*Mapper.xml";
+
 }

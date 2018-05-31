@@ -130,7 +130,7 @@ public class FiDataSourceConfig {
         sqlSessionFactoryBean.setDataSource(fiDataSource);
 
         // 扫描 mapper 资源
-        Resource[] mapperLocations = new PathMatchingResourcePatternResolver().getResources(MultiDataSourceConfig.BLOG_MAPPER_LOCATION);
+        Resource[] mapperLocations = new PathMatchingResourcePatternResolver().getResources(MultiDataSourceConfig.FI_MAPPER_LOCATION);
         sqlSessionFactoryBean.setMapperLocations(mapperLocations);
 
 
