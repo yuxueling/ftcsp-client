@@ -44,38 +44,44 @@ function load() {
 						// sortOrder.
 						// 返回false将会终止请求
 						columns : [
-								{
-									checkbox : true
-								},
-																{
+								{checkbox : true
+								},{
 									field : 'ftCustId', 
-									title : '客户编码' 
-								},
-																{
-									field : 'ftClientId', 
-									title : '委托方' 
-								},
-																{
-									field : 'custNationality', 
-									title : '客户国籍:0-国内客户、1-国外客户' 
-								},
-																{
+									title : '客户代码' 
+								},{
 									field : 'custName', 
 									title : '客户名称' 
+								},{
+									field : 'custNationality', 
+									title : '国别',
+									formatter : function(value, row, index) {  
+										var AUDIT_STATUS={'0':'国内客户','1':'国外客户'};  
+									    return AUDIT_STATUS[value];  
+									}  
+								},{
+									field : 'status', 
+									title : '状态',
+									formatter : function(value, row, index) {  
+										var AUDIT_STATUS={'0':'有效','1':'暂停'};  
+									    return AUDIT_STATUS[value];  
+									}
+								},{
+									field : 'type', 
+									title : '类型' 
 								},
-																{
+								/*{
+									field : 'ftClientId', 
+									title : '委托方' 
+								},{
 									field : 'phone', 
 									title : '电话' 
-								},
-																{
+								},{
 									field : 'faxes', 
 									title : '传真' 
-								},
-																{
+								},{
 									field : 'email', 
 									title : '邮箱' 
-								},
-																{
+								},{
 									field : 'address', 
 									title : '详细地址' 
 								},
@@ -83,10 +89,7 @@ function load() {
 									field : 'postcode', 
 									title : '邮编' 
 								},
-																{
-									field : 'type', 
-									title : '类型' 
-								},
+																
 																{
 									field : 'url', 
 									title : '网址' 
@@ -95,10 +98,7 @@ function load() {
 									field : 'rank', 
 									title : '等级：0-一星级' 
 								},
-																{
-									field : 'status', 
-									title : '状态：0-有效 1-暂停' 
-								},
+																
 																{
 									field : 'mainProducts', 
 									title : '主要产品' 
@@ -134,7 +134,7 @@ function load() {
 																{
 									field : 'isDelete', 
 									title : '是否删除：0-否，1-是' 
-								},
+								},*/
 																{
 									title : '操作',
 									field : 'id',

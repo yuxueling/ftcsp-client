@@ -57,7 +57,12 @@ function load() {
 									title : '快递公司' 
 								},{
 									field : 'paymentType', 
-									title : '付款方式：0-到付，1-预付' 
+									title : '付款方式',
+									formatter : function(value, row, index) {  
+ 										var AUDIT_STATUS={'0':'到付','1':'预付'};  
+ 									    return AUDIT_STATUS[value];  
+ 									}  
+
 								},{
 									field : 'postDate', 
 									title : '收寄日期' 

@@ -62,6 +62,9 @@ function load() {
                     {
                         field: 'gmtCreate',
                         title: '下单时间'
+                    },{
+                        field: '',
+                        title: '状态'
                     },
                     {
                         title: '操作',
