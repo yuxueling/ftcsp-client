@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.ft.dao.FtCustDao">
+
+	<select id="get" resultType="com.cloudht.ft.domain.FtCustDO">
+		select `ft_cust_id`,`ft_client_id`,`cust_nationality`,`cust_name`,`phone`,`faxes`,`email`,`address`,`postcode`,`type`,`url`,`rank`,`status`,`main_products`,`general_manager`,`product_type`,`business_registration_no`,`duty_paragraph`,`remarks`,`gmt_create`,`gmt_modified`,`is_delete` from ft_cust where ft_cust_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.ft.domain.FtCustDO">
+		select `ft_cust_id`,`ft_client_id`,`cust_nationality`,`cust_name`,`phone`,`faxes`,`email`,`address`,`postcode`,`type`,`url`,`rank`,`status`,`main_products`,`general_manager`,`product_type`,`business_registration_no`,`duty_paragraph`,`remarks`,`gmt_create`,`gmt_modified`,`is_delete` from ft_cust
+        <where>  
+		  		  <if test="ftCustId != null and ftCustId != ''"> and ft_cust_id = #{ftCustId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="custNationality != null and custNationality != ''"> and cust_nationality = #{custNationality} </if>
+		  		  <if test="custName != null and custName != ''"> and cust_name = #{custName} </if>
+		  		  <if test="phone != null and phone != ''"> and phone = #{phone} </if>
+		  		  <if test="faxes != null and faxes != ''"> and faxes = #{faxes} </if>
+		  		  <if test="email != null and email != ''"> and email = #{email} </if>
+		  		  <if test="address != null and address != ''"> and address = #{address} </if>
+		  		  <if test="postcode != null and postcode != ''"> and postcode = #{postcode} </if>
+		  		  <if test="type != null and type != ''"> and type = #{type} </if>
+		  		  <if test="url != null and url != ''"> and url = #{url} </if>
+		  		  <if test="rank != null and rank != ''"> and rank = #{rank} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="mainProducts != null and mainProducts != ''"> and main_products = #{mainProducts} </if>
+		  		  <if test="generalManager != null and generalManager != ''"> and general_manager = #{generalManager} </if>
+		  		  <if test="productType != null and productType != ''"> and product_type = #{productType} </if>
+		  		  <if test="businessRegistrationNo != null and businessRegistrationNo != ''"> and business_registration_no = #{businessRegistrationNo} </if>
+		  		  <if test="dutyParagraph != null and dutyParagraph != ''"> and duty_paragraph = #{dutyParagraph} </if>
+		  		  <if test="remarks != null and remarks != ''"> and remarks = #{remarks} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ft_cust_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ft_cust
+		 <where>  
+		  		  <if test="ftCustId != null and ftCustId != ''"> and ft_cust_id = #{ftCustId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="custNationality != null and custNationality != ''"> and cust_nationality = #{custNationality} </if>
+		  		  <if test="custName != null and custName != ''"> and cust_name = #{custName} </if>
+		  		  <if test="phone != null and phone != ''"> and phone = #{phone} </if>
+		  		  <if test="faxes != null and faxes != ''"> and faxes = #{faxes} </if>
+		  		  <if test="email != null and email != ''"> and email = #{email} </if>
+		  		  <if test="address != null and address != ''"> and address = #{address} </if>
+		  		  <if test="postcode != null and postcode != ''"> and postcode = #{postcode} </if>
+		  		  <if test="type != null and type != ''"> and type = #{type} </if>
+		  		  <if test="url != null and url != ''"> and url = #{url} </if>
+		  		  <if test="rank != null and rank != ''"> and rank = #{rank} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="mainProducts != null and mainProducts != ''"> and main_products = #{mainProducts} </if>
+		  		  <if test="generalManager != null and generalManager != ''"> and general_manager = #{generalManager} </if>
+		  		  <if test="productType != null and productType != ''"> and product_type = #{productType} </if>
+		  		  <if test="businessRegistrationNo != null and businessRegistrationNo != ''"> and business_registration_no = #{businessRegistrationNo} </if>
+		  		  <if test="dutyParagraph != null and dutyParagraph != ''"> and duty_paragraph = #{dutyParagraph} </if>
+		  		  <if test="remarks != null and remarks != ''"> and remarks = #{remarks} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.ft.domain.FtCustDO" useGeneratedKeys="true" keyProperty="ftCustId">
+		insert into ft_cust
+		(
+			`ft_client_id`, 
+			`cust_nationality`, 
+			`cust_name`, 
+			`phone`, 
+			`faxes`, 
+			`email`, 
+			`address`, 
+			`postcode`, 
+			`type`, 
+			`url`, 
+			`rank`, 
+			`status`, 
+			`main_products`, 
+			`general_manager`, 
+			`product_type`, 
+			`business_registration_no`, 
+			`duty_paragraph`, 
+			`remarks`, 
+			`gmt_create`, 
+			`gmt_modified`, 
+			`is_delete`
+		)
+		values
+		(
+			#{ftClientId}, 
+			#{custNationality}, 
+			#{custName}, 
+			#{phone}, 
+			#{faxes}, 
+			#{email}, 
+			#{address}, 
+			#{postcode}, 
+			#{type}, 
+			#{url}, 
+			#{rank}, 
+			#{status}, 
+			#{mainProducts}, 
+			#{generalManager}, 
+			#{productType}, 
+			#{businessRegistrationNo}, 
+			#{dutyParagraph}, 
+			#{remarks}, 
+			#{gmtCreate}, 
+			#{gmtModified}, 
+			#{isDelete}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.ft.domain.FtCustDO">
+		update ft_cust 
+		<set>
+			<if test="ftClientId != null">`ft_client_id` = #{ftClientId}, </if>
+			<if test="custNationality != null">`cust_nationality` = #{custNationality}, </if>
+			<if test="custName != null">`cust_name` = #{custName}, </if>
+			<if test="phone != null">`phone` = #{phone}, </if>
+			<if test="faxes != null">`faxes` = #{faxes}, </if>
+			<if test="email != null">`email` = #{email}, </if>
+			<if test="address != null">`address` = #{address}, </if>
+			<if test="postcode != null">`postcode` = #{postcode}, </if>
+			<if test="type != null">`type` = #{type}, </if>
+			<if test="url != null">`url` = #{url}, </if>
+			<if test="rank != null">`rank` = #{rank}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="mainProducts != null">`main_products` = #{mainProducts}, </if>
+			<if test="generalManager != null">`general_manager` = #{generalManager}, </if>
+			<if test="productType != null">`product_type` = #{productType}, </if>
+			<if test="businessRegistrationNo != null">`business_registration_no` = #{businessRegistrationNo}, </if>
+			<if test="dutyParagraph != null">`duty_paragraph` = #{dutyParagraph}, </if>
+			<if test="remarks != null">`remarks` = #{remarks}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}, </if>
+			<if test="isDelete != null">`is_delete` = #{isDelete}</if>
+		</set>
+		where ft_cust_id = #{ftCustId}
+	</update>
+	
+	<delete id="remove">
+		delete from ft_cust where ft_cust_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ft_cust where ft_cust_id in 
+		<foreach item="ftCustId" collection="array" open="(" separator="," close=")">
+			#{ftCustId}
+		</foreach>
+	</delete>
+
+</mapper>

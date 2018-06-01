@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.ft.dao.FtCustContactDao">
+
+	<select id="get" resultType="com.cloudht.ft.domain.FtCustContactDO">
+		select `ft_cust_contact_id`,`ft_cust_id`,`contact_name`,`cellphone`,`email`,`phone`,`faxes`,`remarks`,`gmt_create`,`gmt_modified`,`is_delete` from ft_cust_contact where ft_cust_contact_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.ft.domain.FtCustContactDO">
+		select `ft_cust_contact_id`,`ft_cust_id`,`contact_name`,`cellphone`,`email`,`phone`,`faxes`,`remarks`,`gmt_create`,`gmt_modified`,`is_delete` from ft_cust_contact
+        <where>  
+		  		  <if test="ftCustContactId != null and ftCustContactId != ''"> and ft_cust_contact_id = #{ftCustContactId} </if>
+		  		  <if test="ftCustId != null and ftCustId != ''"> and ft_cust_id = #{ftCustId} </if>
+		  		  <if test="contactName != null and contactName != ''"> and contact_name = #{contactName} </if>
+		  		  <if test="cellphone != null and cellphone != ''"> and cellphone = #{cellphone} </if>
+		  		  <if test="email != null and email != ''"> and email = #{email} </if>
+		  		  <if test="phone != null and phone != ''"> and phone = #{phone} </if>
+		  		  <if test="faxes != null and faxes != ''"> and faxes = #{faxes} </if>
+		  		  <if test="remarks != null and remarks != ''"> and remarks = #{remarks} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ft_cust_contact_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ft_cust_contact
+		 <where>  
+		  		  <if test="ftCustContactId != null and ftCustContactId != ''"> and ft_cust_contact_id = #{ftCustContactId} </if>
+		  		  <if test="ftCustId != null and ftCustId != ''"> and ft_cust_id = #{ftCustId} </if>
+		  		  <if test="contactName != null and contactName != ''"> and contact_name = #{contactName} </if>
+		  		  <if test="cellphone != null and cellphone != ''"> and cellphone = #{cellphone} </if>
+		  		  <if test="email != null and email != ''"> and email = #{email} </if>
+		  		  <if test="phone != null and phone != ''"> and phone = #{phone} </if>
+		  		  <if test="faxes != null and faxes != ''"> and faxes = #{faxes} </if>
+		  		  <if test="remarks != null and remarks != ''"> and remarks = #{remarks} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.ft.domain.FtCustContactDO" useGeneratedKeys="true" keyProperty="ftCustContactId">
+		insert into ft_cust_contact
+		(
+			`ft_cust_id`, 
+			`contact_name`, 
+			`cellphone`, 
+			`email`, 
+			`phone`, 
+			`faxes`, 
+			`remarks`, 
+			`gmt_create`, 
+			`gmt_modified`, 
+			`is_delete`
+		)
+		values
+		(
+			#{ftCustId}, 
+			#{contactName}, 
+			#{cellphone}, 
+			#{email}, 
+			#{phone}, 
+			#{faxes}, 
+			#{remarks}, 
+			#{gmtCreate}, 
+			#{gmtModified}, 
+			#{isDelete}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.ft.domain.FtCustContactDO">
+		update ft_cust_contact 
+		<set>
+			<if test="ftCustId != null">`ft_cust_id` = #{ftCustId}, </if>
+			<if test="contactName != null">`contact_name` = #{contactName}, </if>
+			<if test="cellphone != null">`cellphone` = #{cellphone}, </if>
+			<if test="email != null">`email` = #{email}, </if>
+			<if test="phone != null">`phone` = #{phone}, </if>
+			<if test="faxes != null">`faxes` = #{faxes}, </if>
+			<if test="remarks != null">`remarks` = #{remarks}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}, </if>
+			<if test="isDelete != null">`is_delete` = #{isDelete}</if>
+		</set>
+		where ft_cust_contact_id = #{ftCustContactId}
+	</update>
+	
+	<delete id="remove">
+		delete from ft_cust_contact where ft_cust_contact_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ft_cust_contact where ft_cust_contact_id in 
+		<foreach item="ftCustContactId" collection="array" open="(" separator="," close=")">
+			#{ftCustContactId}
+		</foreach>
+	</delete>
+
+</mapper>

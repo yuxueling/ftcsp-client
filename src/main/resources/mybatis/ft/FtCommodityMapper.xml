@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.ft.dao.FtCommodityDao">
+
+	<select id="get" resultType="com.cloudht.ft.domain.FtCommodityDO">
+		select `ft_commodity_id`,`ft_client_id`,`factory_article_no`,`customs_code`,`chinese_name`,`english_name`,`pack_size_length`,`pack_size_width`,`pack_size_height`,`tax_refund_rate`,`pkgs`,`pkgs_unit`,`ship_mark_info`,`declare_element`,`remark` from ft_commodity where ft_commodity_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.ft.domain.FtCommodityDO">
+		select `ft_commodity_id`,`ft_client_id`,`factory_article_no`,`customs_code`,`chinese_name`,`english_name`,`pack_size_length`,`pack_size_width`,`pack_size_height`,`tax_refund_rate`,`pkgs`,`pkgs_unit`,`ship_mark_info`,`declare_element`,`remark` from ft_commodity
+        <where>  
+		  		  <if test="ftCommodityId != null and ftCommodityId != ''"> and ft_commodity_id = #{ftCommodityId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="factoryArticleNo != null and factoryArticleNo != ''"> and factory_article_no = #{factoryArticleNo} </if>
+		  		  <if test="customsCode != null and customsCode != ''"> and customs_code = #{customsCode} </if>
+		  		  <if test="chineseName != null and chineseName != ''"> and chinese_name = #{chineseName} </if>
+		  		  <if test="englishName != null and englishName != ''"> and english_name = #{englishName} </if>
+		  		  <if test="packSizeLength != null and packSizeLength != ''"> and pack_size_length = #{packSizeLength} </if>
+		  		  <if test="packSizeWidth != null and packSizeWidth != ''"> and pack_size_width = #{packSizeWidth} </if>
+		  		  <if test="packSizeHeight != null and packSizeHeight != ''"> and pack_size_height = #{packSizeHeight} </if>
+		  		  <if test="taxRefundRate != null and taxRefundRate != ''"> and tax_refund_rate = #{taxRefundRate} </if>
+		  		  <if test="pkgs != null and pkgs != ''"> and pkgs = #{pkgs} </if>
+		  		  <if test="pkgsUnit != null and pkgsUnit != ''"> and pkgs_unit = #{pkgsUnit} </if>
+		  		  <if test="shipMarkInfo != null and shipMarkInfo != ''"> and ship_mark_info = #{shipMarkInfo} </if>
+		  		  <if test="declareElement != null and declareElement != ''"> and declare_element = #{declareElement} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ft_commodity_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ft_commodity
+		 <where>  
+		  		  <if test="ftCommodityId != null and ftCommodityId != ''"> and ft_commodity_id = #{ftCommodityId} </if>
+		  		  <if test="ftClientId != null and ftClientId != ''"> and ft_client_id = #{ftClientId} </if>
+		  		  <if test="factoryArticleNo != null and factoryArticleNo != ''"> and factory_article_no = #{factoryArticleNo} </if>
+		  		  <if test="customsCode != null and customsCode != ''"> and customs_code = #{customsCode} </if>
+		  		  <if test="chineseName != null and chineseName != ''"> and chinese_name = #{chineseName} </if>
+		  		  <if test="englishName != null and englishName != ''"> and english_name = #{englishName} </if>
+		  		  <if test="packSizeLength != null and packSizeLength != ''"> and pack_size_length = #{packSizeLength} </if>
+		  		  <if test="packSizeWidth != null and packSizeWidth != ''"> and pack_size_width = #{packSizeWidth} </if>
+		  		  <if test="packSizeHeight != null and packSizeHeight != ''"> and pack_size_height = #{packSizeHeight} </if>
+		  		  <if test="taxRefundRate != null and taxRefundRate != ''"> and tax_refund_rate = #{taxRefundRate} </if>
+		  		  <if test="pkgs != null and pkgs != ''"> and pkgs = #{pkgs} </if>
+		  		  <if test="pkgsUnit != null and pkgsUnit != ''"> and pkgs_unit = #{pkgsUnit} </if>
+		  		  <if test="shipMarkInfo != null and shipMarkInfo != ''"> and ship_mark_info = #{shipMarkInfo} </if>
+		  		  <if test="declareElement != null and declareElement != ''"> and declare_element = #{declareElement} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.ft.domain.FtCommodityDO" useGeneratedKeys="true" keyProperty="ftCommodityId">
+		insert into ft_commodity
+		(
+			`ft_client_id`, 
+			`factory_article_no`, 
+			`customs_code`, 
+			`chinese_name`, 
+			`english_name`, 
+			`pack_size_length`, 
+			`pack_size_width`, 
+			`pack_size_height`, 
+			`tax_refund_rate`, 
+			`pkgs`, 
+			`pkgs_unit`, 
+			`ship_mark_info`, 
+			`declare_element`, 
+			`remark`
+		)
+		values
+		(
+			#{ftClientId}, 
+			#{factoryArticleNo}, 
+			#{customsCode}, 
+			#{chineseName}, 
+			#{englishName}, 
+			#{packSizeLength}, 
+			#{packSizeWidth}, 
+			#{packSizeHeight}, 
+			#{taxRefundRate}, 
+			#{pkgs}, 
+			#{pkgsUnit}, 
+			#{shipMarkInfo}, 
+			#{declareElement}, 
+			#{remark}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.ft.domain.FtCommodityDO">
+		update ft_commodity 
+		<set>
+			<if test="ftClientId != null">`ft_client_id` = #{ftClientId}, </if>
+			<if test="factoryArticleNo != null">`factory_article_no` = #{factoryArticleNo}, </if>
+			<if test="customsCode != null">`customs_code` = #{customsCode}, </if>
+			<if test="chineseName != null">`chinese_name` = #{chineseName}, </if>
+			<if test="englishName != null">`english_name` = #{englishName}, </if>
+			<if test="packSizeLength != null">`pack_size_length` = #{packSizeLength}, </if>
+			<if test="packSizeWidth != null">`pack_size_width` = #{packSizeWidth}, </if>
+			<if test="packSizeHeight != null">`pack_size_height` = #{packSizeHeight}, </if>
+			<if test="taxRefundRate != null">`tax_refund_rate` = #{taxRefundRate}, </if>
+			<if test="pkgs != null">`pkgs` = #{pkgs}, </if>
+			<if test="pkgsUnit != null">`pkgs_unit` = #{pkgsUnit}, </if>
+			<if test="shipMarkInfo != null">`ship_mark_info` = #{shipMarkInfo}, </if>
+			<if test="declareElement != null">`declare_element` = #{declareElement}, </if>
+			<if test="remark != null">`remark` = #{remark}</if>
+		</set>
+		where ft_commodity_id = #{ftCommodityId}
+	</update>
+	
+	<delete id="remove">
+		delete from ft_commodity where ft_commodity_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ft_commodity where ft_commodity_id in 
+		<foreach item="ftCommodityId" collection="array" open="(" separator="," close=")">
+			#{ftCommodityId}
+		</foreach>
+	</delete>
+
+</mapper>

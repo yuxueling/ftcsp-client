@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="ft_cust_id" name="ft_cust_id" th:value="${ftCust.ft_cust_id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">委托方：</label>
+								<div class="col-sm-8">
+									<input id="ftClientId" name="ftClientId" th:value="${ftCust.ftClientId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">客户国籍:0-国内客户、1-国外客户：</label>
+								<div class="col-sm-8">
+									<input id="custNationality" name="custNationality" th:value="${ftCust.custNationality}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">客户名称：</label>
+								<div class="col-sm-8">
+									<input id="custName" name="custName" th:value="${ftCust.custName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">电话：</label>
+								<div class="col-sm-8">
+									<input id="phone" name="phone" th:value="${ftCust.phone}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">传真：</label>
+								<div class="col-sm-8">
+									<input id="faxes" name="faxes" th:value="${ftCust.faxes}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">邮箱：</label>
+								<div class="col-sm-8">
+									<input id="email" name="email" th:value="${ftCust.email}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">详细地址：</label>
+								<div class="col-sm-8">
+									<input id="address" name="address" th:value="${ftCust.address}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">邮编：</label>
+								<div class="col-sm-8">
+									<input id="postcode" name="postcode" th:value="${ftCust.postcode}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">类型：</label>
+								<div class="col-sm-8">
+									<input id="type" name="type" th:value="${ftCust.type}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">网址：</label>
+								<div class="col-sm-8">
+									<input id="url" name="url" th:value="${ftCust.url}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">等级：0-一星级：</label>
+								<div class="col-sm-8">
+									<input id="rank" name="rank" th:value="${ftCust.rank}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">状态：0-有效 1-暂停：</label>
+								<div class="col-sm-8">
+									<input id="status" name="status" th:value="${ftCust.status}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">主要产品：</label>
+								<div class="col-sm-8">
+									<input id="mainProducts" name="mainProducts" th:value="${ftCust.mainProducts}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">总经理：</label>
+								<div class="col-sm-8">
+									<input id="generalManager" name="generalManager" th:value="${ftCust.generalManager}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">产品类型：</label>
+								<div class="col-sm-8">
+									<input id="productType" name="productType" th:value="${ftCust.productType}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">工商登记号：</label>
+								<div class="col-sm-8">
+									<input id="businessRegistrationNo" name="businessRegistrationNo" th:value="${ftCust.businessRegistrationNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">税号：</label>
+								<div class="col-sm-8">
+									<input id="dutyParagraph" name="dutyParagraph" th:value="${ftCust.dutyParagraph}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">备注：</label>
+								<div class="col-sm-8">
+									<input id="remarks" name="remarks" th:value="${ftCust.remarks}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtCreate" name="gmtCreate" th:value="${ftCust.gmtCreate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修改时间：</label>
+								<div class="col-sm-8">
+									<input id="gmtModified" name="gmtModified" th:value="${ftCust.gmtModified}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">是否删除：0-否，1-是：</label>
+								<div class="col-sm-8">
+									<input id="isDelete" name="isDelete" th:value="${ftCust.isDelete}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/ft/ftCust/edit.js">
+	</script>
+</body>
+</html>

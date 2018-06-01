@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloudht.ft.dao.FtCustBankDao">
+
+	<select id="get" resultType="com.cloudht.ft.domain.FtCustBankDO">
+		select `ft_cust_bank_id`,`ft_cust_id`,`bank_name`,`bank_account`,`bank_type`,`status`,`remarks`,`gmt_create`,`gmt_modified`,`is_delete` from ft_cust_bank where ft_cust_bank_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.cloudht.ft.domain.FtCustBankDO">
+		select `ft_cust_bank_id`,`ft_cust_id`,`bank_name`,`bank_account`,`bank_type`,`status`,`remarks`,`gmt_create`,`gmt_modified`,`is_delete` from ft_cust_bank
+        <where>  
+		  		  <if test="ftCustBankId != null and ftCustBankId != ''"> and ft_cust_bank_id = #{ftCustBankId} </if>
+		  		  <if test="ftCustId != null and ftCustId != ''"> and ft_cust_id = #{ftCustId} </if>
+		  		  <if test="bankName != null and bankName != ''"> and bank_name = #{bankName} </if>
+		  		  <if test="bankAccount != null and bankAccount != ''"> and bank_account = #{bankAccount} </if>
+		  		  <if test="bankType != null and bankType != ''"> and bank_type = #{bankType} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="remarks != null and remarks != ''"> and remarks = #{remarks} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ft_cust_bank_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ft_cust_bank
+		 <where>  
+		  		  <if test="ftCustBankId != null and ftCustBankId != ''"> and ft_cust_bank_id = #{ftCustBankId} </if>
+		  		  <if test="ftCustId != null and ftCustId != ''"> and ft_cust_id = #{ftCustId} </if>
+		  		  <if test="bankName != null and bankName != ''"> and bank_name = #{bankName} </if>
+		  		  <if test="bankAccount != null and bankAccount != ''"> and bank_account = #{bankAccount} </if>
+		  		  <if test="bankType != null and bankType != ''"> and bank_type = #{bankType} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="remarks != null and remarks != ''"> and remarks = #{remarks} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+		  		  <if test="isDelete != null and isDelete != ''"> and is_delete = #{isDelete} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.cloudht.ft.domain.FtCustBankDO">
+		insert into ft_cust_bank
+		(
+			`ft_cust_bank_id`, 
+			`ft_cust_id`, 
+			`bank_name`, 
+			`bank_account`, 
+			`bank_type`, 
+			`status`, 
+			`remarks`, 
+			`gmt_create`, 
+			`gmt_modified`, 
+			`is_delete`
+		)
+		values
+		(
+			#{ftCustBankId}, 
+			#{ftCustId}, 
+			#{bankName}, 
+			#{bankAccount}, 
+			#{bankType}, 
+			#{status}, 
+			#{remarks}, 
+			#{gmtCreate}, 
+			#{gmtModified}, 
+			#{isDelete}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.cloudht.ft.domain.FtCustBankDO">
+		update ft_cust_bank 
+		<set>
+			<if test="ftCustId != null">`ft_cust_id` = #{ftCustId}, </if>
+			<if test="bankName != null">`bank_name` = #{bankName}, </if>
+			<if test="bankAccount != null">`bank_account` = #{bankAccount}, </if>
+			<if test="bankType != null">`bank_type` = #{bankType}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="remarks != null">`remarks` = #{remarks}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}, </if>
+			<if test="isDelete != null">`is_delete` = #{isDelete}</if>
+		</set>
+		where ft_cust_bank_id = #{ftCustBankId}
+	</update>
+	
+	<delete id="remove">
+		delete from ft_cust_bank where ft_cust_bank_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ft_cust_bank where ft_cust_bank_id in 
+		<foreach item="ftCustBankId" collection="array" open="(" separator="," close=")">
+			#{ftCustBankId}
+		</foreach>
+	</delete>
+
+</mapper>

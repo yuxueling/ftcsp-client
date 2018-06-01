@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="ft_commodity_id" name="ft_commodity_id" th:value="${ftCommodity.ft_commodity_id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">委托方：</label>
+								<div class="col-sm-8">
+									<input id="ftClientId" name="ftClientId" th:value="${ftCommodity.ftClientId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">公司货号：</label>
+								<div class="col-sm-8">
+									<input id="factoryArticleNo" name="factoryArticleNo" th:value="${ftCommodity.factoryArticleNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">海关编码：</label>
+								<div class="col-sm-8">
+									<input id="customsCode" name="customsCode" th:value="${ftCommodity.customsCode}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">中文品名：</label>
+								<div class="col-sm-8">
+									<input id="chineseName" name="chineseName" th:value="${ftCommodity.chineseName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">英文品名：</label>
+								<div class="col-sm-8">
+									<input id="englishName" name="englishName" th:value="${ftCommodity.englishName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">包装尺寸-长mm：</label>
+								<div class="col-sm-8">
+									<input id="packSizeLength" name="packSizeLength" th:value="${ftCommodity.packSizeLength}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">包装尺寸-宽mm：</label>
+								<div class="col-sm-8">
+									<input id="packSizeWidth" name="packSizeWidth" th:value="${ftCommodity.packSizeWidth}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">包装尺寸-高mm：</label>
+								<div class="col-sm-8">
+									<input id="packSizeHeight" name="packSizeHeight" th:value="${ftCommodity.packSizeHeight}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">退税率%：</label>
+								<div class="col-sm-8">
+									<input id="taxRefundRate" name="taxRefundRate" th:value="${ftCommodity.taxRefundRate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">包装数量：</label>
+								<div class="col-sm-8">
+									<input id="pkgs" name="pkgs" th:value="${ftCommodity.pkgs}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">包装数量单位：</label>
+								<div class="col-sm-8">
+									<input id="pkgsUnit" name="pkgsUnit" th:value="${ftCommodity.pkgsUnit}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">唛头信息：</label>
+								<div class="col-sm-8">
+									<input id="shipMarkInfo" name="shipMarkInfo" th:value="${ftCommodity.shipMarkInfo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">申报要素：</label>
+								<div class="col-sm-8">
+									<input id="declareElement" name="declareElement" th:value="${ftCommodity.declareElement}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">备注：</label>
+								<div class="col-sm-8">
+									<input id="remark" name="remark" th:value="${ftCommodity.remark}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/ft/ftCommodity/edit.js">
+	</script>
+</body>
+</html>
