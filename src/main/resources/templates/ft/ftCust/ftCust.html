@@ -10,7 +10,13 @@
 					<div class="fixed-table-toolbar">
 						<div class="columns pull-left">
 							<button shiro:hasPermission="ft:ftCust:add" type="button" class="btn  btn-primary" onclick="add()">
-								<i class="fa fa-plus" aria-hidden="true"></i>添加
+								<i class="fa fa-plus" aria-hidden="true"></i>添加客户
+							</button>
+							<button shiro:hasPermission="ft:ftCustBank:add" type="button" class="btn  btn-primary" onclick="ftCustBankAdd()">
+								<i class="fa fa-plus" aria-hidden="true"></i>银行信息添加
+							</button>
+							<button shiro:hasPermission="ft:ftCustContact:add" type="button" class="btn  btn-primary" onclick="ftCustContactAdd()">
+								<i class="fa fa-plus" aria-hidden="true"></i>客户联系人添加
 							</button>
 							<button shiro:hasPermission="ft:ftCust:batchRemove" type="button" class="btn  btn-danger"
 								onclick="batchRemove()">

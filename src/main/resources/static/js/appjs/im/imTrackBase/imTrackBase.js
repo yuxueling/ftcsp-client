@@ -77,7 +77,11 @@ function load() {
 								},
 																{
 									field : 'encasementType', 
-									title : '装箱方式：0-拼箱，1-整柜，2-拼车？，3-整车？' 
+									title : '装箱方式',
+									formatter : function(value,row,index) {
+										var JSON1={'0':'拼箱','1':'整柜','2':'拼车','3':'整车'};
+										return JSON1[value];
+									}
 								},
 																{
 									field : 'twentyGpNum', 
