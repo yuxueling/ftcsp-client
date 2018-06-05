@@ -35,9 +35,10 @@ public class LoginController extends BaseController {
 	FileService fileService;
 	@GetMapping({ "/", "" })
 	String welcome(Model model) {
-
-		return "redirect:/blog";
+		return "page/index";
+//		return "redirect:/blog";
 	}
+
 
 	@Log("请求访问主页")
 	@GetMapping({ "/index" })
