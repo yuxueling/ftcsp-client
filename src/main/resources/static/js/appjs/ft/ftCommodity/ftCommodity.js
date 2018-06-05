@@ -46,8 +46,32 @@ function load() {
 						columns : [
 								{
 									checkbox : true
+								},{
+									field : 'sysHscodeId', 
+									title : 'hs编码' 
+								},{
+									field : 'factoryArticleNo', 
+									title : '公司货号' 
+								},{
+									field : 'chineseName', 
+									title : '中文品名' 
+								},{
+									field : 'englishName', 
+									title : '英文品名' 
+								},{
+									field : '', 
+									title : '规格' 
+								},{
+									field : 'pkgsUnit', 
+									title : '包装数量单位' 
+								},{
+									field : 'pkgs', 
+									title : '包装数量' 
+								},{
+									field : 'taxRefundRate', 
+									title : '退税率%' 
 								},
-																{
+																/*{
 									field : 'ftCommodityId', 
 									title : '主键' 
 								},
@@ -55,22 +79,13 @@ function load() {
 									field : 'ftClientId', 
 									title : '委托方' 
 								},
-																{
-									field : 'factoryArticleNo', 
-									title : '公司货号' 
-								},
+																
 																{
 									field : 'customsCode', 
 									title : '海关编码' 
 								},
-																{
-									field : 'chineseName', 
-									title : '中文品名' 
-								},
-																{
-									field : 'englishName', 
-									title : '英文品名' 
-								},
+																
+																
 																{
 									field : 'packSizeLength', 
 									title : '包装尺寸-长mm' 
@@ -83,18 +98,9 @@ function load() {
 									field : 'packSizeHeight', 
 									title : '包装尺寸-高mm' 
 								},
-																{
-									field : 'taxRefundRate', 
-									title : '退税率%' 
-								},
-																{
-									field : 'pkgs', 
-									title : '包装数量' 
-								},
-																{
-									field : 'pkgsUnit', 
-									title : '包装数量单位' 
-								},
+																
+																
+																
 																{
 									field : 'shipMarkInfo', 
 									title : '唛头信息' 
@@ -106,7 +112,7 @@ function load() {
 																{
 									field : 'remark', 
 									title : '备注' 
-								},
+								},*/
 																{
 									title : '操作',
 									field : 'id',

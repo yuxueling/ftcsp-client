@@ -1,5 +1,5 @@
 
-var prefix = "/ft/ftClientCompany"
+var prefix = "/ft/sysHscode"
 $(function() {
 	load();
 });
@@ -46,61 +46,65 @@ function load() {
 						columns : [
 								{
 									checkbox : true
-								},{
-									field : 'companyType', 
-									title : '公司类型',
-									formatter : function(value,row,index) {
-										var companyType={'0':'境内公司','1':'个人注册','2':'境外公司'};
-										return companyType[value];
-									}
-								},{
-									field : 'companyName', 
-									title : '公司名称' 
-								},{
-									field : 'province', 
-									title : '公司所属省' 
-								},{
-									field : 'city', 
-									title : '公司所属市' 
-								},{
-									field : 'detailedAddress', 
-									title : '公司详细地址' 
-								},{
-									field : 'companyCode', 
-									title : '统一社会信用代码' 
-								},{
-									field : 'businessLicense', 
-									title : '营业执照照片正反面url，2个用逗号隔开' 
 								},
-								/*{
-									field : 'ftClientCompanyId', 
-									title : '主键' 
-								},{
-									field : 'ftClientId', 
-									title : '委托方' 
-								},{
+																{
+									field : 'sysHscodeId', 
+									title : 'hs编码' 
+								},
+																{
+									field : 'productName', 
+									title : '商品名称' 
+								},
+																{
+									field : 'beginDate', 
+									title : '起始日期' 
+								},
+																{
+									field : 'endDate', 
+									title : '截止日期' 
+								},
+																{
+									field : 'productUnit', 
+									title : '商品单位' 
+								},
+																{
+									field : 'taxRate', 
+									title : '税率' 
+								},
+																{
+									field : 'taxRefundRate', 
+									title : '退税率' 
+								},
+																{
 									field : 'gmtCreate', 
 									title : '创建时间' 
-								},{
+								},
+																{
 									field : 'gmtModified', 
 									title : '修改时间' 
-								},{
+								},
+																{
 									field : 'isDelete', 
-									title : '是否删除：0-否，1-是' 
-								},*/
+									title : '是否删除',
+									formatter : function(value,row,index) {
+										var JSON1={'0':'否','1':'是'};
+										return JSON1[value];
+									}
+									
+								},
 																{
 									title : '操作',
 									field : 'id',
 									align : 'center',
 									formatter : function(value, row, index) {
 										var e = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
-												+ row.ftClientCompanyId
+												+ row.sysHscodeId
 												+ '\')"><i class="fa fa-edit"></i></a> ';
 										var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
-												+ row.ftClientCompanyId
+												+ row.sysHscodeId
 												+ '\')"><i class="fa fa-remove"></i></a> ';
 										var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
-												+ row.ftClientCompanyId
+												+ row.sysHscodeId
 												+ '\')"><i class="fa fa-key"></i></a> ';
 										return e + d ;
 									}
@@ -138,7 +142,7 @@ function remove(id) {
 			url : prefix+"/remove",
 			type : "post",
 			data : {
-				'ftClientCompanyId' : id
+				'sysHscodeId' : id
 			},
 			success : function(r) {
 				if (r.code==0) {
@@ -167,7 +171,7 @@ function batchRemove() {
 		var ids = new Array();
 		// 遍历所有选择的行数据，取每条数据对应的ID
 		$.each(rows, function(i, row) {
-			ids[i] = row['ftClientCompanyId'];
+			ids[i] = row['sysHscodeId'];
 		});
 		$.ajax({
 			type : 'POST',
