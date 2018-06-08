@@ -46,8 +46,26 @@ function load() {
 						columns : [
 								{
 									checkbox : true
+								},{
+									field : 'agencyContractNo', 
+									title : '代理合同号' 
+								},{
+									field : 'agencyContractDate', 
+									title : '签约日期' 
+								},{
+									field : 'imContractFileId', 
+									title : '进口合同附件ID' 
+								},{
+									field : 'supplierName', 
+									title : '供应商名称' 
+								},{
+									field : 'shipmentDeadline', 
+									title : '装运期限' 
+								},{
+									field : 'totalAmount', 
+									title : '总金额' 
 								},
-																{
+																/*{
 									field : 'imAgencyContractId', 
 									title : '主键' 
 								},
@@ -55,22 +73,13 @@ function load() {
 									field : 'ftClientId', 
 									title : '委托方' 
 								},
-																{
-									field : 'supplierName', 
-									title : '供应商名称' 
-								},
+																
 																{
 									field : 'supplierAddress', 
 									title : '供应商地址' 
 								},
-																{
-									field : 'agencyContractNo', 
-									title : '代理合同号' 
-								},
-																{
-									field : 'agencyContractDate', 
-									title : '签约日期' 
-								},
+																
+																
 																{
 									field : 'agencyContractPlace', 
 									title : '签约地' 
@@ -107,10 +116,7 @@ function load() {
 									field : 'paymentTermDate', 
 									title : '付款期限' 
 								},
-																{
-									field : 'shipmentDeadline', 
-									title : '装运期限' 
-								},
+																
 																{
 									field : 'marginRatio', 
 									title : '保证金比率%' 
@@ -123,10 +129,7 @@ function load() {
 									field : 'totalQuantity', 
 									title : '总数量' 
 								},
-																{
-									field : 'totalAmount', 
-									title : '总金额' 
-								},
+																
 																{
 									field : 'isCargoInsurance', 
 									title : '是否货运保险：0-否，1-是' 
@@ -159,10 +162,7 @@ function load() {
 									field : 'imContractPlace', 
 									title : '签约地' 
 								},
-																{
-									field : 'imContractFileId', 
-									title : '进口合同附件ID' 
-								},
+																
 																{
 									field : 'agencyContractFileId', 
 									title : '代理合同附件ID' 
@@ -174,7 +174,7 @@ function load() {
 																{
 									field : 'gmtModified', 
 									title : '修改时间' 
-								},
+								},*/
 																{
 									title : '操作',
 									field : 'id',

@@ -68,11 +68,11 @@ function load() {
 								},{
 									field : 'companyCode', 
 									title : '统一社会信用代码' 
-								},{
+								},/*{
 									field : 'businessLicense', 
 									title : '营业执照照片正反面url，2个用逗号隔开' 
 								},
-								/*{
+								{
 									field : 'ftClientCompanyId', 
 									title : '主键' 
 								},{

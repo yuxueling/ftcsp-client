@@ -46,26 +46,38 @@ function load() {
 						columns : [
 								{
 									checkbox : true
-								},
+								},{
+									field : 'agencyContractNo', 
+									title : '代理合同号' 
+								},{
+									field : 'customsDeclarationNo', 
+									title : '报关单号' 
+								},{
+									field : 'arrivalDate', 
+									title : '到港日期' 
+								},{
+									field : 'linkStatus', 
+									title : '报关状态' 
+								},{
+									field : 'customsDeclarationAmount', 
+									title : '报关金额' 
+								},{
+									field : 'billLadingNo', 
+									title : '提单号' 
+								},/*
 																{
 									field : 'imTrackBaseId', 
 									title : '主键' 
 								},
-																{
-									field : 'agencyContractNo', 
-									title : '代理合同号' 
-								},
+																
 																{
 									field : 'ftClientId', 
 									title : '委托方' 
 								},
-																{
-									field : 'billLadingNo', 
-									title : '提单号' 
-								},
+																
 																{
 									field : 'ecdiCompanyName', 
-									title : '	委托报关报检单位' 
+									title : '委托报关报检单位' 
 								},
 																{
 									field : 'contact', 
@@ -111,22 +123,13 @@ function load() {
 									field : 'isWoodPackage', 
 									title : '是否木制包装' 
 								},
-																{
-									field : 'arrivalDate', 
-									title : '到港日期' 
-								},
+																
 																{
 									field : 'importPort', 
 									title : '进口港口' 
 								},
-																{
-									field : 'customsDeclarationNo', 
-									title : '报关单号' 
-								},
-																{
-									field : 'customsDeclarationAmount', 
-									title : '报关金额' 
-								},
+																
+																
 																{
 									field : 'isStorage', 
 									title : '是否入库' 
@@ -166,7 +169,7 @@ function load() {
 																{
 									field : 'gmtModified', 
 									title : '修改时间' 
-								},
+								},*/
 																{
 									title : '操作',
 									field : 'id',

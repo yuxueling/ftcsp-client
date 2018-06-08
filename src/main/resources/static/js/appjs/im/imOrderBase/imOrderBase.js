@@ -56,14 +56,18 @@ function load() {
 									field : '', 
 									title : '装运期限' 
 								},{
-									field : '', 
+									field : 'totalAmount', 
 									title : '总金额' 
 								},{
-									field : '', 
+									field : 'gmtCreate', 
 									title : '保存时间' 
 								},{
 									field : 'auditStatus', 
-									title : '审核状态：0-未提交，1-待预审，2-待专家预审，3-已撤销，4-已预审' 
+									title : '审核状态',
+									formatter : function(value,row,index) {
+										var AR ={'0':'未提交','1':'待预审','2':'待专家预审','3':'已撤销','4':'已预审'};
+										return AR[value];
+									}
 								},
 								/*{
 									field : 'imOrderBaseId', 
