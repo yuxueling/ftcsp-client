@@ -32,4 +32,6 @@ public interface UserDao {
 	
 	Long[] listAllDept();
 
+	UserDO getUsernameAndEmailByUsername(String username);
+
 }

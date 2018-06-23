@@ -15,6 +15,7 @@ import com.cloudht.system.vo.UserVO;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 @RequestMapping("/sys/user")
 @Controller
@@ -51,8 +53,13 @@ public class UserController extends BaseController {
 		PageUtils pageUtil = new PageUtils(sysUserList, total);
 		return pageUtil;
 	}
-
-	@RequiresPermissions("sys:user:add")
+	
+	/**
+	 * 注册用户/sys/user/add
+	 * @param model
+	 * @return
+	 */
+	//@RequiresPermissions("sys:user:add")
 	@Log("添加用户")
 	@GetMapping("/add")
 	String add(Model model) {
@@ -72,14 +79,11 @@ public class UserController extends BaseController {
 		return prefix+"/edit";
 	}
 
-	@RequiresPermissions("sys:user:add")
+	//@RequiresPermissions("sys:user:add")
 	@Log("保存用户")
-	@PostMapping("/save")
+	@PostMapping("/save")///sys/user/save
 	@ResponseBody
 	R save(UserDO user) {
-		if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
-			return R.error(1, "演示系统不允许修改,完整体验请部署程序");
-		}
 		user.setPassword(MD5Utils.encrypt(user.getUsername(), user.getPassword()));
 		if (userService.save(user) > 0) {
 			return R.ok();
@@ -100,7 +104,46 @@ public class UserController extends BaseController {
 		}
 		return R.error();
 	}
-
+	/**
+	 * 向忘记密码用户发送邮件
+	 * @param user
+	 * @return
+	 */
+	@PostMapping("/retrievePasswordSendEmail")
+	@ResponseBody
+	String retrievePasswordSendEmail(UserDO user) {
+		try {
+			UserDO usernameAndEmailByUsername = userService.getUsernameAndEmailByUsername(user.getUsername());
+			if(!user.getUsername().equals(usernameAndEmailByUsername.getUsername())) {
+				return  "传入的数据被非法拦截或恶意修改";
+			}	
+		} catch (Exception e) {
+			return "用户名或者邮箱错误";
+		}
+		//======上面是数据效验，此处调用发邮件功能=====
+		try {
+			Long timeEnd2 = System.currentTimeMillis()%10000;
+			int timeEnd = Integer.parseInt(timeEnd2.toString());
+	        if(timeEnd<1000) 
+	        	timeEnd+=1000;
+			System.out.println(timeEnd);
+			String subject="云汇通外贸综合服务平台用户修改密码邮件";
+			String content = "亲爱的用户您好，感谢您选择云汇通，您的修改密码的验证码为<a>"+timeEnd+"</a>";
+			MailUtils.sendMail(subject,content, user.getEmail());
+			Session session = SessionUtils.getSession();
+			session.setAttribute(user.getUsername(), timeEnd);
+			return "邮件发送成功";
+		} catch (Exception e) {
+			return "邮件发送失败，请联系管理员";
+		}
+	}
+	public static void main(String[] args) {
+		Random random = new Random(4);
+		int int1 = random.nextInt();
+		int abs = Math.abs(int1);
+		System.out.println(abs);
+	}
+	
 
 	@RequiresPermissions("sys:user:edit")
 	@Log("更新用户")
@@ -115,7 +158,7 @@ public class UserController extends BaseController {
 		}
 		return R.error();
 	}
-
+	
 
 	@RequiresPermissions("sys:user:remove")
 	@Log("删除用户")
@@ -146,6 +189,7 @@ public class UserController extends BaseController {
 		return R.error();
 	}
 
+	///sys/user/exit
 	@PostMapping("/exit")
 	@ResponseBody
 	boolean exit(@RequestParam Map<String, Object> params) {
@@ -163,7 +207,57 @@ public class UserController extends BaseController {
 		model.addAttribute("user", userDO);
 		return prefix + "/reset_pwd";
 	}
-
+	/**
+	 * @param username 页面传入的用户名 可以为空
+	 * @return 跳转到找回密码页面
+	 */
+	@GetMapping("retrievePassword/{username}")
+	String retrievePassword(@PathVariable("username") String username, Model model) {
+		if(username.equals("null")||username.equals(""))
+			username="用户输入的用户名是空啊呵呵呵呵呵呵呵呵呵呵";
+		UserDO user = userService.getUsernameAndEmailByUsername(username);
+		if(user==null) {
+			user= new UserDO();
+			user.setUsername("请在此输入用户名");
+			user.setEmail("请在此输入您的邮箱");
+		}
+		model.addAttribute("user", user);
+		return prefix + "/retrievePassword";
+	}
+	
+	/**
+	 * 忘记密码用户找回密码后的保存密码
+	 * @param user
+	 * @return
+	 * @author 刘建华
+	 */
+	@PostMapping("/retrievePasswordSave")
+	@ResponseBody
+	R retrievePasswordSave(UserDO user) {
+		try {
+			UserDO userDO = userService.get(user.getUserId());
+			if(!user.getUsername().equals(userDO.getUsername())) {//前台传入的id和用户名和后台比对
+				return R.error(1, "数据被非法修改，请重新尝试");
+			}
+			Session session = SessionUtils.getSession();
+			//获取存到session中的验证码
+			int attribute = (int) session.getAttribute(user.getUsername());
+			session.removeAttribute(user.getUsername());
+			if(attribute!=user.getVerificationCode()) {
+				return R.error(1, "请输入正确的邮箱验证码");
+			}
+			user.setPassword(MD5Utils.encrypt(user.getUsername(), user.getPassword()));
+			user.setUsername(null);user.setEmail(null);//将多余的字段重置为null ，避免多余的sql字段写入
+			int update = userService.update(user);
+			if(update==1) {
+				return R.ok();
+			}
+		} catch (Exception e) {
+		}
+		return R.error(1, "未知错误，请联系管理员");
+		
+		
+	}
 	@Log("提交更改用户密码")
 	@PostMapping("/resetPwd")
 	@ResponseBody

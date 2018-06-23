@@ -43,13 +43,13 @@
             <form id="signupForm">
                 <h3 class="text-center">用户登录</h3>
                 <p class="m-t-md text-center">欢迎登录云汇通外贸服务管理系统</p>
-                <input type="text" name="username" class="form-control uname"
-                       value="admin"/>
-                <input type="password" name="password"
-                       class="form-control pword m-b" value="111111"/>
-                <a id="login" class="btn btn-login btn-block">登录</a>
-
-
+                <input type="text" id="username" name="username" class="form-control uname" value="admin"/>
+                <input type="password" name="password" class="form-control pword m-b" value="111111"/>
+                <input id="login" class="btn btn-login btn-block" type="button" value="登录">
+                <div>
+	                <a class="btn btn-link" onclick="retrievePassword()">忘记密码?</a>
+	                <a onclick="userRegister()" class="btn btn-link pull-right">新用户注册</a>
+                </div>
             </form>
         </div>
     </div>
@@ -72,6 +72,30 @@
 <script src="/js/plugins/validate/messages_zh.min.js" th:src="@{/js/plugins/validate/messages_zh.min.js}"></script>
 <script src="/js/plugins/layer/layer.min.js" th:src="@{/js/plugins/layer/layer.min.js}"></script>
 <script type="text/javascript">
+    function userRegister(){
+    	layer.open({
+    		type : 2,
+    		title : '新用户注册',
+    		maxmin : true,
+    		shadeClose : false, // 点击遮罩关闭层
+    		area : [ '800px', '520px' ],
+    		content : '/sys/user/add' // iframe的url/sys/user/add/page/register
+    	});
+    }
+    function retrievePassword(){
+    	var username=document.getElementById("username").value;
+    	if(username==""){
+    		username=null;
+    	}
+    	layer.open({
+    		type : 2,
+    		title : '找回密码',
+    		maxmin : true,
+    		shadeClose : false, // 点击遮罩关闭层
+    		area : [ '800px', '520px' ],
+    		content : '/sys/user/retrievePassword/'+username // iframe的url/sys/user/add/page/register
+    	});
+    }
     $(document).ready(function () {
         $("#login").on('click',function(){$("#signupForm").submit();});
         validateRule();

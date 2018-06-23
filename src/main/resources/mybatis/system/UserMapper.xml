@@ -3,6 +3,9 @@
 
 <mapper namespace="com.cloudht.system.dao.UserDao">
 
+	<select id="getUsernameAndEmailByUsername" resultType="com.cloudht.system.domain.UserDO">
+	select `user_id` "userId", `username`,`email` from sys_user where username = #{username}
+	</select>
 	<select id="get" resultType="com.cloudht.system.domain.UserDO">
 		select `user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district` from sys_user where user_id = #{value}
 	</select>

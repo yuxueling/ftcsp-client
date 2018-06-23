@@ -72,6 +72,12 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setSuccessUrl("/index");
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+        filterChainDefinitionMap.put("/sys/user/save", "anon");//开放保存用户页面
+        filterChainDefinitionMap.put("/sys/user/add", "anon");//开放注册用户页面
+        filterChainDefinitionMap.put("/sys/user/exit", "anon");//开放异步效验用户名是否存在
+        filterChainDefinitionMap.put("/sys/user/retrievePassword/**", "anon");//开放找回密码页面
+        filterChainDefinitionMap.put("/sys/user/retrievePasswordSendEmail", "anon");//开放找回密码发邮件链接
+        filterChainDefinitionMap.put("/sys/user/retrievePasswordSave", "anon");//开放找回密码后保存密码的链接
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/fonts/**", "anon");

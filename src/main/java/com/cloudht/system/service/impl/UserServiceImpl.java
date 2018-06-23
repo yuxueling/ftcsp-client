@@ -87,19 +87,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public int update(UserDO user) {
         int r = userMapper.update(user);
-        Long userId = user.getUserId();
-        List<Long> roles = user.getRoleIds();
-        userRoleMapper.removeByUserId(userId);
-        List<UserRoleDO> list = new ArrayList<>();
-        for (Long roleId : roles) {
-            UserRoleDO ur = new UserRoleDO();
-            ur.setUserId(userId);
-            ur.setRoleId(roleId);
-            list.add(ur);
-        }
-        if (list.size() > 0) {
-            userRoleMapper.batchSave(list);
-        }
         return r;
     }
 
@@ -238,5 +225,10 @@ public class UserServiceImpl implements UserService {
         }
         return result;
     }
+
+	@Override
+	public UserDO getUsernameAndEmailByUsername(String username) {
+		return userMapper.getUsernameAndEmailByUsername(username);
+	}
 
 }

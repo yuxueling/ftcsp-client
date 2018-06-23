@@ -51,4 +51,10 @@ public interface UserService {
 	 * @throws Exception
 	 */
     Map<String, Object> updatePersonalImg(MultipartFile file, String avatar_data, Long userId) throws Exception;
+    /**
+     *  根据用户名查询用户信息
+     * @param username
+     * @return
+     */
+	UserDO getUsernameAndEmailByUsername(String username);
 }

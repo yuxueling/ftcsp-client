@@ -35,5 +35,9 @@ public class PageController {
     String single(Model model) {
         return "page/single";
     }
+    @GetMapping({ "/register"})
+    String register(Model model) {
+        return "page/register";
+    }
 
 }

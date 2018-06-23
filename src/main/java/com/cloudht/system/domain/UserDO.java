@@ -50,8 +50,18 @@ public class UserDO implements Serializable {
     private String city;
     //所在地区
     private String district;
+    //修改密码时的验证码
+    private Integer verificationCode;
 
-    public Long getUserId() {
+    public Integer getVerificationCode() {
+		return verificationCode;
+	}
+
+	public void setVerificationCode(Integer verificationCode) {
+		this.verificationCode = verificationCode;
+	}
+
+	public Long getUserId() {
         return userId;
     }
 
