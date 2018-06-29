@@ -8,27 +8,27 @@
 			<div class="col-sm-12">
 				<div class="ibox float-e-margins">
 					<div class="ibox-content">
-						<form class="form-horizontal m-t" id="signupForm">
+						<form class="form-horizontal m-t" id="signupForm" enctype="multipart/form-data">
 						<input id="ftClientCompanyId" name="ftClientCompanyId" th:value="${ftClientCompany.ftClientCompanyId}"  type="hidden">
 							<div class="form-group">	
 								<label class="col-sm-3 control-label">委托方：</label>
 								<div class="col-sm-8">
-									<input id="ftClientId" name="ftClientId" th:value="${ftClientCompany.ftClientId}" class="form-control" type="text">
+									<input id="ftClientId" name="ftClientId" th:value="${ftClientCompany.ftClientId}" class="form-control" type="text" readonly="readonly">
 								</div>
 							</div>
-														<div class="form-group">	
+							<div class="form-group">	
 								<label class="col-sm-3 control-label">公司类型：0-境内公司 1-个人注册 2-境外公司：</label>
 								<div class="col-sm-8">
-									<input id="companyType" name="companyType" th:value="${ftClientCompany.companyType}" class="form-control" type="text">
+									<input id="companyType" name="companyType" th:value="${ftClientCompany.companyTypeChinese}" class="form-control" type="text" readonly="readonly">
 								</div>
 							</div>
-														<div class="form-group">	
+							<div class="form-group">	
 								<label class="col-sm-3 control-label">公司名称：</label>
 								<div class="col-sm-8">
-									<input id="companyName" name="companyName" th:value="${ftClientCompany.companyName}" class="form-control" type="text">
+									<input id="companyName" name="companyName" th:value="${ftClientCompany.companyName}" class="form-control" type="text" readonly="readonly">
 								</div>
 							</div>
-														<div class="form-group">	
+							<div class="form-group">	
 								<label class="col-sm-3 control-label">公司所属省：</label>
 								<div class="col-sm-8">
 									<input id="province" name="province" th:value="${ftClientCompany.province}" class="form-control" type="text">
@@ -52,31 +52,19 @@
 									<input id="companyCode" name="companyCode" th:value="${ftClientCompany.companyCode}" class="form-control" type="text">
 								</div>
 							</div>
-														<div class="form-group">	
+							<div class="form-group">	
 								<label class="col-sm-3 control-label">营业执照照片正反面url，2个用逗号隔开：</label>
 								<div class="col-sm-8">
 									<input id="businessLicense" name="businessLicense" th:value="${ftClientCompany.businessLicense}" class="form-control" type="text">
 								</div>
 							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">创建时间：</label>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">营业执照：</label>
 								<div class="col-sm-8">
-									<input id="gmtCreate" name="gmtCreate" th:value="${ftClientCompany.gmtCreate}" class="form-control" type="text">
+									<input class="avatar-input" id="avatarInput" name="avatar_file" type="file">
 								</div>
 							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">修改时间：</label>
-								<div class="col-sm-8">
-									<input id="gmtModified" name="gmtModified" th:value="${ftClientCompany.gmtModified}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">是否删除：0-否，1-是：</label>
-								<div class="col-sm-8">
-									<input id="isDelete" name="isDelete" th:value="${ftClientCompany.isDelete}" class="form-control" type="text">
-								</div>
-							</div>
-																					<div class="form-group">
+							<div class="form-group">
 								<div class="col-sm-8 col-sm-offset-3">
 									<button type="submit" class="btn btn-primary">提交</button>
 								</div>

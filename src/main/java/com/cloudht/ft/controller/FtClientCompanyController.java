@@ -1,9 +1,14 @@
 package com.cloudht.ft.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.SimplePrincipalCollection;
+import org.apache.shiro.subject.support.DefaultSubjectContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
@@ -17,9 +22,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloudht.ft.domain.FtClientCompanyDO;
 import com.cloudht.ft.service.FtClientCompanyService;
+import com.cloudht.ft.service.FtClientService;
+import com.cloudht.system.domain.UserDO;
 import com.cloudht.common.utils.PageUtils;
 import com.cloudht.common.utils.Query;
 import com.cloudht.common.utils.R;
+import com.cloudht.common.utils.SessionUtils;
 
 /**
  * 委托方公司表
@@ -34,6 +42,9 @@ import com.cloudht.common.utils.R;
 public class FtClientCompanyController {
 	@Autowired
 	private FtClientCompanyService ftClientCompanyService;
+	
+	@Autowired
+	private FtClientService ftClientService;
 	
 	@GetMapping()
 	@RequiresPermissions("ft:ftClientCompany:ftClientCompany")
@@ -54,7 +65,7 @@ public class FtClientCompanyController {
 	}
 	
 	@GetMapping("/add")
-	@RequiresPermissions("ft:ftClientCompany:add")
+	//@RequiresPermissions("ft:ftClientCompany:add")
 	String add(){
 	    return "ft/ftClientCompany/add";
 	}
@@ -65,6 +76,22 @@ public class FtClientCompanyController {
 		FtClientCompanyDO ftClientCompany = ftClientCompanyService.get(ftClientCompanyId);
 		model.addAttribute("ftClientCompany", ftClientCompany);
 	    return "ft/ftClientCompany/edit";
+	}
+	/**
+	 * /ft/ftClientCompany/companyInfo
+	 * @param ftClientCompanyId 
+	 * @return 跳转到当前登录用户的公司信息详情页面
+	 */
+	@GetMapping("/companyInfo")
+	@RequiresPermissions("ft:ftClientCompany:ftClientCompany")
+	String companyInfo(Model model){
+		Long userId = SessionUtils.getUserId();//获取当前登录用户的id
+		Long ftClientId = ftClientService.queryFtClientIdByUserId(userId);//根据登录用户的id获取绑定的公司id
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("ftClientId",ftClientId);
+		List<FtClientCompanyDO> list = ftClientCompanyService.list(map);//根据公司id查询公司信息表
+		model.addAttribute("ftClientCompany", list.get(0));
+	    return "ft/ftClientCompany/companyInfo";
 	}
 	
 	/**

@@ -71,10 +71,29 @@ public class FtClientCompanyDO implements Serializable {
 		this.companyType = companyType;
 	}
 	/**
-	 * 获取：公司类型：0-境内公司 1-个人注册 2-境外公司
+	 * 获取：公司类型的编码
 	 */
 	public Integer getCompanyType() {
 		return companyType;
+	}
+	/**
+	 * 获取公司类型的汉字说明
+	 * @return
+	 */
+	public String getCompanyTypeChinese() {
+		try {
+			switch (this.companyType) {
+				case 0:
+					return "境内公司";
+				case 1:
+					return "个人注册";
+				case 2:
+					return "境外公司";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "请联系管理员处理";
 	}
 	/**
 	 * 设置：公司名称

@@ -22,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -85,6 +86,15 @@ public class UserController extends BaseController {
 	@ResponseBody
 	R save(UserDO user) {
 		user.setPassword(MD5Utils.encrypt(user.getUsername(), user.getPassword()));
+		user.setStatus(1);//设置新注册用户状态为正常
+		List<RoleDO> list = roleService.list();
+		List<Long> roleIds = new ArrayList<Long>();
+		for(RoleDO role:list) {
+			if("newUserRole".equals(role.getRoleSign())) {
+				roleIds.add(role.getRoleId());	
+			}
+		}
+		user.setRoleIds(roleIds);//新注册的用户设置为新注册角色
 		if (userService.save(user) > 0) {
 			return R.ok();
 		}
@@ -136,12 +146,6 @@ public class UserController extends BaseController {
 		} catch (Exception e) {
 			return "邮件发送失败，请联系管理员";
 		}
-	}
-	public static void main(String[] args) {
-		Random random = new Random(4);
-		int int1 = random.nextInt();
-		int abs = Math.abs(int1);
-		System.out.println(abs);
 	}
 	
 
@@ -235,6 +239,7 @@ public class UserController extends BaseController {
 	@ResponseBody
 	R retrievePasswordSave(UserDO user) {
 		try {
+			Long userId = user.getUserId();
 			UserDO userDO = userService.get(user.getUserId());
 			if(!user.getUsername().equals(userDO.getUsername())) {//前台传入的id和用户名和后台比对
 				return R.error(1, "数据被非法修改，请重新尝试");

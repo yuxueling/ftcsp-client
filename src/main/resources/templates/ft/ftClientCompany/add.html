@@ -9,73 +9,71 @@
 				<div class="ibox float-e-margins">
 					<div class="ibox-content">
 						<form class="form-horizontal m-t" id="signupForm">
+							<div class="col-md-12 form-group">
+								<label class="radio-inline">
+									<input type="radio" id="encasementType0" name="companyType" value="0" checked> 境内公司
+								</label>
+								<label class="radio-inline">
+									<input type="radio" id="encasementType1" name="companyType" value="1"> 个人注册
+								</label>
+								<label class="radio-inline">
+									<input type="radio" id="encasementType2" name="companyType" value="2"> 境外公司
+								</label>
+							</div>
 							<div class="form-group">	
-								<label class="col-sm-3 control-label">委托方：</label>
-								<div class="col-sm-8">
-									<input id="ftClientId" name="ftClientId" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">公司类型：0-境内公司 1-个人注册 2-境外公司：</label>
-								<div class="col-sm-8">
-									<input id="companyType" name="companyType" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
 								<label class="col-sm-3 control-label">公司名称：</label>
 								<div class="col-sm-8">
 									<input id="companyName" name="companyName" class="form-control" type="text">
 								</div>
 							</div>
-														<div class="form-group">	
+							<div class="form-group">	
 								<label class="col-sm-3 control-label">公司所属省：</label>
 								<div class="col-sm-8">
 									<input id="province" name="province" class="form-control" type="text">
 								</div>
 							</div>
-														<div class="form-group">	
+							<div class="form-group">	
 								<label class="col-sm-3 control-label">公司所属市：</label>
 								<div class="col-sm-8">
 									<input id="city" name="city" class="form-control" type="text">
 								</div>
 							</div>
-														<div class="form-group">	
+							<div class="form-group">	
 								<label class="col-sm-3 control-label">公司详细地址：</label>
 								<div class="col-sm-8">
 									<input id="detailedAddress" name="detailedAddress" class="form-control" type="text">
 								</div>
 							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">统一社会信用代码：</label>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">姓名：</label>
 								<div class="col-sm-8">
-									<input id="companyCode" name="companyCode" class="form-control" type="text">
+									<input id="name" name="name" class="form-control" type="text">
 								</div>
 							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">营业执照照片正反面url，2个用逗号隔开：</label>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">性别:</label>
 								<div class="col-sm-8">
-									<input id="businessLicense" name="businessLicense" class="form-control" type="text">
+									<label class="radio-inline">
+										<input type="radio" id="encasementType0" name="sex" value="0" checked> 男
+									</label>
+									<label class="radio-inline">
+										<input type="radio" id="encasementType1" name="sex" value="1"> 女
+									</label>
 								</div>
 							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">创建时间：</label>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">手机：</label>
 								<div class="col-sm-8">
-									<input id="gmtCreate" name="gmtCreate" class="form-control" type="text">
+									<input id="mobilePhone" name="mobilePhone" class="form-control" type="text">
 								</div>
 							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">修改时间：</label>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">公司固话：</label>
 								<div class="col-sm-8">
-									<input id="gmtModified" name="gmtModified" class="form-control" type="text">
+									<input id="companyPhone" name="companyPhone" class="form-control" type="text">
 								</div>
 							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">是否删除：0-否，1-是：</label>
-								<div class="col-sm-8">
-									<input id="isDelete" name="isDelete" class="form-control" type="text">
-								</div>
-							</div>
-																					<div class="form-group">
+							<div class="form-group">
 								<div class="col-sm-8 col-sm-offset-3">
 									<button type="submit" class="btn btn-primary">提交</button>
 								</div>

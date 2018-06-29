@@ -113,8 +113,19 @@
             url: ctx+"login",
             data: $('#signupForm').serialize(),
             success: function (r) {
-                 if (r.code == 0) {
-                    var index = layer.load(1, {
+                if (r.code == 0) {
+                	if(r.msg=="请填写公司信息"){
+                		layer.open({
+                			type : 2,
+                			title : '完善资料信息',
+                			maxmin : true,
+                			shadeClose : false, // 点击遮罩关闭层
+                			area : [ '800px', '520px' ],
+                			content : '/ft/ftClientCompany/add' // iframe的url
+                		});
+                		return;
+                	}
+                	var index = layer.load(1, {
                         shade: [0.1,'#fff'] //0.1透明度的白色背景
                     });
                     parent.location.href = '/index';

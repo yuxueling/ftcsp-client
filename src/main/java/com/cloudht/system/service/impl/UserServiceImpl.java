@@ -47,10 +47,14 @@ public class UserServiceImpl implements UserService {
     @Override
 //    @Cacheable(key = "#id")
     public UserDO get(Long id) {
-        List<Long> roleIds = userRoleMapper.listRoleId(id);
         UserDO user = userMapper.get(id);
-        user.setDeptName(deptMapper.get(user.getDeptId()).getName());
-        user.setRoleIds(roleIds);
+        try {
+        	List<Long> roleIds = userRoleMapper.listRoleId(id);
+        	user.setDeptName(deptMapper.get(user.getDeptId()).getName());
+        	user.setRoleIds(roleIds);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         return user;
     }
 

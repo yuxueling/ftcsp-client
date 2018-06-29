@@ -8,8 +8,12 @@ import com.cloudht.common.service.FileService;
 import com.cloudht.common.utils.MD5Utils;
 import com.cloudht.common.utils.R;
 import com.cloudht.common.utils.ShiroUtils;
+import com.cloudht.ft.service.FtClientService;
 import com.cloudht.system.domain.MenuDO;
+import com.cloudht.system.domain.UserDO;
 import com.cloudht.system.service.MenuService;
+import com.cloudht.system.service.UserService;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -23,6 +27,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -33,6 +38,12 @@ public class LoginController extends BaseController {
 	MenuService menuService;
 	@Autowired
 	FileService fileService;
+	
+	@Autowired
+	private FtClientService ftClientService;
+	
+	@Autowired
+	private UserService userService;
 	@GetMapping({ "/", "" })
 	String welcome(Model model) {
 		return "page/index";
@@ -75,7 +86,16 @@ public class LoginController extends BaseController {
 		Subject subject = SecurityUtils.getSubject();
 		try {
 			subject.login(token);
-			return R.ok();
+			if("admin".equals(username))return R.ok();//如果是超级管理员直接跳过下面公司信息的效验
+			//判断登录用户是否完成公司信息的审核
+			HashMap<String,Object> hashMap = new HashMap<String,Object>();
+			hashMap.put("username",username);//封装查询条件
+			List<UserDO> list = userService.list(hashMap);//查询用户
+			hashMap.remove("username");//删除刚才的查询条件，以重新使用该map
+			hashMap.put("clientUserId",list.get(0).getUserId());//重新put新的条件
+			//返回当前登录用户对应的公司审核状态
+			String queryClientStatus = this.ftClientService.queryClientStatus(hashMap);
+			return R.ok(queryClientStatus);	
 		} catch (AuthenticationException e) {
 			return R.error("用户或密码错误");
 		}
