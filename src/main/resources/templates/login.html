@@ -70,7 +70,7 @@
 <script src="/js/ajax-util.js"></script>
 <script src="/js/plugins/validate/jquery.validate.min.js" th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
 <script src="/js/plugins/validate/messages_zh.min.js" th:src="@{/js/plugins/validate/messages_zh.min.js}"></script>
-<script src="/js/plugins/layer/layer.min.js" th:src="@{/js/plugins/layer/layer.min.js}"></script>
+<script src="/js/plugins/layer/layer.js"></script>
 <script type="text/javascript">
     function userRegister(){
     	layer.open({
@@ -79,7 +79,7 @@
     		maxmin : true,
     		shadeClose : false, // 点击遮罩关闭层
     		area : [ '800px', '520px' ],
-    		content : '/sys/user/add' // iframe的url/sys/user/add/page/register
+    		content : '/register' // iframe的url/sys/user/add/page/register
     	});
     }
     function retrievePassword(){

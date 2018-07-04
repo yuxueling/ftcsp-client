@@ -1,9 +1,6 @@
 package com.cloudht.ft.domain;
 
 import java.io.Serializable;
-import java.util.Date;
-
-
 
 /**
  * 商品信息

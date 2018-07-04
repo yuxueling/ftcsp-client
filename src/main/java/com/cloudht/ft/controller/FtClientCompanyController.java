@@ -4,18 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.SimplePrincipalCollection;
-import org.apache.shiro.subject.support.DefaultSubjectContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,11 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cloudht.ft.domain.FtClientCompanyDO;
 import com.cloudht.ft.service.FtClientCompanyService;
 import com.cloudht.ft.service.FtClientService;
-import com.cloudht.system.domain.UserDO;
 import com.cloudht.common.utils.PageUtils;
 import com.cloudht.common.utils.Query;
 import com.cloudht.common.utils.R;
-import com.cloudht.common.utils.SessionUtils;
+import com.cloudht.common.utils.ShiroUtils;
 
 /**
  * 委托方公司表
@@ -85,7 +79,7 @@ public class FtClientCompanyController {
 	@GetMapping("/companyInfo")
 	@RequiresPermissions("ft:ftClientCompany:ftClientCompany")
 	String companyInfo(Model model){
-		Long userId = SessionUtils.getUserId();//获取当前登录用户的id
+		Long userId = ShiroUtils.getUserId();//获取当前登录用户的id
 		Long ftClientId = ftClientService.queryFtClientIdByUserId(userId);//根据登录用户的id获取绑定的公司id
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("ftClientId",ftClientId);
@@ -110,7 +104,7 @@ public class FtClientCompanyController {
 	 * 修改
 	 */
 	@ResponseBody
-	@RequestMapping("/update")
+	@RequestMapping("/update")///ft/ftClientCompany/update
 	@RequiresPermissions("ft:ftClientCompany:edit")
 	public R update( FtClientCompanyDO ftClientCompany){
 		ftClientCompanyService.update(ftClientCompany);

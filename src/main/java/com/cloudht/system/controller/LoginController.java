@@ -12,14 +12,13 @@ import com.cloudht.ft.service.FtClientService;
 import com.cloudht.system.domain.MenuDO;
 import com.cloudht.system.domain.UserDO;
 import com.cloudht.system.service.MenuService;
+import com.cloudht.system.service.RoleService;
 import com.cloudht.system.service.UserService;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,13 +31,13 @@ import java.util.List;
 
 @Controller
 public class LoginController extends BaseController {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	MenuService menuService;
 	@Autowired
 	FileService fileService;
-	
+	@Autowired
+	RoleService roleService;
 	@Autowired
 	private FtClientService ftClientService;
 	
@@ -111,5 +110,15 @@ public class LoginController extends BaseController {
 	String main() {
 		return "main";
 	}
-
+	/**
+	 * 注册用户/sys/user/add
+	 * @param model
+	 * @return
+	 */
+	//@RequiresPermissions("sys:user:add")
+	@Log("注册用户")
+	@GetMapping("/register")
+	String register () {
+		return "/page/register";
+	}
 }

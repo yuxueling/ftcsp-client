@@ -39,6 +39,9 @@
 	</select>
 	 
 	<insert id="save" parameterType="com.cloudht.common.domain.FileDO" useGeneratedKeys="true" keyProperty="id">
+		<selectKey resultType="long" keyProperty="id" order="AFTER">
+			select last_insert_id()
+		</selectKey>
 		insert into sys_file
 		(
 			`type`, 

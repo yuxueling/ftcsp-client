@@ -12,8 +12,10 @@ import com.cloudht.system.domain.UserDO;
 import com.cloudht.system.service.RoleService;
 import com.cloudht.system.service.UserService;
 import com.cloudht.system.vo.UserVO;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.catalina.manager.util.SessionUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,25 +81,33 @@ public class UserController extends BaseController {
 		model.addAttribute("roles", roles);
 		return prefix+"/edit";
 	}
-
-	//@RequiresPermissions("sys:user:add")
+	@Log("用户自助注册了账号")
+	@PostMapping("/registerSave")///sys/user/registerSave
+	@ResponseBody
+	R registerSave(UserDO user) {
+		try {
+			user.setStatus(1);//设置新注册用户状态为正常
+			List<RoleDO> list = roleService.list();
+			List<Long> roleIds = new ArrayList<Long>();
+			for(RoleDO role:list) {
+				if("newUserRole".equals(role.getRoleSign())) {
+					roleIds.add(role.getRoleId());	
+				}
+			}
+			user.setRoleIds(roleIds);//新注册的用户设置为新注册角色
+		} catch (Exception e) {
+			return R.error("注册失败");
+		}
+		return this.save(user);//调用保存用户的方法
+		
+	}
+	@RequiresPermissions("sys:user:add")
 	@Log("保存用户")
-	@PostMapping("/save")///sys/user/save
+	@PostMapping("/save")
 	@ResponseBody
 	R save(UserDO user) {
 		user.setPassword(MD5Utils.encrypt(user.getUsername(), user.getPassword()));
-		user.setStatus(1);//设置新注册用户状态为正常
-		List<RoleDO> list = roleService.list();
-		List<Long> roleIds = new ArrayList<Long>();
-		for(RoleDO role:list) {
-			if("newUserRole".equals(role.getRoleSign())) {
-				roleIds.add(role.getRoleId());	
-			}
-		}
-		user.setRoleIds(roleIds);//新注册的用户设置为新注册角色
-		if (userService.save(user) > 0) {
-			return R.ok();
-		}
+		if (userService.save(user) > 0) return R.ok();
 		return R.error();
 	}
 
@@ -140,7 +150,7 @@ public class UserController extends BaseController {
 			String subject="云汇通外贸综合服务平台用户修改密码邮件";
 			String content = "亲爱的用户您好，感谢您选择云汇通，您的修改密码的验证码为<a>"+timeEnd+"</a>";
 			MailUtils.sendMail(subject,content, user.getEmail());
-			Session session = SessionUtils.getSession();
+			Session session = ShiroUtils.getSession();
 			session.setAttribute(user.getUsername(), timeEnd);
 			return "邮件发送成功";
 		} catch (Exception e) {
@@ -244,7 +254,7 @@ public class UserController extends BaseController {
 			if(!user.getUsername().equals(userDO.getUsername())) {//前台传入的id和用户名和后台比对
 				return R.error(1, "数据被非法修改，请重新尝试");
 			}
-			Session session = SessionUtils.getSession();
+			Session session = ShiroUtils.getSession();
 			//获取存到session中的验证码
 			int attribute = (int) session.getAttribute(user.getUsername());
 			session.removeAttribute(user.getUsername());
