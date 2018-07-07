@@ -8,7 +8,9 @@ import java.util.List;
 
 public class UserDO implements Serializable {
     private static final long serialVersionUID = 1L;
-    //
+    /**
+     * 用户主键id
+     */
     private Long userId;
     // 用户名
     private String username;
@@ -18,6 +20,9 @@ public class UserDO implements Serializable {
     private String password;
     // 部门
     private Long deptId;
+    /**
+     * 部门名称
+     */
     private String deptName;
     // 邮箱
     private String email;
@@ -52,8 +57,23 @@ public class UserDO implements Serializable {
     private String district;
     //修改密码时的验证码
     private Integer verificationCode;
+    /**
+     * 当前对象的角色集合
+     */
+    private List<RoleDO> listRoleDO;
 
-    public Integer getVerificationCode() {
+	public List<RoleDO> getListRoleDO() {
+		return listRoleDO;
+	}
+
+	public void setListRoleDO(List<RoleDO> listRoleDO) {
+		this.listRoleDO = listRoleDO;
+	}
+	public boolean addListRoleDO(RoleDO roleDO ) {
+		return listRoleDO.add(roleDO);
+	}
+
+	public Integer getVerificationCode() {
 		return verificationCode;
 	}
 

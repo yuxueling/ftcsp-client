@@ -72,7 +72,7 @@
 		</foreach>
 	</delete>
 
-	<select id="listRoleId" resultType="long">
+	<select id="listRoleId" resultType="long" >
 		select role_id from
 		sys_user_role where
 		user_id=#{userId}

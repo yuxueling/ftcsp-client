@@ -5,7 +5,9 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
 import com.cloudht.system.domain.UserDO;
-
+/**
+ *  工具类，可以获取当前登录的用户对象；获取当前登录用户的id；获取session
+ */
 public class ShiroUtils {
 
     public static Subject getSubjct() {

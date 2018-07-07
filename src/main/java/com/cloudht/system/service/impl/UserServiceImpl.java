@@ -10,17 +10,17 @@ import com.cloudht.common.service.FileService;
 import com.cloudht.common.utils.*;
 import com.cloudht.system.vo.UserVO;
 import org.apache.commons.lang.ArrayUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cloudht.common.domain.Tree;
 import com.cloudht.system.dao.DeptDao;
+import com.cloudht.system.dao.RoleDao;
 import com.cloudht.system.dao.UserDao;
 import com.cloudht.system.dao.UserRoleDao;
 import com.cloudht.system.domain.DeptDO;
+import com.cloudht.system.domain.RoleDO;
 import com.cloudht.system.domain.UserDO;
 import com.cloudht.system.domain.UserRoleDO;
 import com.cloudht.system.service.UserService;
@@ -42,16 +42,22 @@ public class UserServiceImpl implements UserService {
     private FileService sysFileService;
     @Autowired
     private FtcspConfig ftcspConfig;
-    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+    @Autowired
+    private RoleDao roleDao;
 
-    @Override
+    
 //    @Cacheable(key = "#id")
-    public UserDO get(Long id) {
-        UserDO user = userMapper.get(id);
+    /**
+     * 根据用户id获取用户对象.封装了用户拥有角色对象的集合
+     * @param id 用户的主键id
+     */
+    @Override
+    public UserDO get(Long userid) {
+        UserDO user = userMapper.get(userid);
         try {
-        	List<Long> roleIds = userRoleMapper.listRoleId(id);
-        	user.setDeptName(deptMapper.get(user.getDeptId()).getName());
+        	List<Long> roleIds = userRoleMapper.listRoleId(userid);
         	user.setRoleIds(roleIds);
+        	//user.setDeptName(deptMapper.get(user.getDeptId()).getName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -234,5 +240,29 @@ public class UserServiceImpl implements UserService {
 	public UserDO getUsernameAndEmailByUsername(String username) {
 		return userMapper.getUsernameAndEmailByUsername(username);
 	}
-
+	/**
+	 * 更新角色对象
+	 * @param userId 用户表的主键
+	 * @param roleId 角色表的主键
+	 * @return 是否成功
+	 * @author Hzof
+	 */
+	@Override
+	public boolean updateUserRoleByUseridAndRoleId(Long userId,Long roleId) {
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("userId", userId);
+		List<UserRoleDO> list = userRoleMapper.list(map);
+		UserRoleDO userRoleDO=null;
+		if (list!=null&&list.size()==1) {
+			//符合逻辑,执行正常代码
+			userRoleDO = list.get(0);
+			userRoleDO.setRoleId(roleId);
+		}
+		try {
+			return userRoleMapper.update(userRoleDO)==1?true:false;
+		} catch (Exception e) {
+			//如果出错，说明没有查询到数据，返回false
+			return false;
+		}
+	}
 }

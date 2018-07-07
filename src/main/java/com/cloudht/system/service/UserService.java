@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.cloudht.common.domain.Tree;
 import com.cloudht.system.domain.DeptDO;
 import com.cloudht.system.domain.UserDO;
+import com.cloudht.system.domain.UserRoleDO;
+
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
@@ -57,4 +59,12 @@ public interface UserService {
      * @return
      */
 	UserDO getUsernameAndEmailByUsername(String username);
+	/**
+	 * 更新角色对象
+	 * @param userId 用户表的主键
+	 * @param roleId 角色表的主键
+	 * @return 是否成功
+	 * @author Hzof
+	 */
+	boolean updateUserRoleByUseridAndRoleId(Long userId, Long roleId);
 }

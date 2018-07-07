@@ -9,8 +9,11 @@ import com.cloudht.common.utils.MD5Utils;
 import com.cloudht.common.utils.R;
 import com.cloudht.common.utils.ShiroUtils;
 import com.cloudht.ft.service.FtClientService;
+import com.cloudht.system.dao.UserRoleDao;
 import com.cloudht.system.domain.MenuDO;
+import com.cloudht.system.domain.RoleDO;
 import com.cloudht.system.domain.UserDO;
+import com.cloudht.system.domain.UserRoleDO;
 import com.cloudht.system.service.MenuService;
 import com.cloudht.system.service.RoleService;
 import com.cloudht.system.service.UserService;
@@ -18,6 +21,7 @@ import com.cloudht.system.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,6 +47,7 @@ public class LoginController extends BaseController {
 	
 	@Autowired
 	private UserService userService;
+	
 	@GetMapping({ "/", "" })
 	String welcome(Model model) {
 		return "page/index";
@@ -84,17 +89,67 @@ public class LoginController extends BaseController {
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 		Subject subject = SecurityUtils.getSubject();
 		try {
+			//======系统自动生成的登录代码====
 			subject.login(token);
-			if("admin".equals(username))return R.ok();//如果是超级管理员直接跳过下面公司信息的效验
-			//判断登录用户是否完成公司信息的审核
+			//======共用值存放区===============
 			HashMap<String,Object> hashMap = new HashMap<String,Object>();
-			hashMap.put("username",username);//封装查询条件
-			List<UserDO> list = userService.list(hashMap);//查询用户
-			hashMap.remove("username");//删除刚才的查询条件，以重新使用该map
-			hashMap.put("clientUserId",list.get(0).getUserId());//重新put新的条件
-			//返回当前登录用户对应的公司审核状态
-			String queryClientStatus = this.ftClientService.queryClientStatus(hashMap);
-			return R.ok(queryClientStatus);	
+			UserDO user = userService.get(ShiroUtils.getUserId());//获取当前登录用户
+			Long newUserRoleId=null;//新用户角色id
+			Long officialUserRoleId=null;//正式注册角色id
+			Long adminRoleId=null;//超级管理员角色id
+			{//该代码块为上面的三个角色id赋值
+				List<RoleDO> roleDOs = roleService.list();//获取系统中所有的角色对象
+				for(RoleDO role:roleDOs) {
+					String roleSign = role.getRoleSign();
+					if("newUserRole".equals(roleSign)){
+						newUserRoleId = role.getRoleId();
+					}
+					if("officialUserRole".equals(roleSign)) {
+						officialUserRoleId=role.getRoleId();
+					}
+					if("admin".equals(roleSign)) {
+						adminRoleId=role.getRoleId();
+					}
+				}
+			}
+			//获取当前登录用户的角色id
+			Long roleId=null;{
+				List<Long> roleIds = user.getRoleIds();
+				if(roleIds!=null&&roleIds.size()==1) {
+					roleId=roleIds.get(0);
+				}
+			}
+			//======如果是超级管理员直接跳过下面公司信息的效验====
+			if(roleId!=null&&adminRoleId!=null&&roleId==adminRoleId) {
+				return R.ok();
+			}
+			//======获取公司的审核状态=============
+			Boolean clientStatus=null;{
+				hashMap.put("clientUserId",user.getUserId());
+				clientStatus = ftClientService.queryClientStatus(hashMap);
+				hashMap.remove("clientUserId");
+			}
+			//========================
+			if(clientStatus==null) {
+				return R.ok("请填写公司信息");//公司信息未填写，跳转到公司信息填写页面
+			}
+			if(clientStatus) {//该代码块为公司信息审核通过的逻辑
+				//判断是不是正式角色 （是-登录成功）（否-授权为正式角色，提示重新登录）
+				if(roleId!=null&&officialUserRoleId!=null&&roleId==officialUserRoleId) {
+					return R.ok();
+				}
+				//授权为正式角色
+				userService.updateUserRoleByUseridAndRoleId(user.getUserId(),officialUserRoleId);
+				return R.error("权限已更新,请重新登录");
+			}else {//该代码块为公司信息审核未通过的逻辑
+				//判断是不是新注册角色 （是-登录成功）（否-授权为新注册角色，提示重新登录）
+				if(roleId!=null&&newUserRoleId!=null&&roleId==newUserRoleId) {
+					return R.ok();
+				}
+				//授权为新注册角色
+				userService.updateUserRoleByUseridAndRoleId(user.getUserId(),newUserRoleId);
+				return R.error("权限已更新,请重新登录");
+			}
 		} catch (AuthenticationException e) {
 			return R.error("用户或密码错误");
 		}

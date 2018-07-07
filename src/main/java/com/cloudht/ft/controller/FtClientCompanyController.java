@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloudht.ft.domain.FtClientCompanyDO;
+import com.cloudht.ft.domain.FtClientDO;
 import com.cloudht.ft.service.FtClientCompanyService;
 import com.cloudht.ft.service.FtClientService;
 import com.cloudht.common.utils.PageUtils;
@@ -79,13 +80,18 @@ public class FtClientCompanyController {
 	@GetMapping("/companyInfo")
 	@RequiresPermissions("ft:ftClientCompany:ftClientCompany")
 	String companyInfo(Model model){
-		Long userId = ShiroUtils.getUserId();//获取当前登录用户的id
-		Long ftClientId = ftClientService.queryFtClientIdByUserId(userId);//根据登录用户的id获取绑定的公司id
-		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("ftClientId",ftClientId);
-		List<FtClientCompanyDO> list = ftClientCompanyService.list(map);//根据公司id查询公司信息表
-		model.addAttribute("ftClientCompany", list.get(0));
-	    return "ft/ftClientCompany/companyInfo";
+		try {
+			Long userId = ShiroUtils.getUserId();//获取当前登录用户的id
+			Long ftClientId = ftClientService.queryFtClientIdByUserId(userId);//根据登录用户的id获取绑定的公司id
+			Map<String,Object> map=new HashMap<String,Object>();
+			map.put("ftClientId",ftClientId);
+			List<FtClientCompanyDO> list = ftClientCompanyService.list(map);//根据公司id查询公司信息表
+			model.addAttribute("ftClientCompany", list.get(0));
+		    return "ft/ftClientCompany/companyInfo";	
+		} catch (Exception e) {
+			System.out.println("未查询到公司信息");
+		}
+		return null;
 	}
 	
 	/**
@@ -94,12 +100,17 @@ public class FtClientCompanyController {
 	@ResponseBody
 	@PostMapping("/save")
 	@RequiresPermissions("ft:ftClientCompany:add")
-	public R save( FtClientCompanyDO ftClientCompany){
-		if(ftClientCompanyService.save(ftClientCompany)>0){
-			return R.ok();
+	public R save( FtClientDO ftClient){
+		try {
+			if(ftClientCompanyService.save(ftClient.getFtClientCompanyDO())>0){
+				return R.ok();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 		return R.error();
 	}
+	
 	/**
 	 * 修改
 	 */

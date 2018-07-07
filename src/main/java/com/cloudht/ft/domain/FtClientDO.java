@@ -41,7 +41,20 @@ public class FtClientDO implements Serializable {
 	private Date gmtModified;
 	//是否删除：0-否，1-是
 	private Integer isDelete;
-
+	//引用了委托方公司表的信息
+	private FtClientCompanyDO ftClientCompanyDO;
+	/**
+	 * @return 返回委托方公司信息
+	 */
+	public FtClientCompanyDO getFtClientCompanyDO() {
+		return ftClientCompanyDO;
+	}
+	/**
+	 * @param ftClientCompanyDO 委托方公司信息对象
+	 */
+	public void setFtClientCompanyDO(FtClientCompanyDO ftClientCompanyDO) {
+		this.ftClientCompanyDO = ftClientCompanyDO;
+	}
 	/**
 	 * 设置：主键
 	 */
@@ -198,25 +211,5 @@ public class FtClientDO implements Serializable {
 	 */
 	public Integer getIsDelete() {
 		return isDelete;
-	}
-	//审核状态1-已分配营销，2-资质审核中，3-审核不通过，4-审核通过，5-已分配客服，6-已分配操作人员
-	public String getStatus() {
-		switch (this.auditStatus) {
-		case 0:
-			return "新注册";
-		case 1:
-			return "已分配营销";
-		case 2:
-			return "资质审核中";
-		case 3:
-			return "审核不通过";
-		case 4:
-			return "审核通过";
-		case 5:
-			return "已分配客服";
-		case 6:
-			return "已分配操作人员";
-		}
-		return null;
 	}
 }

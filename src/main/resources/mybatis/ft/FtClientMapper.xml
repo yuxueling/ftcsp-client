@@ -57,6 +57,9 @@
 	</select>
 	 
 	<insert id="save" parameterType="com.cloudht.ft.domain.FtClientDO" useGeneratedKeys="true" keyProperty="ftClientId">
+		<selectKey resultType="Long" keyProperty="ftClientId" order="AFTER">
+			select last_insert_id()
+		</selectKey>
 		insert into ft_client
 		(
 			`client_user_id`, 

@@ -246,9 +246,14 @@
         <!--</dependency>-->
 
         <dependency>
-        	<groupId>com.sxyht</groupId>
-        	<artifactId>ftcsp-common</artifactId>
-        	<version>0.0.1-SNAPSHOT</version>
+        	<groupId>com.aliyun</groupId>
+        	<artifactId>aliyun-java-sdk-core</artifactId>
+        	<version>3.7.1</version>
+        </dependency>
+        <dependency>
+        	<groupId>com.aliyun</groupId>
+        	<artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+        	<version>1.1.0</version>
         </dependency>
     </dependencies>
     <build>

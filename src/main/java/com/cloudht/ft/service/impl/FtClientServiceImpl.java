@@ -2,6 +2,7 @@ package com.cloudht.ft.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Map;
 
 import com.cloudht.ft.dao.FtClientDao;
 import com.cloudht.ft.domain.FtClientDO;
+import com.cloudht.ft.service.FtClientCompanyService;
 import com.cloudht.ft.service.FtClientService;
 
 
@@ -17,6 +19,27 @@ import com.cloudht.ft.service.FtClientService;
 public class FtClientServiceImpl implements FtClientService {
 	@Autowired
 	private FtClientDao ftClientDao;
+	
+	@Autowired
+	private FtClientCompanyService ftClientCompanyService;
+	
+	@Override
+	@Transactional
+	public boolean saveClient(FtClientDO client) {
+		if(client==null||client.getFtClientCompanyDO()==null) {
+			return false;
+		}
+		try {
+			ftClientDao.save(client);
+			Long ftClientId = client.getFtClientId();//取出主键的值
+			client.getFtClientCompanyDO().setFtClientId(ftClientId);
+			ftClientCompanyService.save(client.getFtClientCompanyDO());
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+	}
 	
 	@Override
 	public FtClientDO get(Long ftClientId){
@@ -52,17 +75,18 @@ public class FtClientServiceImpl implements FtClientService {
 	public int batchRemove(Long[] ftClientIds){
 		return ftClientDao.batchRemove(ftClientIds);
 	}
-
+	/**
+	 * 查询公司状态 该函数务必保证数据库中公司状态大于3以上的均为审核通过，
+	 * 数据库设计如有变更，请重新更改该函数逻辑
+	 * @return 返回true公司信息审核通过; 返回false公司信息审核尚未通过;返回null公司信息没有填写(单个用户只能有绑定一个公司，超过一个公司也会返回null)
+	 */
 	@Override
-	public String queryClientStatus(HashMap<String, Object> hashMap) {
-		List<FtClientDO> list = ftClientDao.list(hashMap);
-		if(list.size()>1) {
-			return "请联系管理员";
+	public Boolean queryClientStatus(HashMap<String, Object> hashMap) {
+		List<FtClientDO> list = ftClientDao.list(hashMap);//根据传入的参数获取到公司信息
+		if(list.size()==1) {//如果公司信息只有一条，说明是正确的
+			return list.get(0).getAuditStatus()>3?true:false;
 		}
-		if(list.size()==0) {
-			return "请填写公司信息";
-		}
-		return list.get(0).getAuditStatus()>3?"审核通过":list.get(0).getStatus();
+		return null;
 	}
 
 	@Override
