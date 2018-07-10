@@ -15,7 +15,6 @@ import com.cloudht.system.vo.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.catalina.manager.util.SessionUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 @RequestMapping("/sys/user")
 @Controller
@@ -243,13 +241,11 @@ public class UserController extends BaseController {
 	 * 忘记密码用户找回密码后的保存密码
 	 * @param user
 	 * @return
-	 * @author 刘建华
 	 */
 	@PostMapping("/retrievePasswordSave")
 	@ResponseBody
 	R retrievePasswordSave(UserDO user) {
 		try {
-			Long userId = user.getUserId();
 			UserDO userDO = userService.get(user.getUserId());
 			if(!user.getUsername().equals(userDO.getUsername())) {//前台传入的id和用户名和后台比对
 				return R.error(1, "数据被非法修改，请重新尝试");

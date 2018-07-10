@@ -181,20 +181,22 @@
                                     <span>旧密码:</span>
                                 </div>
                                 <div class="gg-formDetail gg-dashed">
-                                    <input type="password" class="form-control gg-border0" id="pwdOld" name="pwdOld" placeholder="请输入旧密码" />
+                                    <input type="password" class="form-control gg-border0" id="pwdOld" placeholder="请输入旧密码" />
                                     <span class="fa fa-eye gg-faeye" title="鼠标移入显示内容"><span>
                                 </div>
                             </div>
+                            <input type="hidden" id="pwdOld1" name="pwdOld">
                             <div class="gg-formGroup">
                                 <div class="gg-formTitle">
                                     <em class="gg-star">*</em>
                                     <span>新密码:</span>
                                 </div>
                                 <div class="gg-formDetail gg-dashed">
-                                    <input type="password" class="form-control gg-border0" id="pwdNew" name="pwdNew" placeholder="请输入新密码" />
+                                    <input type="password" class="form-control gg-border0" id="pwdNew" placeholder="请输入新密码" />
                                     <span class="fa fa-eye gg-faeye" title="鼠标移入显示内容"></span>
                                 </div>
                             </div>
+                            <input type="hidden" id="pwdNew1" name="pwdNew">
                             <div class="gg-formGroup">
                                 <div class="gg-formTitle">
                                     <em class="gg-star">*</em>
@@ -219,5 +221,6 @@
 </div>
 <div th:include="system/user/include :: footer"></div>
 <script type="text/javascript" src="/js/appjs/sys/user/personal.js"></script>
+<script type="text/javascript" src="/js/jquery.md5.js"></script>
 </body>
 </html>

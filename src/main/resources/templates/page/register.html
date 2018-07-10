@@ -26,10 +26,11 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">密码：</label>
 								<div class="col-sm-8">
-									<input id="password" name="password" class="form-control"
+									<input id="password" class="form-control"
 										type="password">
 								</div>
 							</div>
+							<input type="hidden" id="password1" name="password" >
 							<div class="form-group">
 								<label class="col-sm-3 control-label">确认密码：</label>
 								<div class="col-sm-8">
@@ -57,7 +58,7 @@
 
 	</div>
 	<div th:include="include::footer"></div>
-	<script type="text/javascript" src="/js/appjs/sys/user/add.js">
-	</script>
+	<script type="text/javascript" src="/js/appjs/sys/user/add.js"></script>
+	<script type="text/javascript" src="/js/jquery.md5.js"></script>
 </body>
 </html>

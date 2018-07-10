@@ -22,6 +22,8 @@ $.validator.setDefaults({
 });
 function update() {
 	$("#roleIds").val(getCheckedRoles());
+	var newPassword = $.md5(document.getElementById("password").value);
+	document.getElementById("password1").value=newPassword;
 	$.ajax({
 		cache : false,
 		type : "POST",

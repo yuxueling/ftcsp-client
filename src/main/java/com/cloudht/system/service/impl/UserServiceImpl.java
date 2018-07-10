@@ -1,6 +1,5 @@
 package com.cloudht.system.service.impl;
 
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.util.*;
 
@@ -16,17 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cloudht.common.domain.Tree;
 import com.cloudht.system.dao.DeptDao;
-import com.cloudht.system.dao.RoleDao;
 import com.cloudht.system.dao.UserDao;
 import com.cloudht.system.dao.UserRoleDao;
 import com.cloudht.system.domain.DeptDO;
-import com.cloudht.system.domain.RoleDO;
 import com.cloudht.system.domain.UserDO;
 import com.cloudht.system.domain.UserRoleDO;
 import com.cloudht.system.service.UserService;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO;
 
 //@CacheConfig(cacheNames = "user")
 @Transactional
@@ -42,8 +38,6 @@ public class UserServiceImpl implements UserService {
     private FileService sysFileService;
     @Autowired
     private FtcspConfig ftcspConfig;
-    @Autowired
-    private RoleDao roleDao;
 
     
 //    @Cacheable(key = "#id")
@@ -200,24 +194,8 @@ public class UserServiceImpl implements UserService {
         String fileName = file.getOriginalFilename();
         fileName = FileUtil.renameToUUID(fileName);
         FileDO sysFile = new FileDO(FileType.fileType(fileName), "/files/" + fileName, new Date());
-        //获取图片后缀
-        String prefix = fileName.substring((fileName.lastIndexOf(".") + 1));
-        String[] str = avatar_data.split(",");
-        //获取截取的x坐标
-        int x = (int) Math.floor(Double.parseDouble(str[0].split(":")[1]));
-        //获取截取的y坐标
-        int y = (int) Math.floor(Double.parseDouble(str[1].split(":")[1]));
-        //获取截取的高度
-        int h = (int) Math.floor(Double.parseDouble(str[2].split(":")[1]));
-        //获取截取的宽度
-        int w = (int) Math.floor(Double.parseDouble(str[3].split(":")[1]));
-        //获取旋转的角度
-        int r = Integer.parseInt(str[4].split(":")[1].replaceAll("}", ""));
         try {
-            BufferedImage cutImage = ImageUtils.cutImage(file, x, y, w, h, prefix);
-            BufferedImage rotateImage = ImageUtils.rotateImage(cutImage, r);
             ByteArrayOutputStream out = new ByteArrayOutputStream();
-            boolean flag = ImageIO.write(rotateImage, prefix, out);
             //转换后存入数据库
             byte[] b = out.toByteArray();
             FileUtil.uploadFile(b, ftcspConfig.getUploadPath(), fileName);

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.cloudht.common.domain.Tree;
 import com.cloudht.system.domain.DeptDO;
 import com.cloudht.system.domain.UserDO;
-import com.cloudht.system.domain.UserRoleDO;
 
 import org.springframework.web.multipart.MultipartFile;
 

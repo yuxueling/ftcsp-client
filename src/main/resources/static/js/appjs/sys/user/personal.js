@@ -32,6 +32,10 @@ $("#base_save").click(function () {
 
 });
 $("#pwd_save").click(function () {
+	var newPassword = $.md5(document.getElementById("pwdOld").value);
+	document.getElementById("pwdOld1").value=newPassword;
+	var newPassword1 = $.md5(document.getElementById("pwdNew").value);
+	document.getElementById("pwdNew1").value=newPassword1;
     if($("#modifyPwd").valid()){
         $.ajax({
             cache : true,

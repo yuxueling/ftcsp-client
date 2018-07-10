@@ -9,11 +9,9 @@ import com.cloudht.common.utils.MD5Utils;
 import com.cloudht.common.utils.R;
 import com.cloudht.common.utils.ShiroUtils;
 import com.cloudht.ft.service.FtClientService;
-import com.cloudht.system.dao.UserRoleDao;
 import com.cloudht.system.domain.MenuDO;
 import com.cloudht.system.domain.RoleDO;
 import com.cloudht.system.domain.UserDO;
-import com.cloudht.system.domain.UserRoleDO;
 import com.cloudht.system.service.MenuService;
 import com.cloudht.system.service.RoleService;
 import com.cloudht.system.service.UserService;
@@ -21,7 +19,6 @@ import com.cloudht.system.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -119,35 +116,32 @@ public class LoginController extends BaseController {
 					roleId=roleIds.get(0);
 				}
 			}
-			//======如果是超级管理员直接跳过下面公司信息的效验====
-			if(roleId!=null&&adminRoleId!=null&&roleId==adminRoleId) {
-				return R.ok();
-			}
 			//======获取公司的审核状态=============
 			Boolean clientStatus=null;{
 				hashMap.put("clientUserId",user.getUserId());
 				clientStatus = ftClientService.queryClientStatus(hashMap);
 				hashMap.remove("clientUserId");
 			}
-			//========================
-			if(clientStatus==null) {
-				return R.ok("请填写公司信息");//公司信息未填写，跳转到公司信息填写页面
+			//======如果是超级管理员直接允许登录====
+			if(roleId!=null&&adminRoleId!=null&&roleId==adminRoleId) {
+				return R.ok();
 			}
-			if(clientStatus) {//该代码块为公司信息审核通过的逻辑
+			if(clientStatus!=null&&clientStatus) {//该代码块为公司信息审核通过的逻辑
 				//判断是不是正式角色 （是-登录成功）（否-授权为正式角色，提示重新登录）
 				if(roleId!=null&&officialUserRoleId!=null&&roleId==officialUserRoleId) {
 					return R.ok();
 				}
-				//授权为正式角色
-				userService.updateUserRoleByUseridAndRoleId(user.getUserId(),officialUserRoleId);
+				userService.updateUserRoleByUseridAndRoleId(user.getUserId(),officialUserRoleId);//授权为正式角色
 				return R.error("权限已更新,请重新登录");
-			}else {//该代码块为公司信息审核未通过的逻辑
+			}else {//为null或者false没有公司信息或者审核未通过
 				//判断是不是新注册角色 （是-登录成功）（否-授权为新注册角色，提示重新登录）
 				if(roleId!=null&&newUserRoleId!=null&&roleId==newUserRoleId) {
+					if(clientStatus==null) {
+						return R.ok("请填写公司信息");//公司信息未填写，跳转到公司信息填写页面
+					}
 					return R.ok();
 				}
-				//授权为新注册角色
-				userService.updateUserRoleByUseridAndRoleId(user.getUserId(),newUserRoleId);
+				userService.updateUserRoleByUseridAndRoleId(user.getUserId(),newUserRoleId);//授权为新注册角色
 				return R.error("权限已更新,请重新登录");
 			}
 		} catch (AuthenticationException e) {

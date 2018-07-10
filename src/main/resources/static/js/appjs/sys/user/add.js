@@ -20,6 +20,9 @@ function getCheckedRoles() {
 }
 function save() {
 	$("#roleIds").val(getCheckedRoles());
+	var newPassword = $.md5(document.getElementById("password").value);
+	document.getElementById("password1").value=newPassword;
+	debugger;
 	$.ajax({
 		cache : true,
 		type : "POST",
@@ -32,7 +35,6 @@ function save() {
 		success : function(data) {
 			if (data.code == 0) {
 				parent.layer.msg("操作成功");
-				debugger;
 				//parent.reLoad();
 				//$('#signupForm').bootstrapTable('refresh');
 				var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
